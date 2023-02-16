@@ -1,28 +1,107 @@
 [
   {
-    "type": "interpolant",
+    "type": "interpolation",
     "named": true,
-    "fields": {}
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "string",
+          "named": true
+        },
+        {
+          "type": "variable_instance",
+          "named": true
+        }
+      ]
+    }
   },
   {
-    "type": "raw_sql",
+    "type": "let",
     "named": true,
-    "fields": {}
+    "fields": {
+      "name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      },
+      "url": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "string",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "name_value_pair",
+          "named": true
+        },
+        {
+          "type": "string",
+          "named": true
+        },
+        {
+          "type": "variable_instance",
+          "named": true
+        }
+      ]
+    }
   },
   {
-    "type": "run_sql",
+    "type": "name_value_pair",
+    "named": true,
+    "fields": {
+      "name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      },
+      "value": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "string",
+            "named": true
+          },
+          {
+            "type": "variable_instance",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "parameters",
     "named": true,
     "fields": {},
     "children": {
       "multiple": true,
-      "required": true,
+      "required": false,
       "types": [
         {
-          "type": "interpolant",
-          "named": true
-        },
-        {
-          "type": "raw_sql",
+          "type": "identifier",
           "named": true
         }
       ]
@@ -37,22 +116,84 @@
       "required": false,
       "types": [
         {
-          "type": "run_sql",
+          "type": "let",
+          "named": true
+        },
+        {
+          "type": "parameters",
           "named": true
         }
       ]
     }
   },
   {
-    "type": "run",
+    "type": "string",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "escape_sequence",
+          "named": true
+        },
+        {
+          "type": "interpolation",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "variable_instance",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "identifier",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "\"",
     "named": false
   },
   {
-    "type": "sql",
+    "type": ":",
     "named": false
   },
   {
-    "type": "var",
+    "type": "=",
+    "named": false
+  },
+  {
+    "type": "Let",
+    "named": false
+  },
+  {
+    "type": "Parameters",
+    "named": false
+  },
+  {
+    "type": "connection",
+    "named": false
+  },
+  {
+    "type": "escape_sequence",
+    "named": true
+  },
+  {
+    "type": "identifier",
+    "named": true
+  },
+  {
+    "type": "to",
     "named": false
   }
 ]

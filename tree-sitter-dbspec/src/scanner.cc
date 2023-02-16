@@ -20,6 +20,7 @@ namespace {
   using std::memcpy;
 
   enum TokenType {
+    NEWLINE,
     INDENT,
     DEDENT,
     INTER_START,
@@ -29,6 +30,7 @@ namespace {
     STRING_CONTENT,
     STRING_END,
     COMMENT,
+    END_OF_FILE,
   };
 
   struct Scanner {
@@ -89,9 +91,7 @@ namespace {
           }
         }
 
-        // assert (!indent_counter || lexer->lookahead != '\t');
-
-        pending_dedents = indent_counter && indent_counter < reference_indent
+        pending_dedents += indent_counter && indent_counter < reference_indent
           ? reference_indent - indent_counter : 0;
 
         indent_counter = 0;
@@ -113,6 +113,11 @@ namespace {
         case '\n':
           pending_dedents = 0;
           indent_counter = 1;
+          if (valid_symbols[NEWLINE]) {
+            advance(lexer);
+            lexer->result_symbol = NEWLINE;
+            return true;
+          }
           if (valid_symbols[RAW]) {
             advance(lexer);
             lexer->result_symbol = RAW;
@@ -123,6 +128,8 @@ namespace {
         }
 
         if (pending_dedents && valid_symbols[DEDENT]) {
+          std::cout << "Dedenting...\n";
+
           pending_dedents--;
           reference_indent--;
           lexer->result_symbol = DEDENT;
@@ -145,10 +152,12 @@ namespace {
           }
           break;
 
-        case '#': // TODO: ok?
+        case '#': // TODO
           if (valid_symbols[COMMENT]) {
             skip(lexer);
-            while (lexer->lookahead && lexer->lookahead != '\r' && lexer->lookahead != '\n') {
+            while (lexer->lookahead
+                   && lexer->lookahead != '\r'
+                   && lexer->lookahead != '\n') {
               advance(lexer);
             }
             lexer->result_symbol = COMMENT;
@@ -190,7 +199,8 @@ namespace {
         }
 
         if (lexer->eof(lexer)) {
-          return false;
+          lexer->result_symbol = END_OF_FILE;
+          return valid_symbols[END_OF_FILE];
         }
 
         if (valid_symbols[STRING_CONTENT]) {

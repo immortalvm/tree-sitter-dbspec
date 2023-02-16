@@ -1,4 +1,12 @@
-run sql
-	abde efgh
-run sql
-	abde ${var} efgh
+# Some optional comment
+Parameters:
+	port
+	user
+	password
+
+# Cf. https://docs.oracle.com/javase/tutorial/jdbc/basics/connecting.html
+Let db = connection to "jdbc:mysql://localhost:${port}/"
+	user: "nr\\${user}"
+	password: password
+
+# <Work in progress>
