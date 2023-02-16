@@ -1,0 +1,4 @@
+run sql
+	abde efgh
+run sql
+	abde ${var} efgh

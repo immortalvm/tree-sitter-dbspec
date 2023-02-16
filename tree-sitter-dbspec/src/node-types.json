@@ -1,0 +1,58 @@
+[
+  {
+    "type": "interpolant",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "raw_sql",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "run_sql",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "interpolant",
+          "named": true
+        },
+        {
+          "type": "raw_sql",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "source_file",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "run_sql",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "run",
+    "named": false
+  },
+  {
+    "type": "sql",
+    "named": false
+  },
+  {
+    "type": "var",
+    "named": false
+  }
+]
