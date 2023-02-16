@@ -6,9 +6,9 @@
 #endif
 
 #define LANGUAGE_VERSION 14
-#define STATE_COUNT 15
+#define STATE_COUNT 16
 #define LARGE_STATE_COUNT 2
-#define SYMBOL_COUNT 19
+#define SYMBOL_COUNT 20
 #define ALIAS_COUNT 0
 #define TOKEN_COUNT 13
 #define EXTERNAL_TOKEN_COUNT 9
@@ -35,6 +35,7 @@ enum {
   sym_raw_sql = 16,
   sym_interpolant = 17,
   aux_sym_source_file_repeat1 = 18,
+  aux_sym_raw_sql_repeat1 = 19,
 };
 
 static const char * const ts_symbol_names[] = {
@@ -57,6 +58,7 @@ static const char * const ts_symbol_names[] = {
   [sym_raw_sql] = "raw_sql",
   [sym_interpolant] = "interpolant",
   [aux_sym_source_file_repeat1] = "source_file_repeat1",
+  [aux_sym_raw_sql_repeat1] = "raw_sql_repeat1",
 };
 
 static const TSSymbol ts_symbol_map[] = {
@@ -79,6 +81,7 @@ static const TSSymbol ts_symbol_map[] = {
   [sym_raw_sql] = sym_raw_sql,
   [sym_interpolant] = sym_interpolant,
   [aux_sym_source_file_repeat1] = aux_sym_source_file_repeat1,
+  [aux_sym_raw_sql_repeat1] = aux_sym_raw_sql_repeat1,
 };
 
 static const TSSymbolMetadata ts_symbol_metadata[] = {
@@ -158,6 +161,10 @@ static const TSSymbolMetadata ts_symbol_metadata[] = {
     .visible = false,
     .named = false,
   },
+  [aux_sym_raw_sql_repeat1] = {
+    .visible = false,
+    .named = false,
+  },
 };
 
 static const TSSymbol ts_alias_sequences[PRODUCTION_ID_COUNT][MAX_ALIAS_SEQUENCE_LENGTH] = {
@@ -184,6 +191,7 @@ static const TSStateId ts_primary_state_ids[STATE_COUNT] = {
   [12] = 12,
   [13] = 13,
   [14] = 14,
+  [15] = 15,
 };
 
 static bool ts_lex(TSLexer *lexer, TSStateId state) {
@@ -245,12 +253,13 @@ static const TSLexMode ts_lex_modes[STATE_COUNT] = {
   [6] = {.lex_state = 0},
   [7] = {.lex_state = 0, .external_lex_state = 2},
   [8] = {.lex_state = 0, .external_lex_state = 2},
-  [9] = {.lex_state = 0},
+  [9] = {.lex_state = 0, .external_lex_state = 2},
   [10] = {.lex_state = 0},
   [11] = {.lex_state = 0},
-  [12] = {.lex_state = 0, .external_lex_state = 4},
-  [13] = {.lex_state = 0},
-  [14] = {.lex_state = 0, .external_lex_state = 5},
+  [12] = {.lex_state = 0},
+  [13] = {.lex_state = 0, .external_lex_state = 4},
+  [14] = {.lex_state = 0},
+  [15] = {.lex_state = 0, .external_lex_state = 5},
 };
 
 enum {
@@ -323,7 +332,7 @@ static const uint16_t ts_parse_table[LARGE_STATE_COUNT][SYMBOL_COUNT] = {
     [sym__comment] = ACTIONS(1),
   },
   [1] = {
-    [sym_source_file] = STATE(11),
+    [sym_source_file] = STATE(12),
     [sym_run_sql] = STATE(5),
     [aux_sym_source_file_repeat1] = STATE(5),
     [ts_builtin_sym_end] = ACTIONS(3),
@@ -332,38 +341,44 @@ static const uint16_t ts_parse_table[LARGE_STATE_COUNT][SYMBOL_COUNT] = {
 };
 
 static const uint16_t ts_small_parse_table[] = {
-  [0] = 4,
+  [0] = 5,
     ACTIONS(7), 1,
       sym__dedent,
     ACTIONS(9), 1,
       sym__inter_start,
     ACTIONS(11), 1,
       sym__raw,
+    STATE(7), 1,
+      aux_sym_raw_sql_repeat1,
     STATE(3), 3,
       aux_sym__sql,
       sym_raw_sql,
       sym_interpolant,
-  [15] = 4,
+  [18] = 5,
     ACTIONS(13), 1,
       sym__dedent,
     ACTIONS(15), 1,
       sym__inter_start,
     ACTIONS(18), 1,
       sym__raw,
+    STATE(7), 1,
+      aux_sym_raw_sql_repeat1,
     STATE(3), 3,
       aux_sym__sql,
       sym_raw_sql,
       sym_interpolant,
-  [30] = 3,
+  [36] = 4,
     ACTIONS(9), 1,
       sym__inter_start,
     ACTIONS(11), 1,
       sym__raw,
+    STATE(7), 1,
+      aux_sym_raw_sql_repeat1,
     STATE(2), 3,
       aux_sym__sql,
       sym_raw_sql,
       sym_interpolant,
-  [42] = 3,
+  [51] = 3,
     ACTIONS(5), 1,
       anon_sym_run,
     ACTIONS(21), 1,
@@ -371,7 +386,7 @@ static const uint16_t ts_small_parse_table[] = {
     STATE(6), 2,
       sym_run_sql,
       aux_sym_source_file_repeat1,
-  [53] = 3,
+  [62] = 3,
     ACTIONS(23), 1,
       ts_builtin_sym_end,
     ACTIONS(25), 1,
@@ -379,75 +394,90 @@ static const uint16_t ts_small_parse_table[] = {
     STATE(6), 2,
       sym_run_sql,
       aux_sym_source_file_repeat1,
-  [64] = 1,
-    ACTIONS(28), 3,
+  [73] = 3,
+    ACTIONS(30), 1,
+      sym__raw,
+    STATE(8), 1,
+      aux_sym_raw_sql_repeat1,
+    ACTIONS(28), 2,
       sym__dedent,
       sym__inter_start,
+  [84] = 3,
+    ACTIONS(34), 1,
       sym__raw,
-  [70] = 1,
-    ACTIONS(30), 3,
-      sym__dedent,
-      sym__inter_start,
-      sym__raw,
-  [76] = 1,
+    STATE(8), 1,
+      aux_sym_raw_sql_repeat1,
     ACTIONS(32), 2,
+      sym__dedent,
+      sym__inter_start,
+  [95] = 1,
+    ACTIONS(37), 3,
+      sym__dedent,
+      sym__inter_start,
+      sym__raw,
+  [101] = 1,
+    ACTIONS(39), 2,
       ts_builtin_sym_end,
       anon_sym_run,
-  [81] = 1,
-    ACTIONS(34), 1,
+  [106] = 1,
+    ACTIONS(41), 1,
       anon_sym_sql,
-  [85] = 1,
-    ACTIONS(36), 1,
+  [110] = 1,
+    ACTIONS(43), 1,
       ts_builtin_sym_end,
-  [89] = 1,
-    ACTIONS(38), 1,
+  [114] = 1,
+    ACTIONS(45), 1,
       sym__indent,
-  [93] = 1,
-    ACTIONS(40), 1,
+  [118] = 1,
+    ACTIONS(47), 1,
       anon_sym_var,
-  [97] = 1,
-    ACTIONS(42), 1,
+  [122] = 1,
+    ACTIONS(49), 1,
       sym__inter_end,
 };
 
 static const uint32_t ts_small_parse_table_map[] = {
   [SMALL_STATE(2)] = 0,
-  [SMALL_STATE(3)] = 15,
-  [SMALL_STATE(4)] = 30,
-  [SMALL_STATE(5)] = 42,
-  [SMALL_STATE(6)] = 53,
-  [SMALL_STATE(7)] = 64,
-  [SMALL_STATE(8)] = 70,
-  [SMALL_STATE(9)] = 76,
-  [SMALL_STATE(10)] = 81,
-  [SMALL_STATE(11)] = 85,
-  [SMALL_STATE(12)] = 89,
-  [SMALL_STATE(13)] = 93,
-  [SMALL_STATE(14)] = 97,
+  [SMALL_STATE(3)] = 18,
+  [SMALL_STATE(4)] = 36,
+  [SMALL_STATE(5)] = 51,
+  [SMALL_STATE(6)] = 62,
+  [SMALL_STATE(7)] = 73,
+  [SMALL_STATE(8)] = 84,
+  [SMALL_STATE(9)] = 95,
+  [SMALL_STATE(10)] = 101,
+  [SMALL_STATE(11)] = 106,
+  [SMALL_STATE(12)] = 110,
+  [SMALL_STATE(13)] = 114,
+  [SMALL_STATE(14)] = 118,
+  [SMALL_STATE(15)] = 122,
 };
 
 static const TSParseActionEntry ts_parse_actions[] = {
   [0] = {.entry = {.count = 0, .reusable = false}},
   [1] = {.entry = {.count = 1, .reusable = false}}, RECOVER(),
   [3] = {.entry = {.count = 1, .reusable = true}}, REDUCE(sym_source_file, 0),
-  [5] = {.entry = {.count = 1, .reusable = true}}, SHIFT(10),
-  [7] = {.entry = {.count = 1, .reusable = true}}, SHIFT(9),
-  [9] = {.entry = {.count = 1, .reusable = true}}, SHIFT(13),
+  [5] = {.entry = {.count = 1, .reusable = true}}, SHIFT(11),
+  [7] = {.entry = {.count = 1, .reusable = true}}, SHIFT(10),
+  [9] = {.entry = {.count = 1, .reusable = true}}, SHIFT(14),
   [11] = {.entry = {.count = 1, .reusable = true}}, SHIFT(7),
   [13] = {.entry = {.count = 1, .reusable = true}}, REDUCE(aux_sym__sql, 2),
-  [15] = {.entry = {.count = 2, .reusable = true}}, REDUCE(aux_sym__sql, 2), SHIFT_REPEAT(13),
+  [15] = {.entry = {.count = 2, .reusable = true}}, REDUCE(aux_sym__sql, 2), SHIFT_REPEAT(14),
   [18] = {.entry = {.count = 2, .reusable = true}}, REDUCE(aux_sym__sql, 2), SHIFT_REPEAT(7),
   [21] = {.entry = {.count = 1, .reusable = true}}, REDUCE(sym_source_file, 1),
   [23] = {.entry = {.count = 1, .reusable = true}}, REDUCE(aux_sym_source_file_repeat1, 2),
-  [25] = {.entry = {.count = 2, .reusable = true}}, REDUCE(aux_sym_source_file_repeat1, 2), SHIFT_REPEAT(10),
+  [25] = {.entry = {.count = 2, .reusable = true}}, REDUCE(aux_sym_source_file_repeat1, 2), SHIFT_REPEAT(11),
   [28] = {.entry = {.count = 1, .reusable = true}}, REDUCE(sym_raw_sql, 1),
-  [30] = {.entry = {.count = 1, .reusable = true}}, REDUCE(sym_interpolant, 3),
-  [32] = {.entry = {.count = 1, .reusable = true}}, REDUCE(sym_run_sql, 5),
-  [34] = {.entry = {.count = 1, .reusable = true}}, SHIFT(12),
-  [36] = {.entry = {.count = 1, .reusable = true}},  ACCEPT_INPUT(),
-  [38] = {.entry = {.count = 1, .reusable = true}}, SHIFT(4),
-  [40] = {.entry = {.count = 1, .reusable = true}}, SHIFT(14),
-  [42] = {.entry = {.count = 1, .reusable = true}}, SHIFT(8),
+  [30] = {.entry = {.count = 1, .reusable = true}}, SHIFT(8),
+  [32] = {.entry = {.count = 1, .reusable = true}}, REDUCE(aux_sym_raw_sql_repeat1, 2),
+  [34] = {.entry = {.count = 2, .reusable = true}}, REDUCE(aux_sym_raw_sql_repeat1, 2), SHIFT_REPEAT(8),
+  [37] = {.entry = {.count = 1, .reusable = true}}, REDUCE(sym_interpolant, 3),
+  [39] = {.entry = {.count = 1, .reusable = true}}, REDUCE(sym_run_sql, 5),
+  [41] = {.entry = {.count = 1, .reusable = true}}, SHIFT(13),
+  [43] = {.entry = {.count = 1, .reusable = true}},  ACCEPT_INPUT(),
+  [45] = {.entry = {.count = 1, .reusable = true}}, SHIFT(4),
+  [47] = {.entry = {.count = 1, .reusable = true}}, SHIFT(15),
+  [49] = {.entry = {.count = 1, .reusable = true}}, SHIFT(9),
 };
 
 #ifdef __cplusplus

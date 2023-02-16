@@ -50,8 +50,15 @@
       }
     },
     "raw_sql": {
-      "type": "SYMBOL",
-      "name": "_raw"
+      "type": "PREC_RIGHT",
+      "value": 0,
+      "content": {
+        "type": "REPEAT1",
+        "content": {
+          "type": "SYMBOL",
+          "name": "_raw"
+        }
+      }
     },
     "interpolant": {
       "type": "SEQ",

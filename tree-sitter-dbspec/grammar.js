@@ -20,7 +20,7 @@ module.exports = grammar({
 
     _sql: $ => repeat1(choice($.raw_sql, $.interpolant)),
 
-    raw_sql: $ => $._raw,
+    raw_sql: $ => prec.right(repeat1($._raw)),
 
     interpolant: $ => seq($._inter_start, "var", $._inter_end),
 
