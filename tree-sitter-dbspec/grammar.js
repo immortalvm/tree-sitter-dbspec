@@ -21,16 +21,27 @@ module.exports = grammar({
     source_file: $ => seq(
       repeat(choice($._comment, $._newline)),
       optional(seq(
-        $.parameters,
+        $._parameters,
         repeat(choice($._comment, $._newline)),
       )),
-      optional(seq($.let, repeat(choice($.let, $._comment, $._newline)))),
+      optional(seq($._statement, repeat(choice($._statement, $._comment, $._newline)))),
     ),
 
-    parameters: $ => seq("Parameters", ':', $._nl, optional(seq(
-      $._indent, repeat1(seq($._parameter, $._nl)), $._ded))),
+    _statement: $ => choice(
+      $.let,
+      $.execute_sql,
+    ),
 
-    _parameter: $ => $.identifier,
+    _parameters: $ => seq(
+      "Parameters", ':', $._newline,
+      seq($._indent, repeat1($.parameter), $._ded)),
+
+    parameter: $ => seq(
+      field('name', $.identifier),
+      optional(seq('-', field('doc', $.short_documentation))), $._nl),
+
+    // This matches the rest of the line
+    short_documentation: $ => /.*/,
 
     _nl: $ => choice($._newline, $._end_of_file),
     _ded: $ => choice($._dedent, $._end_of_file),
@@ -40,10 +51,17 @@ module.exports = grammar({
 
     let: $ => seq('Let', field('name', $.identifier), '=', $._expression),
 
-    _expression: $ => choice($._basic_expression,  $._connection_expression),
+    _expression: $ => choice(
+      $._basic_expression,
+      $._connection_expression,
+      // To be continued
+    ),
 
-    _basic_expression: $ => choice($.string, $.variable_instance), // TODO
-
+    _basic_expression: $ => choice(
+      $.string,
+      $.variable_instance,
+      // To be continued
+    ),
     variable_instance: $ => $.identifier,
 
 
@@ -51,7 +69,6 @@ module.exports = grammar({
       'connection', 'to', field('url', $.string), $._newline, optional(seq(
         $._indent, repeat1(seq($.name_value_pair, $._newline)), $._dedent))),
 
-    // TODO: allow non-literal values
     name_value_pair: $ =>seq(
       field('name', $.identifier), ':', field('value', $._basic_expression)),
 
@@ -62,9 +79,10 @@ module.exports = grammar({
       repeat(choice(
         $.interpolation,
         $.escape_sequence,
-        prec.right(repeat1($._string_content)))),
+        $.string_content)),
       alias($._string_end, '"')
     ),
+    string_content: $ => prec.right(repeat1($._string_content)),
     escape_sequence: $ => token(prec(1, seq(
       '\\',
       choice(
@@ -77,17 +95,14 @@ module.exports = grammar({
       )
     ))),
 
-
-
-    // run_sql: $ => seq('run', 'sql', $._nl, $._indent, $._sql, $._dedent),
-
-    // _sql: $ => repeat1(choice($.raw_sql, $.interpolation)),
-
-    // raw_sql: $ => prec.right(repeat1($._raw)),
-
     interpolation: $ => seq($._inter_start, $._basic_expression, $._inter_end),
 
-
+    // Embedded SQL
+    execute_sql: $ => seq(
+      'Execute', 'SQL', 'using', field('connection', $.identifier), ':',
+      $._newline, $._indent, $._sql, $._ded),
+    _sql: $ => repeat1(choice($.sql_content, $.interpolation)),
+    sql_content: $ => prec.right(repeat1($._raw)),
   },
 
 });

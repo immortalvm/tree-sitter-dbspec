@@ -16,12 +16,12 @@ Only comments and newlines
 (source_file)
 
 ==================
-Empty parameter list
+No empty parameter list
 ==================
 Parameters:
 ---
 (source_file
-  (parameters))
+  (ERROR))
 
 ==================
 Parameter list, possibly with newlines
@@ -29,11 +29,14 @@ Parameter list, possibly with newlines
 Parameters:
 	port
 
-	user
+	user - The db user name
 	password
 ---
 (source_file
-  (parameters
-    (identifier)
-    (identifier)
-    (identifier)))
+  (parameter
+  name: (identifier))
+  (parameter
+    name: (identifier)
+    doc: (short_documentation))
+  (parameter
+    name: (identifier)))

@@ -1,5 +1,35 @@
 [
   {
+    "type": "execute_sql",
+    "named": true,
+    "fields": {
+      "connection": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "interpolation",
+          "named": true
+        },
+        {
+          "type": "sql_content",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "interpolation",
     "named": true,
     "fields": {},
@@ -93,18 +123,29 @@
     }
   },
   {
-    "type": "parameters",
+    "type": "parameter",
     "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": false,
-      "types": [
-        {
-          "type": "identifier",
-          "named": true
-        }
-      ]
+    "fields": {
+      "doc": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "short_documentation",
+            "named": true
+          }
+        ]
+      },
+      "name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      }
     }
   },
   {
@@ -116,15 +157,24 @@
       "required": false,
       "types": [
         {
+          "type": "execute_sql",
+          "named": true
+        },
+        {
           "type": "let",
           "named": true
         },
         {
-          "type": "parameters",
+          "type": "parameter",
           "named": true
         }
       ]
     }
+  },
+  {
+    "type": "sql_content",
+    "named": true,
+    "fields": {}
   },
   {
     "type": "string",
@@ -141,9 +191,18 @@
         {
           "type": "interpolation",
           "named": true
+        },
+        {
+          "type": "string_content",
+          "named": true
         }
       ]
     }
+  },
+  {
+    "type": "string_content",
+    "named": true,
+    "fields": {}
   },
   {
     "type": "variable_instance",
@@ -165,6 +224,10 @@
     "named": false
   },
   {
+    "type": "-",
+    "named": false
+  },
+  {
     "type": ":",
     "named": false
   },
@@ -173,11 +236,19 @@
     "named": false
   },
   {
+    "type": "Execute",
+    "named": false
+  },
+  {
     "type": "Let",
     "named": false
   },
   {
     "type": "Parameters",
+    "named": false
+  },
+  {
+    "type": "SQL",
     "named": false
   },
   {
@@ -193,7 +264,15 @@
     "named": true
   },
   {
+    "type": "short_documentation",
+    "named": true
+  },
+  {
     "type": "to",
+    "named": false
+  },
+  {
+    "type": "using",
     "named": false
   }
 ]

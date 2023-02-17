@@ -1,12 +1,26 @@
 # Some optional comment
 Parameters:
-	port
+	port - The port of the DBMS
 	user
 	password
+	id_size - The number of characters in generated IDs
 
 # Cf. https://docs.oracle.com/javase/tutorial/jdbc/basics/connecting.html
 Let db = connection to "jdbc:mysql://localhost:${port}/"
 	user: "nr\\${user}"
 	password: password
 
-# <Work in progress>
+Execute SQL using db:
+	CREATE TABLE Temp (
+		id VARCHAR(${id_size}) NOT NULL,
+		counter INT NULL,
+		PRIMARY KEY (id)
+	);
+
+
+# For Emacs:
+#
+# Local variables:
+# indent-tabs-mode: t
+# tab-width: 4
+# End:
