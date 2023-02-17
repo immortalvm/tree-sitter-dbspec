@@ -106,7 +106,7 @@
         },
         {
           "type": "SYMBOL",
-          "name": "_newline"
+          "name": "_nl"
         },
         {
           "type": "CHOICE",
@@ -129,14 +129,14 @@
                       },
                       {
                         "type": "SYMBOL",
-                        "name": "_newline"
+                        "name": "_nl"
                       }
                     ]
                   }
                 },
                 {
                   "type": "SYMBOL",
-                  "name": "_dedent"
+                  "name": "_ded"
                 }
               ]
             },
@@ -156,14 +156,24 @@
       "members": [
         {
           "type": "SYMBOL",
-          "name": "_end_of_file"
+          "name": "_newline"
         },
         {
-          "type": "REPEAT1",
-          "content": {
-            "type": "SYMBOL",
-            "name": "_newline"
-          }
+          "type": "SYMBOL",
+          "name": "_end_of_file"
+        }
+      ]
+    },
+    "_ded": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "_dedent"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_end_of_file"
         }
       ]
     },

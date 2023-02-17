@@ -1,0 +1,39 @@
+==================
+Minimal spec
+==================
+---
+(source_file)
+
+==================
+Only comments and newlines
+==================
+# Aaa
+
+# Bbb
+# Ccc 123
+
+---
+(source_file)
+
+==================
+Empty parameter list
+==================
+Parameters:
+---
+(source_file
+  (parameters))
+
+==================
+Parameter list, possibly with newlines
+==================
+Parameters:
+	port
+
+	user
+	password
+---
+(source_file
+  (parameters
+    (identifier)
+    (identifier)
+    (identifier)))

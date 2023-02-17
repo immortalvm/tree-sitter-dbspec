@@ -137,6 +137,9 @@ namespace {
         //----
 
         switch (lexer->lookahead) {
+        case '\0':
+          continue;
+
         case '"':
           if (valid_symbols[STRING_START]) {
             advance(lexer);
@@ -196,11 +199,6 @@ namespace {
           break;
         }
 
-        if (lexer->eof(lexer)) {
-          lexer->result_symbol = END_OF_FILE;
-          return valid_symbols[END_OF_FILE];
-        }
-
         if (valid_symbols[STRING_CONTENT]) {
           advance(lexer);
           lexer->result_symbol = STRING_CONTENT;
@@ -214,6 +212,10 @@ namespace {
         }
 
         break;
+      }
+      if (lexer->eof(lexer)) {
+        lexer->result_symbol = END_OF_FILE;
+        return valid_symbols[END_OF_FILE];
       }
       return false;
     }

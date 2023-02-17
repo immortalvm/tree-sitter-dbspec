@@ -27,12 +27,13 @@ module.exports = grammar({
       optional(seq($.let, repeat(choice($.let, $._comment, $._newline)))),
     ),
 
-    parameters: $ => seq("Parameters", ':', $._newline, optional(seq(
-      $._indent, repeat1(seq($._parameter, $._newline)), $._dedent))),
+    parameters: $ => seq("Parameters", ':', $._nl, optional(seq(
+      $._indent, repeat1(seq($._parameter, $._nl)), $._ded))),
 
     _parameter: $ => $.identifier,
 
-    _nl: $ => choice($._end_of_file, repeat1($._newline)),
+    _nl: $ => choice($._newline, $._end_of_file),
+    _ded: $ => choice($._dedent, $._end_of_file),
 
     // As in tree-sitter-python
     identifier: $ => /[_\p{XID_Start}][_\p{XID_Continue}]*/,
