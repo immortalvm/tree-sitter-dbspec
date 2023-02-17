@@ -128,8 +128,6 @@ namespace {
         }
 
         if (pending_dedents && valid_symbols[DEDENT]) {
-          std::cout << "Dedenting...\n";
-
           pending_dedents--;
           reference_indent--;
           lexer->result_symbol = DEDENT;
