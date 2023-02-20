@@ -1,23 +1,17 @@
 #include <tree_sitter/parser.h>
-#include <vector>
-#include <cwctype>
 #include <cstring>
 // uncomment to disable assert()
 //#define NDEBUG
 #include <cassert>
 #include <stdio.h>
 
-// For test output
+// For experimental test output
 #include <iostream>
 
 /* Inspired by scanner.cc in tree-parser-python (2023-02-14)
 and https://tree-sitter.github.io/tree-sitter/creating-parsers#external-scanners . */
 
 namespace {
-
-  using std::vector;
-  using std::iswspace;
-  using std::memcpy;
 
   enum TokenType {
     NEWLINE,
