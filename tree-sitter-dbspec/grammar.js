@@ -19,12 +19,9 @@ module.exports = grammar({
 
   rules: {
     source_file: $ => seq(
-      repeat(choice($._comment, $._newline)),
-      optional(seq(
-        $._parameters,
-        repeat(choice($._comment, $._newline)),
-      )),
-      optional(seq($._statement, repeat(choice($._statement, $._comment, $._newline)))),
+      repeat($._comment),
+      optional(seq($._parameters, repeat($._comment))),
+      optional(seq($._statement, repeat(choice($._statement, $._comment)))),
     ),
 
     _statement: $ => choice(

@@ -8,17 +8,8 @@
         {
           "type": "REPEAT",
           "content": {
-            "type": "CHOICE",
-            "members": [
-              {
-                "type": "SYMBOL",
-                "name": "_comment"
-              },
-              {
-                "type": "SYMBOL",
-                "name": "_newline"
-              }
-            ]
+            "type": "SYMBOL",
+            "name": "_comment"
           }
         },
         {
@@ -34,17 +25,8 @@
                 {
                   "type": "REPEAT",
                   "content": {
-                    "type": "CHOICE",
-                    "members": [
-                      {
-                        "type": "SYMBOL",
-                        "name": "_comment"
-                      },
-                      {
-                        "type": "SYMBOL",
-                        "name": "_newline"
-                      }
-                    ]
+                    "type": "SYMBOL",
+                    "name": "_comment"
                   }
                 }
               ]
@@ -76,10 +58,6 @@
                       {
                         "type": "SYMBOL",
                         "name": "_comment"
-                      },
-                      {
-                        "type": "SYMBOL",
-                        "name": "_newline"
                       }
                     ]
                   }

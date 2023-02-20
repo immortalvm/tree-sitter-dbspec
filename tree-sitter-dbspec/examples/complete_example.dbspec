@@ -1,4 +1,6 @@
-# Some optional comment
+# Some optional comments and newlines
+
+# More
 Parameters:
 	port - The port of the DBMS
 	user
