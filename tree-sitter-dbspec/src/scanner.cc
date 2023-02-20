@@ -134,88 +134,83 @@ namespace {
           return true;
         }
 
-        //----
+        break;
+      }
 
-        switch (lexer->lookahead) {
-        case '\0':
-          continue;
+      switch (lexer->lookahead) {
 
-        case '"':
-          if (valid_symbols[STRING_START]) {
-            advance(lexer);
-            lexer->result_symbol = STRING_START;
-            return true;
-          }
-          if (valid_symbols[STRING_END]) {
-            advance(lexer);
-            lexer->result_symbol = STRING_END;
-            return true;
-          }
-          break;
-
-        case '#': // TODO
-          if (valid_symbols[COMMENT]) {
-            skip(lexer);
-            while (lexer->lookahead
-                   && lexer->lookahead != '\r'
-                   && lexer->lookahead != '\n') {
-              advance(lexer);
-            }
-            lexer->result_symbol = COMMENT;
-            return true;
-          }
-          break;
-
-        case '$':
+      case '"':
+        if (valid_symbols[STRING_START]) {
           advance(lexer);
-          if (valid_symbols[INTER_START] && lexer->lookahead == '{') {
-            advance(lexer);
-            lexer->result_symbol = INTER_START;
-            return true;
-          }
-          if (valid_symbols[STRING_CONTENT]) {
-            lexer->result_symbol = STRING_CONTENT;
-            return true;
-          }
-          if (valid_symbols[RAW]) {
-            lexer->result_symbol = RAW;
-            return true;
-          }
-          return false;
-
-        case '}':
-          if (valid_symbols[INTER_END]) {
-            advance(lexer);
-            lexer->result_symbol = INTER_END;
-            return true;
-          }
-          break;
-
-        case '\\':
-          if (valid_symbols[STRING_CONTENT]) {
-            // Escaped strings will be handled by the parser.
-            return false;
-          }
-          break;
+          lexer->result_symbol = STRING_START;
+          return true;
         }
-
-        if (valid_symbols[STRING_CONTENT]) {
+        if (valid_symbols[STRING_END]) {
           advance(lexer);
+          lexer->result_symbol = STRING_END;
+          return true;
+        }
+        break;
+
+      case '#': // TODO
+        if (valid_symbols[COMMENT]) {
+          skip(lexer);
+          while (lexer->lookahead
+                 && lexer->lookahead != '\r'
+                 && lexer->lookahead != '\n') {
+            advance(lexer);
+          }
+          lexer->result_symbol = COMMENT;
+          return true;
+        }
+        break;
+
+      case '$':
+        advance(lexer);
+        if (valid_symbols[INTER_START] && lexer->lookahead == '{') {
+          advance(lexer);
+          lexer->result_symbol = INTER_START;
+          return true;
+        }
+        if (valid_symbols[STRING_CONTENT]) {
           lexer->result_symbol = STRING_CONTENT;
           return true;
         }
-
         if (valid_symbols[RAW]) {
-          advance(lexer);
           lexer->result_symbol = RAW;
           return true;
         }
+        return false;
 
+      case '}':
+        if (valid_symbols[INTER_END]) {
+          advance(lexer);
+          lexer->result_symbol = INTER_END;
+          return true;
+        }
+        break;
+
+      case '\\':
+        if (valid_symbols[STRING_CONTENT]) {
+          // Escaped strings will be handled by the parser.
+          return false;
+        }
         break;
       }
+
       if (lexer->eof(lexer)) {
         lexer->result_symbol = END_OF_FILE;
         return valid_symbols[END_OF_FILE];
+      }
+      if (valid_symbols[STRING_CONTENT]) {
+        advance(lexer);
+        lexer->result_symbol = STRING_CONTENT;
+        return true;
+      }
+      if (valid_symbols[RAW]) {
+        advance(lexer);
+        lexer->result_symbol = RAW;
+        return true;
       }
       return false;
     }
