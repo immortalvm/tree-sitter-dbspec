@@ -18,9 +18,7 @@ Execute SQL using db:
 	);
 
 
-# For Emacs:
-#
-# Local variables:
-# indent-tabs-mode: t
-# tab-width: 4
-# End:
+### Local variables:
+### indent-tabs-mode: t
+### tab-width: 4
+### End:

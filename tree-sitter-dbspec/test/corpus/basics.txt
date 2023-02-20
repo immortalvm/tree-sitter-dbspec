@@ -1,42 +1,43 @@
-==================
+-*- indent-tabs-mode: t; tab-width: 4 -*-
+========================================
 Minimal spec
-==================
----
+========================================
+----------------------------------------
 (source_file)
 
-==================
+========================================
 Only comments and newlines
-==================
+========================================
 # Aaa
 
 # Bbb
 # Ccc 123
 
----
+----------------------------------------
 (source_file)
 
-==================
+========================================
 No empty parameter list
-==================
+========================================
 Parameters:
----
+----------------------------------------
 (source_file
-  (ERROR))
+	(ERROR))
 
-==================
+========================================
 Parameter list, possibly with newlines
-==================
+========================================
 Parameters:
 	port
 
 	user - The db user name
 	password
----
+----------------------------------------
 (source_file
-  (parameter
-  name: (identifier))
-  (parameter
-    name: (identifier)
-    doc: (short_documentation))
-  (parameter
-    name: (identifier)))
+	(parameter
+	name: (identifier))
+	(parameter
+		name: (identifier)
+		doc: (short_documentation))
+	(parameter
+		name: (identifier)))
