@@ -80,7 +80,7 @@
         },
         {
           "type": "SYMBOL",
-          "name": "execute_sql"
+          "name": "execute"
         }
       ]
     },
@@ -232,6 +232,10 @@
         {
           "type": "SYMBOL",
           "name": "connection"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "query"
         }
       ]
     },
@@ -251,93 +255,6 @@
     "variable_instance": {
       "type": "SYMBOL",
       "name": "identifier"
-    },
-    "connection": {
-      "type": "SEQ",
-      "members": [
-        {
-          "type": "STRING",
-          "value": "connection"
-        },
-        {
-          "type": "STRING",
-          "value": "to"
-        },
-        {
-          "type": "FIELD",
-          "name": "url",
-          "content": {
-            "type": "SYMBOL",
-            "name": "string"
-          }
-        },
-        {
-          "type": "SYMBOL",
-          "name": "_newline"
-        },
-        {
-          "type": "CHOICE",
-          "members": [
-            {
-              "type": "SEQ",
-              "members": [
-                {
-                  "type": "SYMBOL",
-                  "name": "_indent"
-                },
-                {
-                  "type": "REPEAT1",
-                  "content": {
-                    "type": "SEQ",
-                    "members": [
-                      {
-                        "type": "SYMBOL",
-                        "name": "name_value_pair"
-                      },
-                      {
-                        "type": "SYMBOL",
-                        "name": "_newline"
-                      }
-                    ]
-                  }
-                },
-                {
-                  "type": "SYMBOL",
-                  "name": "_dedent"
-                }
-              ]
-            },
-            {
-              "type": "BLANK"
-            }
-          ]
-        }
-      ]
-    },
-    "name_value_pair": {
-      "type": "SEQ",
-      "members": [
-        {
-          "type": "FIELD",
-          "name": "name",
-          "content": {
-            "type": "SYMBOL",
-            "name": "identifier"
-          }
-        },
-        {
-          "type": "STRING",
-          "value": ":"
-        },
-        {
-          "type": "FIELD",
-          "name": "value",
-          "content": {
-            "type": "SYMBOL",
-            "name": "_basic_expression"
-          }
-        }
-      ]
     },
     "string": {
       "type": "SEQ",
@@ -455,24 +372,83 @@
         }
       ]
     },
-    "execute_sql": {
+    "connection": {
       "type": "SEQ",
       "members": [
         {
           "type": "STRING",
-          "value": "Execute"
+          "value": "connection"
         },
         {
           "type": "STRING",
-          "value": "SQL"
-        },
-        {
-          "type": "STRING",
-          "value": "using"
+          "value": "to"
         },
         {
           "type": "FIELD",
-          "name": "connection",
+          "name": "url",
+          "content": {
+            "type": "SYMBOL",
+            "name": "string"
+          }
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "_nl"
+            },
+            {
+              "type": "SEQ",
+              "members": [
+                {
+                  "type": "STRING",
+                  "value": "with"
+                },
+                {
+                  "type": "STRING",
+                  "value": ":"
+                },
+                {
+                  "type": "SYMBOL",
+                  "name": "_newline"
+                },
+                {
+                  "type": "SYMBOL",
+                  "name": "_indent"
+                },
+                {
+                  "type": "REPEAT1",
+                  "content": {
+                    "type": "SEQ",
+                    "members": [
+                      {
+                        "type": "SYMBOL",
+                        "name": "key_value_pair"
+                      },
+                      {
+                        "type": "SYMBOL",
+                        "name": "_nl"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "SYMBOL",
+                  "name": "_ded"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "key_value_pair": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "FIELD",
+          "name": "key",
           "content": {
             "type": "SYMBOL",
             "name": "identifier"
@@ -483,6 +459,87 @@
           "value": ":"
         },
         {
+          "type": "FIELD",
+          "name": "value",
+          "content": {
+            "type": "SYMBOL",
+            "name": "_basic_expression"
+          }
+        }
+      ]
+    },
+    "execute": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "Execute"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_sql"
+        }
+      ]
+    },
+    "query": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "result"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_sql"
+        }
+      ]
+    },
+    "_sql": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SEQ",
+              "members": [
+                {
+                  "type": "STRING",
+                  "value": "using"
+                },
+                {
+                  "type": "FIELD",
+                  "name": "connection",
+                  "content": {
+                    "type": "SYMBOL",
+                    "name": "identifier"
+                  }
+                }
+              ]
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        },
+        {
+          "type": "STRING",
+          "value": ":"
+        },
+        {
+          "type": "FIELD",
+          "name": "sql",
+          "content": {
+            "type": "SYMBOL",
+            "name": "sql"
+          }
+        }
+      ]
+    },
+    "sql": {
+      "type": "SEQ",
+      "members": [
+        {
           "type": "SYMBOL",
           "name": "_newline"
         },
@@ -491,30 +548,26 @@
           "name": "_indent"
         },
         {
-          "type": "SYMBOL",
-          "name": "_sql"
+          "type": "REPEAT1",
+          "content": {
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "SYMBOL",
+                "name": "sql_content"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "interpolation"
+              }
+            ]
+          }
         },
         {
           "type": "SYMBOL",
           "name": "_ded"
         }
       ]
-    },
-    "_sql": {
-      "type": "REPEAT1",
-      "content": {
-        "type": "CHOICE",
-        "members": [
-          {
-            "type": "SYMBOL",
-            "name": "sql_content"
-          },
-          {
-            "type": "SYMBOL",
-            "name": "interpolation"
-          }
-        ]
-      }
     },
     "sql_content": {
       "type": "PREC_RIGHT",

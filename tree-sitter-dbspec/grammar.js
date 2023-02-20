@@ -26,7 +26,7 @@ module.exports = grammar({
 
     _statement: $ => choice(
       $.let,
-      $.execute_sql,
+      $.execute,
     ),
 
     _parameters: $ => seq(
@@ -51,6 +51,7 @@ module.exports = grammar({
     _expression: $ => choice(
       $._basic_expression,
       $.connection,
+      $.query,
       // To be continued
     ),
 
@@ -60,15 +61,6 @@ module.exports = grammar({
       // To be continued
     ),
     variable_instance: $ => $.identifier,
-
-
-    connection: $ => seq(
-      'connection', 'to', field('url', $.string), $._newline, optional(seq(
-        $._indent, repeat1(seq($.name_value_pair, $._newline)), $._dedent))),
-
-    name_value_pair: $ =>seq(
-      field('name', $.identifier), ':', field('value', $._basic_expression)),
-
 
     // Inspired by tree-sitter-python
     string: $ => seq(
@@ -94,14 +86,39 @@ module.exports = grammar({
 
     interpolation: $ => seq($._inter_start, $._basic_expression, $._inter_end),
 
-    // Embedded SQL
-    execute_sql: $ => seq(
-      'Execute', 'SQL', 'using', field('connection', $.identifier), ':',
-      $._newline, $._indent, $._sql, $._ded),
-    _sql: $ => repeat1(choice($.sql_content, $.interpolation)),
-    sql_content: $ => prec.right(repeat1($._raw)),
-  },
 
+    // ---- SQL ----
+
+    // cf. https://docs.oracle.com/javase/tutorial/jdbc/basics/connecting.html
+    connection: $ => seq(
+      'connection', 'to', field('url', $.string),
+      choice(
+        $._nl,
+        seq(
+          'with', ':', $._newline,
+          $._indent,
+          repeat1(seq($.key_value_pair, $._nl)),
+          $._ded))),
+
+    // NB. Each key must an identifier (i.e. no whitespace, etc.).
+    key_value_pair: $ =>seq(
+      field('key', $.identifier), ':', field('value', $._basic_expression)),
+
+    execute: $ => seq('Execute', $._sql),
+    query: $ => seq('result', $._sql),
+
+    _sql: $ => seq(
+      optional(seq('using', field('connection', $.identifier))),
+      ':', field('sql', $.sql)),
+
+    sql: $ => seq(
+      $._newline,
+      $._indent,
+      repeat1(choice($.sql_content, $.interpolation)),
+      $._ded),
+    sql_content: $ => prec.right(repeat1($._raw)),
+
+  },
 });
 
 

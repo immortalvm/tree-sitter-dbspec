@@ -8,16 +8,20 @@ Parameters:
 	id_size - The number of characters in generated IDs
 
 # Cf. https://docs.oracle.com/javase/tutorial/jdbc/basics/connecting.html
-Let db = connection to "jdbc:mysql://localhost:${port}/"
+Let db = connection to "jdbc:mysql://localhost:${port}/" with:
 	user: "nr\\${user}"
 	password: password
 
-Execute SQL using db:
+Execute using db:
 	CREATE TABLE Temp (
 		id VARCHAR(${id_size}) NOT NULL,
 		counter INT NULL,
 		PRIMARY KEY (id)
 	);
+
+Let t = result using db:
+	SELECT id, name
+	FROM employees;
 
 
 ### Local variables:
