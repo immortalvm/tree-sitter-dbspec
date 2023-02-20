@@ -50,7 +50,7 @@ module.exports = grammar({
 
     _expression: $ => choice(
       $._basic_expression,
-      $._connection_expression,
+      $.connection,
       // To be continued
     ),
 
@@ -62,7 +62,7 @@ module.exports = grammar({
     variable_instance: $ => $.identifier,
 
 
-    _connection_expression: $ => seq(
+    connection: $ => seq(
       'connection', 'to', field('url', $.string), $._newline, optional(seq(
         $._indent, repeat1(seq($.name_value_pair, $._newline)), $._dedent))),
 

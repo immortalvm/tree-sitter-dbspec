@@ -231,7 +231,7 @@
         },
         {
           "type": "SYMBOL",
-          "name": "_connection_expression"
+          "name": "connection"
         }
       ]
     },
@@ -252,7 +252,7 @@
       "type": "SYMBOL",
       "name": "identifier"
     },
-    "_connection_expression": {
+    "connection": {
       "type": "SEQ",
       "members": [
         {

@@ -1,5 +1,31 @@
 [
   {
+    "type": "connection",
+    "named": true,
+    "fields": {
+      "url": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "string",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "name_value_pair",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "execute_sql",
     "named": true,
     "fields": {
@@ -61,24 +87,14 @@
             "named": true
           }
         ]
-      },
-      "url": {
-        "multiple": false,
-        "required": false,
-        "types": [
-          {
-            "type": "string",
-            "named": true
-          }
-        ]
       }
     },
     "children": {
-      "multiple": true,
-      "required": false,
+      "multiple": false,
+      "required": true,
       "types": [
         {
-          "type": "name_value_pair",
+          "type": "connection",
           "named": true
         },
         {
