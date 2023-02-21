@@ -165,6 +165,21 @@
     }
   },
   {
+    "type": "parameters",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "parameter",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "query",
     "named": true,
     "fields": {
@@ -207,7 +222,7 @@
           "named": true
         },
         {
-          "type": "parameter",
+          "type": "parameters",
           "named": true
         }
       ]

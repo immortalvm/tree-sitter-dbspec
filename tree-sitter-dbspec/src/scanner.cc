@@ -25,6 +25,7 @@ namespace {
     STRING_END,
     COMMENT,
     END_OF_FILE,
+    SKIP,
   };
 
   struct Scanner {
@@ -65,8 +66,11 @@ namespace {
       bool recovery_mode = valid_symbols[INDENT] && valid_symbols[RAW];
       if (recovery_mode) {
         // We choose to fail rather than recover (for now).
+        // std::cout << "Recovery" << std::endl;
         return false;
       }
+
+      bool skipping = false;
 
       while (lexer->lookahead) {
 
@@ -74,6 +78,7 @@ namespace {
           if (indent_counter < reference_indent) {
             indent_counter++;
             skip(lexer);
+            skipping = true;
             continue;
 
           } else if (valid_symbols[INDENT]) {
@@ -83,23 +88,6 @@ namespace {
             lexer->result_symbol = INDENT;
             return true;
           }
-        }
-
-        pending_dedents += indent_counter && indent_counter < reference_indent
-          ? reference_indent - indent_counter : 0;
-
-        indent_counter = 0;
-
-        switch (lexer->lookahead) {
-        case ' ':
-        case '\t':
-          if (valid_symbols[RAW]) {
-            advance(lexer);
-            lexer->result_symbol = RAW;
-            return true;
-          }
-          skip(lexer);
-          continue;
         }
 
         switch (lexer->lookahead) {
@@ -118,17 +106,44 @@ namespace {
             return true;
           }
           skip(lexer);
+          skipping = true;
+          continue;
+        case ' ':
+        case '\t':
+          if (valid_symbols[RAW]) {
+            advance(lexer);
+            lexer->result_symbol = RAW;
+            return true;
+          }
+          // std::cout << (int) indent_counter << std::endl;
+          if (indent_counter) {
+            // Do not allow space or tab at the beginning of lines except in RAW.
+            break;
+          }
+          skip(lexer);
+          skipping = true;
           continue;
         }
 
-        if (pending_dedents && valid_symbols[DEDENT]) {
-          pending_dedents--;
-          reference_indent--;
-          lexer->result_symbol = DEDENT;
-          return true;
-        }
-
         break;
+      }
+
+      pending_dedents += indent_counter && indent_counter < reference_indent
+        ? reference_indent - indent_counter : 0;
+
+      if (skipping || indent_counter) {
+        indent_counter = 0;
+        lexer->result_symbol = SKIP;
+        return true;
+      }
+
+      // std::cout << "HERE: " << lexer->lookahead << " " << char(lexer->lookahead) << std::endl;
+
+      if (pending_dedents && valid_symbols[DEDENT]) {
+        pending_dedents--;
+        reference_indent--;
+        lexer->result_symbol = DEDENT;
+        return true;
       }
 
       switch (lexer->lookahead) {

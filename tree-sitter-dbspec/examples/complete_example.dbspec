@@ -5,12 +5,13 @@ Parameters:
 	port - The port of the DBMS
 	user
 	password
+	# Comment!
 	id_size - The number of characters in generated IDs
 
 # Cf. https://docs.oracle.com/javase/tutorial/jdbc/basics/connecting.html
 Let db = connection to "jdbc:mysql://localhost:${port}/" with:
-	user: "nr\\${user}"
-	password: password
+	user = "nr\\${user}"
+	password = password
 
 Execute using db:
 	CREATE TABLE Temp (

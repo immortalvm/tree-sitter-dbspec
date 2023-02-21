@@ -1,6 +1,11 @@
 module.exports = grammar({
   name: 'dbspec',
 
+  extras: $ => [
+    $._comment,
+    $._skip,
+  ],
+
   externals: $ => [
     $._newline,
     $._indent,
@@ -13,15 +18,15 @@ module.exports = grammar({
     $._string_end,
     $._comment,
     $._end_of_file,
+    $._skip,
   ],
 
   word: $ => $.identifier,
 
   rules: {
     source_file: $ => seq(
-      repeat($._comment),
-      optional(seq($._parameters, repeat($._comment))),
-      optional(seq($._statement, repeat(choice($._statement, $._comment)))),
+      optional($.parameters),
+      repeat($._statement),
     ),
 
     _statement: $ => choice(
@@ -29,13 +34,14 @@ module.exports = grammar({
       $.execute,
     ),
 
-    _parameters: $ => seq(
+    parameters: $ => seq(
       "Parameters", ':', $._newline,
       seq($._indent, repeat1($.parameter), $._ded)),
 
     parameter: $ => seq(
       field('name', $.identifier),
-      optional(seq('-', field('doc', $.short_documentation))), $._nl),
+      optional(seq('-', field('doc', $.short_documentation))),
+      $._nl),
 
     // This matches the rest of the line
     short_documentation: $ => /.*/,
@@ -95,6 +101,7 @@ module.exports = grammar({
       choice(
         $._nl,
         seq(
+          optional($._newline),
           'with', ':', $._newline,
           $._indent,
           repeat1(seq($.key_value_pair, $._nl)),
@@ -102,7 +109,7 @@ module.exports = grammar({
 
     // NB. Each key must an identifier (i.e. no whitespace, etc.).
     key_value_pair: $ =>seq(
-      field('key', $.identifier), ':', field('value', $._basic_expression)),
+      field('key', $.identifier), '=', field('value', $._basic_expression)),
 
     execute: $ => seq('Execute', $._sql),
     query: $ => seq('result', $._sql),
