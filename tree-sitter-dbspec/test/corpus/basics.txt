@@ -34,10 +34,11 @@ Parameters:
 	password
 ----------------------------------------
 (source_file
-	(parameter
-	name: (identifier))
-	(parameter
-		name: (identifier)
-		doc: (short_documentation))
-	(parameter
-		name: (identifier)))
+	(parameters
+		(parameter
+			name: (identifier))
+		(parameter
+			name: (identifier)
+			doc: (short_documentation))
+		(parameter
+			name: (identifier))))
