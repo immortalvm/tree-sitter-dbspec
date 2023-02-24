@@ -51,7 +51,7 @@ module.exports = grammar({
       $.siard_output,
     ),
 
-    let: $ => seq('Let', field('name', $.identifier), '=', $._expression),
+    let: $ => seq('Let', field('name', $.identifier), '=', field('value', $._expression)),
 
     _expression: $ => choice(
       $._basic_expression,
@@ -84,18 +84,8 @@ module.exports = grammar({
     siard_output: $ => seq(
       'Output', 'SIARD', field('file', $._basic_expression), ':',
       $._ni,
-      $._siard_dbname,
-      optional($._siard_description),
-      optional($._siard_archiver),
-      optional($._siard_archiverContact),
+      optional($.properties),
       $._ded),
-
-    ...properties('siard', [
-      'dbname',
-      'description',
-      'archiver',
-      'archiverContact',
-    ]),
 
 
     // ---- Basic expressions ----
@@ -140,6 +130,8 @@ module.exports = grammar({
     _ded: $ => choice($._dedent, $._end_of_file),
 
     interpolation: $ => seq($._inter_start, $._basic_expression, $._inter_end),
+
+    properties: $ => seq('Properties', ':', $._ni, repeat1($.key_value_pair), $._ded),
 
     // NB. Each key must an identifier (i.e. no whitespace, etc.).
     key_value_pair: $ => seq(field('key', $.identifier), field('value', $._value), $._nl),

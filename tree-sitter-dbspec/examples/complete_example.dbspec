@@ -25,10 +25,11 @@ Let t = result using db:
 	FROM employees;
 
 Output SIARD "my_test.siard":
-	dbname = "my_test_db"
-	description:
-		This is a very interesting database.
-	archiver = "ivar.rummelhoff@nr.no"
+	Properties:
+		dbname = "my_test_db"
+		description:
+			This is a very interesting database.
+		archiver = "ivar.rummelhoff@nr.no"
 
 
 

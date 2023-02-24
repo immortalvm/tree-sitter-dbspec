@@ -121,29 +121,29 @@
             "named": true
           }
         ]
+      },
+      "value": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "connection",
+            "named": true
+          },
+          {
+            "type": "query",
+            "named": true
+          },
+          {
+            "type": "string",
+            "named": true
+          },
+          {
+            "type": "variable_instance",
+            "named": true
+          }
+        ]
       }
-    },
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "connection",
-          "named": true
-        },
-        {
-          "type": "query",
-          "named": true
-        },
-        {
-          "type": "string",
-          "named": true
-        },
-        {
-          "type": "variable_instance",
-          "named": true
-        }
-      ]
     }
   },
   {
@@ -182,6 +182,21 @@
       "types": [
         {
           "type": "parameter",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "properties",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "key_value_pair",
           "named": true
         }
       ]
@@ -241,94 +256,6 @@
     "type": "siard_output",
     "named": true,
     "fields": {
-      "archiver": {
-        "multiple": true,
-        "required": false,
-        "types": [
-          {
-            "type": "=",
-            "named": false
-          },
-          {
-            "type": "raw",
-            "named": true
-          },
-          {
-            "type": "string",
-            "named": true
-          },
-          {
-            "type": "variable_instance",
-            "named": true
-          }
-        ]
-      },
-      "archiverContact": {
-        "multiple": true,
-        "required": false,
-        "types": [
-          {
-            "type": "=",
-            "named": false
-          },
-          {
-            "type": "raw",
-            "named": true
-          },
-          {
-            "type": "string",
-            "named": true
-          },
-          {
-            "type": "variable_instance",
-            "named": true
-          }
-        ]
-      },
-      "dbname": {
-        "multiple": true,
-        "required": true,
-        "types": [
-          {
-            "type": "=",
-            "named": false
-          },
-          {
-            "type": "raw",
-            "named": true
-          },
-          {
-            "type": "string",
-            "named": true
-          },
-          {
-            "type": "variable_instance",
-            "named": true
-          }
-        ]
-      },
-      "description": {
-        "multiple": true,
-        "required": false,
-        "types": [
-          {
-            "type": "=",
-            "named": false
-          },
-          {
-            "type": "raw",
-            "named": true
-          },
-          {
-            "type": "string",
-            "named": true
-          },
-          {
-            "type": "variable_instance",
-            "named": true
-          }
-        ]
-      },
       "file": {
         "multiple": false,
         "required": true,
@@ -343,6 +270,16 @@
           }
         ]
       }
+    },
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "properties",
+          "named": true
+        }
+      ]
     }
   },
   {
@@ -448,27 +385,15 @@
     "named": false
   },
   {
+    "type": "Properties",
+    "named": false
+  },
+  {
     "type": "SIARD",
     "named": false
   },
   {
-    "type": "archiver",
-    "named": false
-  },
-  {
-    "type": "archiverContact",
-    "named": false
-  },
-  {
     "type": "connection",
-    "named": false
-  },
-  {
-    "type": "dbname",
-    "named": false
-  },
-  {
-    "type": "description",
     "named": false
   },
   {
