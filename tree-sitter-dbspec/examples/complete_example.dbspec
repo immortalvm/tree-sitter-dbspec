@@ -24,8 +24,18 @@ Let t = result using db:
 	SELECT id, name
 	FROM employees;
 
+Output SIARD "my_test.siard":
+	dbname = "my_test_db"
+	description:
+		This is a very interesting database.
+	archiver = "ivar.rummelhoff@nr.no"
+
+
+
 
 ### Local variables:
 ### indent-tabs-mode: t
 ### tab-width: 4
+### comment-start: "#"
+### comment-style: "plain"
 ### End:

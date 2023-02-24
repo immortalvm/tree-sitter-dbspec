@@ -44,7 +44,7 @@
         "required": true,
         "types": [
           {
-            "type": "sql",
+            "type": "raw",
             "named": true
           }
         ]
@@ -85,9 +85,17 @@
         ]
       },
       "value": {
-        "multiple": false,
+        "multiple": true,
         "required": true,
         "types": [
+          {
+            "type": "=",
+            "named": false
+          },
+          {
+            "type": "raw",
+            "named": true
+          },
           {
             "type": "string",
             "named": true
@@ -147,7 +155,7 @@
         "required": false,
         "types": [
           {
-            "type": "short_documentation",
+            "type": "parameter_description",
             "named": true
           }
         ]
@@ -198,7 +206,139 @@
         "required": true,
         "types": [
           {
-            "type": "sql",
+            "type": "raw",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "raw",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "interpolation",
+          "named": true
+        },
+        {
+          "type": "raw_content",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "raw_content",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "siard_output",
+    "named": true,
+    "fields": {
+      "archiver": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "=",
+            "named": false
+          },
+          {
+            "type": "raw",
+            "named": true
+          },
+          {
+            "type": "string",
+            "named": true
+          },
+          {
+            "type": "variable_instance",
+            "named": true
+          }
+        ]
+      },
+      "archiverContact": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "=",
+            "named": false
+          },
+          {
+            "type": "raw",
+            "named": true
+          },
+          {
+            "type": "string",
+            "named": true
+          },
+          {
+            "type": "variable_instance",
+            "named": true
+          }
+        ]
+      },
+      "dbname": {
+        "multiple": true,
+        "required": true,
+        "types": [
+          {
+            "type": "=",
+            "named": false
+          },
+          {
+            "type": "raw",
+            "named": true
+          },
+          {
+            "type": "string",
+            "named": true
+          },
+          {
+            "type": "variable_instance",
+            "named": true
+          }
+        ]
+      },
+      "description": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "=",
+            "named": false
+          },
+          {
+            "type": "raw",
+            "named": true
+          },
+          {
+            "type": "string",
+            "named": true
+          },
+          {
+            "type": "variable_instance",
+            "named": true
+          }
+        ]
+      },
+      "file": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "string",
+            "named": true
+          },
+          {
+            "type": "variable_instance",
             "named": true
           }
         ]
@@ -224,33 +364,13 @@
         {
           "type": "parameters",
           "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "sql",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "interpolation",
-          "named": true
         },
         {
-          "type": "sql_content",
+          "type": "siard_output",
           "named": true
         }
       ]
     }
-  },
-  {
-    "type": "sql_content",
-    "named": true,
-    "fields": {}
   },
   {
     "type": "string",
@@ -320,11 +440,35 @@
     "named": false
   },
   {
+    "type": "Output",
+    "named": false
+  },
+  {
     "type": "Parameters",
     "named": false
   },
   {
+    "type": "SIARD",
+    "named": false
+  },
+  {
+    "type": "archiver",
+    "named": false
+  },
+  {
+    "type": "archiverContact",
+    "named": false
+  },
+  {
     "type": "connection",
+    "named": false
+  },
+  {
+    "type": "dbname",
+    "named": false
+  },
+  {
+    "type": "description",
     "named": false
   },
   {
@@ -336,12 +480,12 @@
     "named": true
   },
   {
-    "type": "result",
-    "named": false
+    "type": "parameter_description",
+    "named": true
   },
   {
-    "type": "short_documentation",
-    "named": true
+    "type": "result",
+    "named": false
   },
   {
     "type": "to",

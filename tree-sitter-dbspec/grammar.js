@@ -1,11 +1,6 @@
 module.exports = grammar({
   name: 'dbspec',
 
-  extras: $ => [
-    $._comment,
-    $._skip,
-  ],
-
   externals: $ => [
     $._newline,
     $._indent,
@@ -21,6 +16,11 @@ module.exports = grammar({
     $._skip,
   ],
 
+  extras: $ => [
+    $._comment,
+    $._skip,
+  ],
+
   word: $ => $.identifier,
 
   rules: {
@@ -29,28 +29,27 @@ module.exports = grammar({
       repeat($._statement),
     ),
 
-    _statement: $ => choice(
-      $.let,
-      $.execute,
-    ),
 
-    parameters: $ => seq(
-      "Parameters", ':', $._newline,
-      seq($._indent, repeat1($.parameter), $._ded)),
+    // ---- Parameters ----
+
+    parameters: $ => seq("Parameters", ':', $._ni, repeat1($.parameter), $._ded),
 
     parameter: $ => seq(
       field('name', $.identifier),
-      optional(seq('-', field('doc', $.short_documentation))),
+      optional(seq('-', field('doc', $.parameter_description))),
       $._nl),
 
     // This matches the rest of the line
-    short_documentation: $ => /.*/,
+    parameter_description: $ => /.*/,
 
-    _nl: $ => choice($._newline, $._end_of_file),
-    _ded: $ => choice($._dedent, $._end_of_file),
 
-    // As in tree-sitter-python
-    identifier: $ => /[_\p{XID_Start}][_\p{XID_Continue}]*/,
+    // ---- Statements ----
+
+    _statement: $ => choice(
+      $.let,
+      $.execute,
+      $.siard_output,
+    ),
 
     let: $ => seq('Let', field('name', $.identifier), '=', $._expression),
 
@@ -58,8 +57,48 @@ module.exports = grammar({
       $._basic_expression,
       $.connection,
       $.query,
-      // To be continued
     ),
+
+
+    // ---- SQL ----
+
+    // cf. https://docs.oracle.com/javase/tutorial/jdbc/basics/connecting.html
+    connection: $ => seq(
+      'connection', 'to', field('url', $.string),
+      choice(
+        $._nl,
+        seq(
+          optional($._newline), 'with', ':',
+          $._ni, repeat1($.key_value_pair), $._ded))),
+
+    execute: $ => seq('Execute', $._sql),
+    query: $ => seq('result', $._sql),
+
+    _sql: $ => seq(
+      optional(seq('using', field('connection', $.identifier))),
+      field('sql', $.raw)),
+
+
+    // ---- SIARD ----
+
+    siard_output: $ => seq(
+      'Output', 'SIARD', field('file', $._basic_expression), ':',
+      $._ni,
+      $._siard_dbname,
+      optional($._siard_description),
+      optional($._siard_archiver),
+      optional($._siard_archiverContact),
+      $._ded),
+
+    ...properties('siard', [
+      'dbname',
+      'description',
+      'archiver',
+      'archiverContact',
+    ]),
+
+
+    // ---- Basic expressions ----
 
     _basic_expression: $ => choice(
       $.string,
@@ -90,43 +129,45 @@ module.exports = grammar({
       )
     ))),
 
+
+    // ---- Generic ----
+
+    // As in tree-sitter-python
+    identifier: $ => /[_\p{XID_Start}][_\p{XID_Continue}]*/,
+
+    _nl: $ => choice($._newline, $._end_of_file),
+    _ni: $ => seq($._newline, $._indent),
+    _ded: $ => choice($._dedent, $._end_of_file),
+
     interpolation: $ => seq($._inter_start, $._basic_expression, $._inter_end),
 
-
-    // ---- SQL ----
-
-    // cf. https://docs.oracle.com/javase/tutorial/jdbc/basics/connecting.html
-    connection: $ => seq(
-      'connection', 'to', field('url', $.string),
-      choice(
-        $._nl,
-        seq(
-          optional($._newline),
-          'with', ':', $._newline,
-          $._indent,
-          repeat1(seq($.key_value_pair, $._nl)),
-          $._ded))),
-
     // NB. Each key must an identifier (i.e. no whitespace, etc.).
-    key_value_pair: $ =>seq(
-      field('key', $.identifier), '=', field('value', $._basic_expression)),
+    key_value_pair: $ => seq(field('key', $.identifier), field('value', $._value), $._nl),
 
-    execute: $ => seq('Execute', $._sql),
-    query: $ => seq('result', $._sql),
-
-    _sql: $ => seq(
-      optional(seq('using', field('connection', $.identifier))),
-      ':', field('sql', $.sql)),
-
-    sql: $ => seq(
-      $._newline,
-      $._indent,
-      repeat1(choice($.sql_content, $.interpolation)),
+    raw: $ => seq(
+      ':', $._newline, $._indent,
+      repeat1(choice($.raw_content, $.interpolation)),
       $._ded),
-    sql_content: $ => prec.right(repeat1($._raw)),
+    raw_content: $ => prec.right(repeat1($._raw)),
 
+    _value: $ => choice($.raw, seq('=', $._basic_expression, $._nl)),
   },
+
 });
+
+
+function properties(prefix, shortnames) {
+  let res = {};
+  for (var shortname of shortnames) {
+    // For some reason, we must force JavaScript to make a deep copy of the string...
+    let x = (' ' + shortname).slice(1);
+    res['_' + prefix + '_' + x] = $ => seq(x, field(x, $._value));
+  }
+  return res;
+}
+
+
+
 
 
 // Local Variables:
