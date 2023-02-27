@@ -33,14 +33,7 @@ module.exports = grammar({
     // ---- Parameters ----
 
     parameters: $ => seq("Parameters", ':', $._ni, repeat1($.parameter), $._ded),
-
-    parameter: $ => seq(
-      field('name', $.identifier),
-      optional(seq('-', field('doc', $.parameter_description))),
-      $._nl),
-
-    // This matches the rest of the line
-    parameter_description: $ => /.*/,
+    parameter: $ => seq(field('name', $.identifier), choice($._nl, $._short_descr)),
 
 
     // ---- Statements ----
@@ -85,7 +78,46 @@ module.exports = grammar({
       'Output', 'SIARD', field('file', $._basic_expression), ':',
       $._ni,
       optional($.properties),
+      repeat(choice(
+        $.siard_users,
+        $.siard_roles,
+        $.siard_privilege,
+        $.siard_schema,
+      )),
       $._ded),
+
+    siard_users: $ => seq('Users', ':', $._ni, repeat1($.siard_user), $._ded),
+    siard_user: $ => seq(
+      field('name', $.identifier),
+      choice($._nl, field('description', choice($._short_descr, $.raw))),
+    ),
+
+    siard_roles: $ => seq('Roles', ':', $._ni, repeat1($.siard_role), $._ded),
+    siard_role: $ => seq(
+      field('name', $.identifier),
+      choice($._nl, field('description', choice($._short_descr, $.raw)))
+    ),
+
+    siard_privilege: $ => seq(
+      'Privilege', ':', $._ni, repeat1($.key_value_pair), $._ded),
+
+    siard_schema: $ => seq(
+      'Schema', field('name', $.identifier), ':', $._ni,
+      $._siard_schema_folder,
+      optional($._siard_schema_description),
+      repeat(choice(
+        $.siard_type,
+        // TODO
+        // $.siard_table,
+        // $.siard_view,
+        // $.siard_routine,
+      )),
+      $._ded),
+    ...property_rules('siard_schema', ['folder', 'description']),
+
+    siard_type: $ => seq(
+      'Type', field('name', $.identifier),
+      choice($._nl, field('description', choice($._short_descr, $.raw)))),
 
 
     // ---- Basic expressions ----
@@ -125,6 +157,10 @@ module.exports = grammar({
     // As in tree-sitter-python
     identifier: $ => /[_\p{XID_Start}][_\p{XID_Continue}]*/,
 
+    // This matches the rest of the line
+    short_description: $ => /.*/,
+    _short_descr: $ => seq(/- */, $.short_description, $._nl),
+
     _nl: $ => choice($._newline, $._end_of_file),
     _ni: $ => seq($._newline, $._indent),
     _ded: $ => choice($._dedent, $._end_of_file),
@@ -148,7 +184,7 @@ module.exports = grammar({
 });
 
 
-function properties(prefix, shortnames) {
+function property_rules(prefix, shortnames) {
   let res = {};
   for (var shortname of shortnames) {
     // For some reason, we must force JavaScript to make a deep copy of the string...

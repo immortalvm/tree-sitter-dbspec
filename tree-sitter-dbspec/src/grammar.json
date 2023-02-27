@@ -69,36 +69,16 @@
           "type": "CHOICE",
           "members": [
             {
-              "type": "SEQ",
-              "members": [
-                {
-                  "type": "STRING",
-                  "value": "-"
-                },
-                {
-                  "type": "FIELD",
-                  "name": "doc",
-                  "content": {
-                    "type": "SYMBOL",
-                    "name": "parameter_description"
-                  }
-                }
-              ]
+              "type": "SYMBOL",
+              "name": "_nl"
             },
             {
-              "type": "BLANK"
+              "type": "SYMBOL",
+              "name": "_short_descr"
             }
           ]
-        },
-        {
-          "type": "SYMBOL",
-          "name": "_nl"
         }
       ]
-    },
-    "parameter_description": {
-      "type": "PATTERN",
-      "value": ".*"
     },
     "_statement": {
       "type": "CHOICE",
@@ -337,8 +317,328 @@
           ]
         },
         {
+          "type": "REPEAT",
+          "content": {
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "SYMBOL",
+                "name": "siard_users"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "siard_roles"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "siard_privilege"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "siard_schema"
+              }
+            ]
+          }
+        },
+        {
           "type": "SYMBOL",
           "name": "_ded"
+        }
+      ]
+    },
+    "siard_users": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "Users"
+        },
+        {
+          "type": "STRING",
+          "value": ":"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_ni"
+        },
+        {
+          "type": "REPEAT1",
+          "content": {
+            "type": "SYMBOL",
+            "name": "siard_user"
+          }
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_ded"
+        }
+      ]
+    },
+    "siard_user": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "FIELD",
+          "name": "name",
+          "content": {
+            "type": "SYMBOL",
+            "name": "identifier"
+          }
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "_nl"
+            },
+            {
+              "type": "FIELD",
+              "name": "description",
+              "content": {
+                "type": "CHOICE",
+                "members": [
+                  {
+                    "type": "SYMBOL",
+                    "name": "_short_descr"
+                  },
+                  {
+                    "type": "SYMBOL",
+                    "name": "raw"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "siard_roles": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "Roles"
+        },
+        {
+          "type": "STRING",
+          "value": ":"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_ni"
+        },
+        {
+          "type": "REPEAT1",
+          "content": {
+            "type": "SYMBOL",
+            "name": "siard_role"
+          }
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_ded"
+        }
+      ]
+    },
+    "siard_role": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "FIELD",
+          "name": "name",
+          "content": {
+            "type": "SYMBOL",
+            "name": "identifier"
+          }
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "_nl"
+            },
+            {
+              "type": "FIELD",
+              "name": "description",
+              "content": {
+                "type": "CHOICE",
+                "members": [
+                  {
+                    "type": "SYMBOL",
+                    "name": "_short_descr"
+                  },
+                  {
+                    "type": "SYMBOL",
+                    "name": "raw"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "siard_privilege": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "Privilege"
+        },
+        {
+          "type": "STRING",
+          "value": ":"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_ni"
+        },
+        {
+          "type": "REPEAT1",
+          "content": {
+            "type": "SYMBOL",
+            "name": "key_value_pair"
+          }
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_ded"
+        }
+      ]
+    },
+    "siard_schema": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "Schema"
+        },
+        {
+          "type": "FIELD",
+          "name": "name",
+          "content": {
+            "type": "SYMBOL",
+            "name": "identifier"
+          }
+        },
+        {
+          "type": "STRING",
+          "value": ":"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_ni"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_siard_schema_folder"
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "_siard_schema_description"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        },
+        {
+          "type": "REPEAT",
+          "content": {
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "SYMBOL",
+                "name": "siard_type"
+              }
+            ]
+          }
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_ded"
+        }
+      ]
+    },
+    "_siard_schema_folder": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "folder"
+        },
+        {
+          "type": "FIELD",
+          "name": "folder",
+          "content": {
+            "type": "SYMBOL",
+            "name": "_value"
+          }
+        }
+      ]
+    },
+    "_siard_schema_description": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "description"
+        },
+        {
+          "type": "FIELD",
+          "name": "description",
+          "content": {
+            "type": "SYMBOL",
+            "name": "_value"
+          }
+        }
+      ]
+    },
+    "siard_type": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "Type"
+        },
+        {
+          "type": "FIELD",
+          "name": "name",
+          "content": {
+            "type": "SYMBOL",
+            "name": "identifier"
+          }
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "_nl"
+            },
+            {
+              "type": "FIELD",
+              "name": "description",
+              "content": {
+                "type": "CHOICE",
+                "members": [
+                  {
+                    "type": "SYMBOL",
+                    "name": "_short_descr"
+                  },
+                  {
+                    "type": "SYMBOL",
+                    "name": "raw"
+                  }
+                ]
+              }
+            }
+          ]
         }
       ]
     },
@@ -461,6 +761,27 @@
     "identifier": {
       "type": "PATTERN",
       "value": "[_\\p{XID_Start}][_\\p{XID_Continue}]*"
+    },
+    "short_description": {
+      "type": "PATTERN",
+      "value": ".*"
+    },
+    "_short_descr": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "PATTERN",
+          "value": "- *"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "short_description"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_nl"
+        }
+      ]
     },
     "_nl": {
       "type": "CHOICE",

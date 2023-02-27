@@ -150,16 +150,6 @@
     "type": "parameter",
     "named": true,
     "fields": {
-      "doc": {
-        "multiple": false,
-        "required": false,
-        "types": [
-          {
-            "type": "parameter_description",
-            "named": true
-          }
-        ]
-      },
       "name": {
         "multiple": false,
         "required": true,
@@ -170,6 +160,16 @@
           }
         ]
       }
+    },
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "short_description",
+          "named": true
+        }
+      ]
     }
   },
   {
@@ -272,11 +272,232 @@
       }
     },
     "children": {
-      "multiple": false,
+      "multiple": true,
       "required": false,
       "types": [
         {
           "type": "properties",
+          "named": true
+        },
+        {
+          "type": "siard_privilege",
+          "named": true
+        },
+        {
+          "type": "siard_roles",
+          "named": true
+        },
+        {
+          "type": "siard_schema",
+          "named": true
+        },
+        {
+          "type": "siard_users",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "siard_privilege",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "key_value_pair",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "siard_role",
+    "named": true,
+    "fields": {
+      "description": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "raw",
+            "named": true
+          },
+          {
+            "type": "short_description",
+            "named": true
+          }
+        ]
+      },
+      "name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "siard_roles",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "siard_role",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "siard_schema",
+    "named": true,
+    "fields": {
+      "description": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "=",
+            "named": false
+          },
+          {
+            "type": "raw",
+            "named": true
+          },
+          {
+            "type": "string",
+            "named": true
+          },
+          {
+            "type": "variable_instance",
+            "named": true
+          }
+        ]
+      },
+      "folder": {
+        "multiple": true,
+        "required": true,
+        "types": [
+          {
+            "type": "=",
+            "named": false
+          },
+          {
+            "type": "raw",
+            "named": true
+          },
+          {
+            "type": "string",
+            "named": true
+          },
+          {
+            "type": "variable_instance",
+            "named": true
+          }
+        ]
+      },
+      "name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "siard_type",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "siard_type",
+    "named": true,
+    "fields": {
+      "description": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "raw",
+            "named": true
+          },
+          {
+            "type": "short_description",
+            "named": true
+          }
+        ]
+      },
+      "name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "siard_user",
+    "named": true,
+    "fields": {
+      "description": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "raw",
+            "named": true
+          },
+          {
+            "type": "short_description",
+            "named": true
+          }
+        ]
+      },
+      "name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "siard_users",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "siard_user",
           "named": true
         }
       ]
@@ -357,10 +578,6 @@
     "named": false
   },
   {
-    "type": "-",
-    "named": false
-  },
-  {
     "type": ":",
     "named": false
   },
@@ -385,7 +602,15 @@
     "named": false
   },
   {
+    "type": "Privilege",
+    "named": false
+  },
+  {
     "type": "Properties",
+    "named": false
+  },
+  {
+    "type": "Roles",
     "named": false
   },
   {
@@ -393,7 +618,23 @@
     "named": false
   },
   {
+    "type": "Schema",
+    "named": false
+  },
+  {
+    "type": "Type",
+    "named": false
+  },
+  {
+    "type": "Users",
+    "named": false
+  },
+  {
     "type": "connection",
+    "named": false
+  },
+  {
+    "type": "description",
     "named": false
   },
   {
@@ -401,16 +642,20 @@
     "named": true
   },
   {
-    "type": "identifier",
-    "named": true
+    "type": "folder",
+    "named": false
   },
   {
-    "type": "parameter_description",
+    "type": "identifier",
     "named": true
   },
   {
     "type": "result",
     "named": false
+  },
+  {
+    "type": "short_description",
+    "named": true
   },
   {
     "type": "to",
