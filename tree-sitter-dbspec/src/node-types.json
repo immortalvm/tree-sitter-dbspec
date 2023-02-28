@@ -150,6 +150,16 @@
     "type": "parameter",
     "named": true,
     "fields": {
+      "description": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "short_description",
+            "named": true
+          }
+        ]
+      },
       "name": {
         "multiple": false,
         "required": true,
@@ -160,16 +170,6 @@
           }
         ]
       }
-    },
-    "children": {
-      "multiple": false,
-      "required": false,
-      "types": [
-        {
-          "type": "short_description",
-          "named": true
-        }
-      ]
     }
   },
   {
@@ -266,6 +266,10 @@
           },
           {
             "type": "raw",
+            "named": true
+          },
+          {
+            "type": "short_description",
             "named": true
           },
           {
@@ -399,6 +403,10 @@
             "named": true
           },
           {
+            "type": "short_description",
+            "named": true
+          },
+          {
             "type": "string",
             "named": true
           },
@@ -451,6 +459,10 @@
             "named": true
           },
           {
+            "type": "short_description",
+            "named": true
+          },
+          {
             "type": "string",
             "named": true
           },
@@ -473,7 +485,7 @@
     },
     "children": {
       "multiple": true,
-      "required": true,
+      "required": false,
       "types": [
         {
           "type": "siard_column",
@@ -491,11 +503,23 @@
         "required": false,
         "types": [
           {
+            "type": "=",
+            "named": false
+          },
+          {
             "type": "raw",
             "named": true
           },
           {
             "type": "short_description",
+            "named": true
+          },
+          {
+            "type": "string",
+            "named": true
+          },
+          {
+            "type": "variable_instance",
             "named": true
           }
         ]

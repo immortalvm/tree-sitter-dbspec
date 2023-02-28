@@ -86,35 +86,36 @@ module.exports = grammar({
     // Generic SIARD properties
     ...property_rules('siard', ['description']),
 
-    siard_schema: $ => seq(
-      'Schema', field('name', $.identifier), ':', $._ni,
-      optional($._siard_description),
-      repeat(choice(
-        $.siard_type,
-        $.siard_table,
-        // TODO
-        // $.siard_view,
-        // $.siard_routine,
-      )),
-      $._ded),
+    siard_schema: $ => seq('Schema', field('name', $.identifier), choice(
+      $._nl, $._short_descr, seq(
+        ':', $._ni,
+        optional($._siard_description),
+        repeat(choice(
+          $.siard_type,
+          $.siard_table,
+          // TODO
+          // $.siard_view,
+          // $.siard_routine,
+        )),
+        $._ded))),
 
-    siard_type: $ => seq(
-      'Type', field('name', $.identifier),
-      choice($._nl, field('description', choice($._short_descr, $.raw))),
-      // Other properties, in particular 'attributes' should be extracted from the db.
-    ),
+    siard_type: $ => seq('Type', field('name', $.identifier), choice(
+      $._nl, $._short_descr,
+      seq(':', $._ni, $._siard_description, $._ded))),
 
-    siard_table: $ => seq(
-      'Table', field('name', $.identifier), ':', $._ni,
-      optional($._siard_description),
-      repeat1($.siard_column),
-      $._ded),
+    siard_table: $ => seq('Table', field('name', $.identifier), choice(
+      $._nl, $._short_descr, seq(
+        ':', $._ni,
+        optional($._siard_description),
+        repeat1($.siard_column),
+        $._ded))),
 
-    siard_column: $ => seq(
-      'Column', field('name', $.identifier), ':', $._ni,
-      optional($._siard_description),
-      repeat($.siard_field),
-      $._ded),
+    siard_column: $ => seq('Column', field('name', $.identifier), choice(
+      $._nl, $._short_descr, seq(
+        ':', $._ni,
+        optional($._siard_description),
+        repeat($.siard_field),
+        $._ded))),
 
     siard_field: $ => seq(
       'Field', field('name', $.identifier), ':', $._ni,
@@ -162,7 +163,7 @@ module.exports = grammar({
 
     // This matches the rest of the line
     short_description: $ => /.*/,
-    _short_descr: $ => seq(/- */, $.short_description, $._nl),
+    _short_descr: $ => field('description', seq(/- */, $.short_description, $._nl)),
 
     _nl: $ => choice($._newline, $._end_of_file),
     _ni: $ => seq($._newline, $._indent),

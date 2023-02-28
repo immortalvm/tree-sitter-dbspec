@@ -367,44 +367,62 @@
           }
         },
         {
-          "type": "STRING",
-          "value": ":"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "_ni"
-        },
-        {
           "type": "CHOICE",
           "members": [
             {
               "type": "SYMBOL",
-              "name": "_siard_description"
+              "name": "_nl"
             },
             {
-              "type": "BLANK"
+              "type": "SYMBOL",
+              "name": "_short_descr"
+            },
+            {
+              "type": "SEQ",
+              "members": [
+                {
+                  "type": "STRING",
+                  "value": ":"
+                },
+                {
+                  "type": "SYMBOL",
+                  "name": "_ni"
+                },
+                {
+                  "type": "CHOICE",
+                  "members": [
+                    {
+                      "type": "SYMBOL",
+                      "name": "_siard_description"
+                    },
+                    {
+                      "type": "BLANK"
+                    }
+                  ]
+                },
+                {
+                  "type": "REPEAT",
+                  "content": {
+                    "type": "CHOICE",
+                    "members": [
+                      {
+                        "type": "SYMBOL",
+                        "name": "siard_type"
+                      },
+                      {
+                        "type": "SYMBOL",
+                        "name": "siard_table"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "SYMBOL",
+                  "name": "_ded"
+                }
+              ]
             }
           ]
-        },
-        {
-          "type": "REPEAT",
-          "content": {
-            "type": "CHOICE",
-            "members": [
-              {
-                "type": "SYMBOL",
-                "name": "siard_type"
-              },
-              {
-                "type": "SYMBOL",
-                "name": "siard_table"
-              }
-            ]
-          }
-        },
-        {
-          "type": "SYMBOL",
-          "name": "_ded"
         }
       ]
     },
@@ -431,21 +449,29 @@
               "name": "_nl"
             },
             {
-              "type": "FIELD",
-              "name": "description",
-              "content": {
-                "type": "CHOICE",
-                "members": [
-                  {
-                    "type": "SYMBOL",
-                    "name": "_short_descr"
-                  },
-                  {
-                    "type": "SYMBOL",
-                    "name": "raw"
-                  }
-                ]
-              }
+              "type": "SYMBOL",
+              "name": "_short_descr"
+            },
+            {
+              "type": "SEQ",
+              "members": [
+                {
+                  "type": "STRING",
+                  "value": ":"
+                },
+                {
+                  "type": "SYMBOL",
+                  "name": "_ni"
+                },
+                {
+                  "type": "SYMBOL",
+                  "name": "_siard_description"
+                },
+                {
+                  "type": "SYMBOL",
+                  "name": "_ded"
+                }
+              ]
             }
           ]
         }
@@ -467,35 +493,53 @@
           }
         },
         {
-          "type": "STRING",
-          "value": ":"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "_ni"
-        },
-        {
           "type": "CHOICE",
           "members": [
             {
               "type": "SYMBOL",
-              "name": "_siard_description"
+              "name": "_nl"
             },
             {
-              "type": "BLANK"
+              "type": "SYMBOL",
+              "name": "_short_descr"
+            },
+            {
+              "type": "SEQ",
+              "members": [
+                {
+                  "type": "STRING",
+                  "value": ":"
+                },
+                {
+                  "type": "SYMBOL",
+                  "name": "_ni"
+                },
+                {
+                  "type": "CHOICE",
+                  "members": [
+                    {
+                      "type": "SYMBOL",
+                      "name": "_siard_description"
+                    },
+                    {
+                      "type": "BLANK"
+                    }
+                  ]
+                },
+                {
+                  "type": "REPEAT1",
+                  "content": {
+                    "type": "SYMBOL",
+                    "name": "siard_column"
+                  }
+                },
+                {
+                  "type": "SYMBOL",
+                  "name": "_ded"
+                }
+              ]
             }
           ]
-        },
-        {
-          "type": "REPEAT1",
-          "content": {
-            "type": "SYMBOL",
-            "name": "siard_column"
-          }
-        },
-        {
-          "type": "SYMBOL",
-          "name": "_ded"
         }
       ]
     },
@@ -515,35 +559,53 @@
           }
         },
         {
-          "type": "STRING",
-          "value": ":"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "_ni"
-        },
-        {
           "type": "CHOICE",
           "members": [
             {
               "type": "SYMBOL",
-              "name": "_siard_description"
+              "name": "_nl"
             },
             {
-              "type": "BLANK"
+              "type": "SYMBOL",
+              "name": "_short_descr"
+            },
+            {
+              "type": "SEQ",
+              "members": [
+                {
+                  "type": "STRING",
+                  "value": ":"
+                },
+                {
+                  "type": "SYMBOL",
+                  "name": "_ni"
+                },
+                {
+                  "type": "CHOICE",
+                  "members": [
+                    {
+                      "type": "SYMBOL",
+                      "name": "_siard_description"
+                    },
+                    {
+                      "type": "BLANK"
+                    }
+                  ]
+                },
+                {
+                  "type": "REPEAT",
+                  "content": {
+                    "type": "SYMBOL",
+                    "name": "siard_field"
+                  }
+                },
+                {
+                  "type": "SYMBOL",
+                  "name": "_ded"
+                }
+              ]
             }
           ]
-        },
-        {
-          "type": "REPEAT",
-          "content": {
-            "type": "SYMBOL",
-            "name": "siard_field"
-          }
-        },
-        {
-          "type": "SYMBOL",
-          "name": "_ded"
         }
       ]
     },
@@ -720,21 +782,25 @@
       "value": ".*"
     },
     "_short_descr": {
-      "type": "SEQ",
-      "members": [
-        {
-          "type": "PATTERN",
-          "value": "- *"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "short_description"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "_nl"
-        }
-      ]
+      "type": "FIELD",
+      "name": "description",
+      "content": {
+        "type": "SEQ",
+        "members": [
+          {
+            "type": "PATTERN",
+            "value": "- *"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "short_description"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "_nl"
+          }
+        ]
+      }
     },
     "_nl": {
       "type": "CHOICE",

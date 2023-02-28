@@ -39,12 +39,17 @@ Output SIARD "my_test.siard":
 		Type customer_preferences - A set of customer preferences
 
 		Type customer_address:
-			The components of a customer address, thanks to ${user}.
-			# The other "type level metadata" should be extracted from the database.
+			description:
+				The components of a customer address, thanks to ${user}.
+				# The other "type level metadata" should be extracted from the database.
+
+		Table product
+
+		Table employee - Main employee table
 
 		Table customer:
 			description = "The main customer table"
-#			Column picture:
+			Column picture - A compromising picture of the customer
 			Column stuff:
 				description = "The 'stuff' column."
 				Field big_stuff:
