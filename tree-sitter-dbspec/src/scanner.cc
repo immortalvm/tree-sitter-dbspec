@@ -110,7 +110,7 @@ namespace {
           continue;
         case ' ':
         case '\t':
-          if (valid_symbols[RAW]) {
+          if (valid_symbols[RAW] && indent_counter == reference_indent) {
             advance(lexer);
             lexer->result_symbol = RAW;
             return true;
@@ -118,7 +118,7 @@ namespace {
           // std::cout << (int) indent_counter << std::endl;
           if (indent_counter) {
             // Do not allow space or tab at the beginning of lines except in RAW.
-            break;
+            return false;
           }
           skip(lexer);
           skipping = true;

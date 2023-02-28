@@ -37,9 +37,8 @@ Output my_test_db to "my_test.siard":
 		Type customer_preferences - A set of customer preferences
 
 		Type customer_address:
-			description:
-				The components of a customer address, thanks to ${user}.
-				# The other "type level metadata" should be extracted from the database.
+			description = "The components of a customer address, thanks to ${user}."
+			# The other "type level metadata" should be extracted from the database.
 
 		Table product
 
