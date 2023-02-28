@@ -32,30 +32,6 @@ Output SIARD "my_test.siard":
 		archiver = "ivar.rummelhoff@nr.no"
 
 
-	# Users, roles and privileges (TODO: ignore?)
-	Users:
-		ivar
-		thor - God of thunder
-		bjarte:
-			A friend of ${user}
-	Roles:
-		# The admin of each role should be extracted from the database.
-		master - Master of puppets
-		puppet
-		worker:
-			   Used for the following scheduled tasks:
-			   * Make daily backup.
-			   * Compute weekly averages
-	# Is there a way to select and document a subset of the actual
-	# privileges without repeating them here?
-	Privilege:
-		type = "SELECT"
-		grantor = "nr/${user}"
-		grantee = "worker"
-		description:
-			This can be a long description.
-
-
 	Schema dbo:
 		# TODO: Should we make the folders optional like SiardCMD?
 		folder = "dbo_folder"

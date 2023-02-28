@@ -420,79 +420,7 @@
           "named": true
         },
         {
-          "type": "siard_privilege",
-          "named": true
-        },
-        {
-          "type": "siard_roles",
-          "named": true
-        },
-        {
           "type": "siard_schema",
-          "named": true
-        },
-        {
-          "type": "siard_users",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "siard_privilege",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "key_value_pair",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "siard_role",
-    "named": true,
-    "fields": {
-      "description": {
-        "multiple": true,
-        "required": false,
-        "types": [
-          {
-            "type": "raw",
-            "named": true
-          },
-          {
-            "type": "short_description",
-            "named": true
-          }
-        ]
-      },
-      "name": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "identifier",
-            "named": true
-          }
-        ]
-      }
-    }
-  },
-  {
-    "type": "siard_roles",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "siard_role",
           "named": true
         }
       ]
@@ -673,51 +601,6 @@
     }
   },
   {
-    "type": "siard_user",
-    "named": true,
-    "fields": {
-      "description": {
-        "multiple": true,
-        "required": false,
-        "types": [
-          {
-            "type": "raw",
-            "named": true
-          },
-          {
-            "type": "short_description",
-            "named": true
-          }
-        ]
-      },
-      "name": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "identifier",
-            "named": true
-          }
-        ]
-      }
-    }
-  },
-  {
-    "type": "siard_users",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "siard_user",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
     "type": "source_file",
     "named": true,
     "fields": {},
@@ -824,15 +707,7 @@
     "named": false
   },
   {
-    "type": "Privilege",
-    "named": false
-  },
-  {
     "type": "Properties",
-    "named": false
-  },
-  {
-    "type": "Roles",
     "named": false
   },
   {
@@ -849,10 +724,6 @@
   },
   {
     "type": "Type",
-    "named": false
-  },
-  {
-    "type": "Users",
     "named": false
   },
   {

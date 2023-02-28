@@ -79,25 +79,12 @@ module.exports = grammar({
       $._ni,
       optional($.properties),
       repeat(choice(
-        $.siard_users, $.siard_roles, $.siard_privilege, // TODO: remove?
         $.siard_schema,
       )),
       $._ded),
 
     // Generic SIARD properties
     ...property_rules('siard', ['folder', 'description']),
-
-    siard_users: $ => seq('Users', ':', $._ni, repeat1($.siard_user), $._ded),
-    siard_user: $ => seq(
-      field('name', $.identifier),
-      choice($._nl, field('description', choice($._short_descr, $.raw))),
-    ),
-    siard_roles: $ => seq('Roles', ':', $._ni, repeat1($.siard_role), $._ded),
-    siard_role: $ => seq(
-      field('name', $.identifier),
-      choice($._nl, field('description', choice($._short_descr, $.raw)))
-    ),
-    siard_privilege: $ => seq('Privilege', ':', $._ni, repeat1($.key_value_pair), $._ded),
 
     siard_schema: $ => seq(
       'Schema', field('name', $.identifier), ':', $._ni,
