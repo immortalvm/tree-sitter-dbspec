@@ -31,14 +31,13 @@ Output SIARD "my_test.siard":
 			This is a very interesting database.
 		archiver = "ivar.rummelhoff@nr.no"
 
-	# A subset of the actual database users
+
+	# Users, roles and privileges (TODO: ignore?)
 	Users:
 		ivar
 		thor - God of thunder
 		bjarte:
 			A friend of ${user}
-
-	# A subset of the actual database roles
 	Roles:
 		# The admin of each role should be extracted from the database.
 		master - Master of puppets
@@ -47,10 +46,8 @@ Output SIARD "my_test.siard":
 			   Used for the following scheduled tasks:
 			   * Make daily backup.
 			   * Compute weekly averages
-
-	# TODO: Is there a way to select and document a subset of the actual
+	# Is there a way to select and document a subset of the actual
 	# privileges without repeating them here?
-	# Maybe we should simply ignore users, roles and privileges?
 	Privilege:
 		type = "SELECT"
 		grantor = "nr/${user}"
@@ -58,16 +55,33 @@ Output SIARD "my_test.siard":
 		description:
 			This can be a long description.
 
+
 	Schema dbo:
+		# TODO: Should we make the folders optional like SiardCMD?
 		folder = "dbo_folder"
 		description:
 			The most important schema!
+			The description continues.
+
+		Type customer_preferences - A set of customer preferences
 
 		Type customer_address:
 			The components of a customer address, thanks to ${user}.
 			# The other "type level metadata" should be extracted from the database.
 
-		Type customer_preferences - A set of customer preferences
+		Table customer:
+			folder:
+				really/long/folder/name/with/${variable}
+			description = "The main customer table"
+			Column picture:
+				# NB: Corresponds to lobFolder in SIARD
+				folder = "customer_pictures"
+			Column stuff:
+				description = "The 'stuff' column."
+				Field big_stuff:
+					# lobFolder in SIARD
+					folder = "big stuff"
+					description = "A big field"
 
 
 

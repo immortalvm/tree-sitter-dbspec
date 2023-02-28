@@ -79,45 +79,65 @@ module.exports = grammar({
       $._ni,
       optional($.properties),
       repeat(choice(
-        $.siard_users,
-        $.siard_roles,
-        $.siard_privilege,
+        $.siard_users, $.siard_roles, $.siard_privilege, // TODO: remove?
         $.siard_schema,
       )),
       $._ded),
+
+    // Generic SIARD properties
+    ...property_rules('siard', ['folder', 'description']),
 
     siard_users: $ => seq('Users', ':', $._ni, repeat1($.siard_user), $._ded),
     siard_user: $ => seq(
       field('name', $.identifier),
       choice($._nl, field('description', choice($._short_descr, $.raw))),
     ),
-
     siard_roles: $ => seq('Roles', ':', $._ni, repeat1($.siard_role), $._ded),
     siard_role: $ => seq(
       field('name', $.identifier),
       choice($._nl, field('description', choice($._short_descr, $.raw)))
     ),
-
-    siard_privilege: $ => seq(
-      'Privilege', ':', $._ni, repeat1($.key_value_pair), $._ded),
+    siard_privilege: $ => seq('Privilege', ':', $._ni, repeat1($.key_value_pair), $._ded),
 
     siard_schema: $ => seq(
       'Schema', field('name', $.identifier), ':', $._ni,
-      $._siard_schema_folder,
-      optional($._siard_schema_description),
+      $._siard_folder,
+      optional($._siard_description),
       repeat(choice(
         $.siard_type,
+        $.siard_table,
         // TODO
-        // $.siard_table,
         // $.siard_view,
         // $.siard_routine,
       )),
       $._ded),
-    ...property_rules('siard_schema', ['folder', 'description']),
 
     siard_type: $ => seq(
       'Type', field('name', $.identifier),
-      choice($._nl, field('description', choice($._short_descr, $.raw)))),
+      choice($._nl, field('description', choice($._short_descr, $.raw))),
+      // Other properties, in particular 'attributes' should be extracted from the db.
+    ),
+
+    siard_table: $ => seq(
+      'Table', field('name', $.identifier), ':', $._ni,
+      $._siard_folder,
+      optional($._siard_description),
+      repeat1($.siard_column),
+      $._ded),
+
+    siard_column: $ => seq(
+      'Column', field('name', $.identifier), ':', $._ni,
+      optional($._siard_folder),
+      optional($._siard_description),
+      repeat($.siard_field),
+      $._ded),
+
+    siard_field: $ => seq(
+      'Field', field('name', $.identifier), ':', $._ni,
+      optional($._siard_folder),
+      optional($._siard_description),
+      repeat($.siard_field), // NB: Recursion!
+      $._ded),
 
 
     // ---- Basic expressions ----

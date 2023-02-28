@@ -346,6 +346,40 @@
         }
       ]
     },
+    "_siard_folder": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "folder"
+        },
+        {
+          "type": "FIELD",
+          "name": "folder",
+          "content": {
+            "type": "SYMBOL",
+            "name": "_value"
+          }
+        }
+      ]
+    },
+    "_siard_description": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "description"
+        },
+        {
+          "type": "FIELD",
+          "name": "description",
+          "content": {
+            "type": "SYMBOL",
+            "name": "_value"
+          }
+        }
+      ]
+    },
     "siard_users": {
       "type": "SEQ",
       "members": [
@@ -533,14 +567,14 @@
         },
         {
           "type": "SYMBOL",
-          "name": "_siard_schema_folder"
+          "name": "_siard_folder"
         },
         {
           "type": "CHOICE",
           "members": [
             {
               "type": "SYMBOL",
-              "name": "_siard_schema_description"
+              "name": "_siard_description"
             },
             {
               "type": "BLANK"
@@ -555,6 +589,10 @@
               {
                 "type": "SYMBOL",
                 "name": "siard_type"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "siard_table"
               }
             ]
           }
@@ -562,40 +600,6 @@
         {
           "type": "SYMBOL",
           "name": "_ded"
-        }
-      ]
-    },
-    "_siard_schema_folder": {
-      "type": "SEQ",
-      "members": [
-        {
-          "type": "STRING",
-          "value": "folder"
-        },
-        {
-          "type": "FIELD",
-          "name": "folder",
-          "content": {
-            "type": "SYMBOL",
-            "name": "_value"
-          }
-        }
-      ]
-    },
-    "_siard_schema_description": {
-      "type": "SEQ",
-      "members": [
-        {
-          "type": "STRING",
-          "value": "description"
-        },
-        {
-          "type": "FIELD",
-          "name": "description",
-          "content": {
-            "type": "SYMBOL",
-            "name": "_value"
-          }
         }
       ]
     },
@@ -639,6 +643,178 @@
               }
             }
           ]
+        }
+      ]
+    },
+    "siard_table": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "Table"
+        },
+        {
+          "type": "FIELD",
+          "name": "name",
+          "content": {
+            "type": "SYMBOL",
+            "name": "identifier"
+          }
+        },
+        {
+          "type": "STRING",
+          "value": ":"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_ni"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_siard_folder"
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "_siard_description"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        },
+        {
+          "type": "REPEAT1",
+          "content": {
+            "type": "SYMBOL",
+            "name": "siard_column"
+          }
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_ded"
+        }
+      ]
+    },
+    "siard_column": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "Column"
+        },
+        {
+          "type": "FIELD",
+          "name": "name",
+          "content": {
+            "type": "SYMBOL",
+            "name": "identifier"
+          }
+        },
+        {
+          "type": "STRING",
+          "value": ":"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_ni"
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "_siard_folder"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "_siard_description"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        },
+        {
+          "type": "REPEAT",
+          "content": {
+            "type": "SYMBOL",
+            "name": "siard_field"
+          }
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_ded"
+        }
+      ]
+    },
+    "siard_field": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "Field"
+        },
+        {
+          "type": "FIELD",
+          "name": "name",
+          "content": {
+            "type": "SYMBOL",
+            "name": "identifier"
+          }
+        },
+        {
+          "type": "STRING",
+          "value": ":"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_ni"
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "_siard_folder"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "_siard_description"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        },
+        {
+          "type": "REPEAT",
+          "content": {
+            "type": "SYMBOL",
+            "name": "siard_field"
+          }
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_ded"
         }
       ]
     },
