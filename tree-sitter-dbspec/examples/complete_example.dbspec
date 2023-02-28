@@ -9,27 +9,25 @@ Parameters:
 	id_size - The number of characters in generated IDs
 
 # Cf. https://docs.oracle.com/javase/tutorial/jdbc/basics/connecting.html
-Let db = connection to "jdbc:mysql://localhost:${port}/" with:
+Connection to "jdbc:mysql://localhost:${port}/" with:
 	user = "nr\\${user}"
 	password = password
 
-Execute using db:
+Execute:
 	CREATE TABLE Temp (
 		id VARCHAR(${id_size}) NOT NULL,
 		counter INT NULL,
 		PRIMARY KEY (id)
 	);
 
-Let t = result using db:
+Let t = result of:
 	SELECT id, name
 	FROM employees;
 
-Output SIARD "my_test.siard":
-	Properties:
-		dbname = "my_test_db"
-		description:
-			This is a very interesting database.
-		archiver = "ivar.rummelhoff@nr.no"
+Output my_test_db to "my_test.siard":
+	description:
+		This is a very interesting database.
+	archiver = "ivar.rummelhoff@nr.no"
 
 	Schema dbo:
 		description:

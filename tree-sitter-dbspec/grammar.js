@@ -26,6 +26,7 @@ module.exports = grammar({
   rules: {
     source_file: $ => seq(
       optional($.parameters),
+      $.connection,
       repeat($._statement),
     ),
 
@@ -48,7 +49,6 @@ module.exports = grammar({
 
     _expression: $ => choice(
       $._basic_expression,
-      $.connection,
       $.query,
     ),
 
@@ -57,34 +57,49 @@ module.exports = grammar({
 
     // cf. https://docs.oracle.com/javase/tutorial/jdbc/basics/connecting.html
     connection: $ => seq(
-      'connection', 'to', field('url', $.string),
+      'Connection', 'to', field('url', $.string),
       choice(
         $._nl,
         seq(
           optional($._newline), 'with', ':',
-          $._ni, repeat1($.key_value_pair), $._ded))),
+          $._ni, field('properties', repeat1($.key_value_pair)), $._ded))),
 
-    execute: $ => seq('Execute', $._sql),
-    query: $ => seq('result', $._sql),
-
-    _sql: $ => seq(
-      optional(seq('using', field('connection', $.identifier))),
-      field('sql', $.raw)),
+    execute: $ => seq('Execute', field('sql', $.raw)),
+    query: $ => seq('result', 'of', field('sql', $.raw)),
 
 
     // ---- SIARD ----
 
     siard_output: $ => seq(
-      'Output', 'SIARD', field('file', $._basic_expression), ':',
+      'Output', field('name', $.identifier), 'to', field('file', $._basic_expression), ':',
       $._ni,
-      optional($.properties),
       repeat(choice(
-        $.siard_schema,
+        $._siard_description,
+        $._siard_archiver,
+        $._siard_archiverContact,
+        $._siard_dataOwner,
+        $._siard_dataOriginTimespan,
+        $._siard_lobFolder,
       )),
+      repeat1($.siard_schema),
       $._ded),
 
-    // Generic SIARD properties
-    ...property_rules('siard', ['description']),
+    ...property_rules('siard', [
+      // 'dbname',
+      'description', // Reused below
+      'archiver',
+      'archiverContact',
+      'dataOwner',
+      'dataOriginTimespan',
+      'lobFolder',
+      // 'producerApplication',
+      // 'archivalDate',
+      // 'messageDigest',
+      // 'clientMachine',
+      // 'databaseProduct',
+      // 'connection',
+      // 'databaseUser',
+    ]),
 
     siard_schema: $ => seq('Schema', field('name', $.identifier), choice(
       $._nl, $._short_descr, seq(
@@ -171,8 +186,6 @@ module.exports = grammar({
 
     interpolation: $ => seq($._inter_start, $._basic_expression, $._inter_end),
 
-    properties: $ => seq('Properties', ':', $._ni, repeat1($.key_value_pair), $._ded),
-
     // NB. Each key must an identifier (i.e. no whitespace, etc.).
     key_value_pair: $ => seq(field('key', $.identifier), field('value', $._value), $._nl),
 
@@ -197,7 +210,6 @@ function property_rules(prefix, shortnames) {
   }
   return res;
 }
-
 
 
 

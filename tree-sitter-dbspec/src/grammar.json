@@ -18,6 +18,10 @@
           ]
         },
         {
+          "type": "SYMBOL",
+          "name": "connection"
+        },
+        {
           "type": "REPEAT",
           "content": {
             "type": "SYMBOL",
@@ -135,10 +139,6 @@
         },
         {
           "type": "SYMBOL",
-          "name": "connection"
-        },
-        {
-          "type": "SYMBOL",
           "name": "query"
         }
       ]
@@ -148,7 +148,7 @@
       "members": [
         {
           "type": "STRING",
-          "value": "connection"
+          "value": "Connection"
         },
         {
           "type": "STRING",
@@ -197,10 +197,14 @@
                   "name": "_ni"
                 },
                 {
-                  "type": "REPEAT1",
+                  "type": "FIELD",
+                  "name": "properties",
                   "content": {
-                    "type": "SYMBOL",
-                    "name": "key_value_pair"
+                    "type": "REPEAT1",
+                    "content": {
+                      "type": "SYMBOL",
+                      "name": "key_value_pair"
+                    }
                   }
                 },
                 {
@@ -221,8 +225,12 @@
           "value": "Execute"
         },
         {
-          "type": "SYMBOL",
-          "name": "_sql"
+          "type": "FIELD",
+          "name": "sql",
+          "content": {
+            "type": "SYMBOL",
+            "name": "raw"
+          }
         }
       ]
     },
@@ -234,38 +242,8 @@
           "value": "result"
         },
         {
-          "type": "SYMBOL",
-          "name": "_sql"
-        }
-      ]
-    },
-    "_sql": {
-      "type": "SEQ",
-      "members": [
-        {
-          "type": "CHOICE",
-          "members": [
-            {
-              "type": "SEQ",
-              "members": [
-                {
-                  "type": "STRING",
-                  "value": "using"
-                },
-                {
-                  "type": "FIELD",
-                  "name": "connection",
-                  "content": {
-                    "type": "SYMBOL",
-                    "name": "identifier"
-                  }
-                }
-              ]
-            },
-            {
-              "type": "BLANK"
-            }
-          ]
+          "type": "STRING",
+          "value": "of"
         },
         {
           "type": "FIELD",
@@ -285,8 +263,16 @@
           "value": "Output"
         },
         {
+          "type": "FIELD",
+          "name": "name",
+          "content": {
+            "type": "SYMBOL",
+            "name": "identifier"
+          }
+        },
+        {
           "type": "STRING",
-          "value": "SIARD"
+          "value": "to"
         },
         {
           "type": "FIELD",
@@ -305,27 +291,42 @@
           "name": "_ni"
         },
         {
-          "type": "CHOICE",
-          "members": [
-            {
-              "type": "SYMBOL",
-              "name": "properties"
-            },
-            {
-              "type": "BLANK"
-            }
-          ]
-        },
-        {
           "type": "REPEAT",
           "content": {
             "type": "CHOICE",
             "members": [
               {
                 "type": "SYMBOL",
-                "name": "siard_schema"
+                "name": "_siard_description"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "_siard_archiver"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "_siard_archiverContact"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "_siard_dataOwner"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "_siard_dataOriginTimespan"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "_siard_lobFolder"
               }
             ]
+          }
+        },
+        {
+          "type": "REPEAT1",
+          "content": {
+            "type": "SYMBOL",
+            "name": "siard_schema"
           }
         },
         {
@@ -344,6 +345,91 @@
         {
           "type": "FIELD",
           "name": "description",
+          "content": {
+            "type": "SYMBOL",
+            "name": "_value"
+          }
+        }
+      ]
+    },
+    "_siard_archiver": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "archiver"
+        },
+        {
+          "type": "FIELD",
+          "name": "archiver",
+          "content": {
+            "type": "SYMBOL",
+            "name": "_value"
+          }
+        }
+      ]
+    },
+    "_siard_archiverContact": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "archiverContact"
+        },
+        {
+          "type": "FIELD",
+          "name": "archiverContact",
+          "content": {
+            "type": "SYMBOL",
+            "name": "_value"
+          }
+        }
+      ]
+    },
+    "_siard_dataOwner": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "dataOwner"
+        },
+        {
+          "type": "FIELD",
+          "name": "dataOwner",
+          "content": {
+            "type": "SYMBOL",
+            "name": "_value"
+          }
+        }
+      ]
+    },
+    "_siard_dataOriginTimespan": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "dataOriginTimespan"
+        },
+        {
+          "type": "FIELD",
+          "name": "dataOriginTimespan",
+          "content": {
+            "type": "SYMBOL",
+            "name": "_value"
+          }
+        }
+      ]
+    },
+    "_siard_lobFolder": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "lobFolder"
+        },
+        {
+          "type": "FIELD",
+          "name": "lobFolder",
           "content": {
             "type": "SYMBOL",
             "name": "_value"
@@ -855,34 +941,6 @@
         {
           "type": "SYMBOL",
           "name": "_inter_end"
-        }
-      ]
-    },
-    "properties": {
-      "type": "SEQ",
-      "members": [
-        {
-          "type": "STRING",
-          "value": "Properties"
-        },
-        {
-          "type": "STRING",
-          "value": ":"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "_ni"
-        },
-        {
-          "type": "REPEAT1",
-          "content": {
-            "type": "SYMBOL",
-            "name": "key_value_pair"
-          }
-        },
-        {
-          "type": "SYMBOL",
-          "name": "_ded"
         }
       ]
     },

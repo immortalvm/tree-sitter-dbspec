@@ -3,6 +3,16 @@
     "type": "connection",
     "named": true,
     "fields": {
+      "properties": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "key_value_pair",
+            "named": true
+          }
+        ]
+      },
       "url": {
         "multiple": false,
         "required": true,
@@ -13,32 +23,12 @@
           }
         ]
       }
-    },
-    "children": {
-      "multiple": true,
-      "required": false,
-      "types": [
-        {
-          "type": "key_value_pair",
-          "named": true
-        }
-      ]
     }
   },
   {
     "type": "execute",
     "named": true,
     "fields": {
-      "connection": {
-        "multiple": false,
-        "required": false,
-        "types": [
-          {
-            "type": "identifier",
-            "named": true
-          }
-        ]
-      },
       "sql": {
         "multiple": false,
         "required": true,
@@ -127,10 +117,6 @@
         "required": true,
         "types": [
           {
-            "type": "connection",
-            "named": true
-          },
-          {
             "type": "query",
             "named": true
           },
@@ -188,34 +174,9 @@
     }
   },
   {
-    "type": "properties",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "key_value_pair",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
     "type": "query",
     "named": true,
     "fields": {
-      "connection": {
-        "multiple": false,
-        "required": false,
-        "types": [
-          {
-            "type": "identifier",
-            "named": true
-          }
-        ]
-      },
       "sql": {
         "multiple": false,
         "required": true,
@@ -356,6 +317,116 @@
     "type": "siard_output",
     "named": true,
     "fields": {
+      "archiver": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "=",
+            "named": false
+          },
+          {
+            "type": "raw",
+            "named": true
+          },
+          {
+            "type": "string",
+            "named": true
+          },
+          {
+            "type": "variable_instance",
+            "named": true
+          }
+        ]
+      },
+      "archiverContact": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "=",
+            "named": false
+          },
+          {
+            "type": "raw",
+            "named": true
+          },
+          {
+            "type": "string",
+            "named": true
+          },
+          {
+            "type": "variable_instance",
+            "named": true
+          }
+        ]
+      },
+      "dataOriginTimespan": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "=",
+            "named": false
+          },
+          {
+            "type": "raw",
+            "named": true
+          },
+          {
+            "type": "string",
+            "named": true
+          },
+          {
+            "type": "variable_instance",
+            "named": true
+          }
+        ]
+      },
+      "dataOwner": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "=",
+            "named": false
+          },
+          {
+            "type": "raw",
+            "named": true
+          },
+          {
+            "type": "string",
+            "named": true
+          },
+          {
+            "type": "variable_instance",
+            "named": true
+          }
+        ]
+      },
+      "description": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "=",
+            "named": false
+          },
+          {
+            "type": "raw",
+            "named": true
+          },
+          {
+            "type": "string",
+            "named": true
+          },
+          {
+            "type": "variable_instance",
+            "named": true
+          }
+        ]
+      },
       "file": {
         "multiple": false,
         "required": true,
@@ -369,16 +440,44 @@
             "named": true
           }
         ]
+      },
+      "lobFolder": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "=",
+            "named": false
+          },
+          {
+            "type": "raw",
+            "named": true
+          },
+          {
+            "type": "string",
+            "named": true
+          },
+          {
+            "type": "variable_instance",
+            "named": true
+          }
+        ]
+      },
+      "name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
       }
     },
     "children": {
       "multiple": true,
-      "required": false,
+      "required": true,
       "types": [
-        {
-          "type": "properties",
-          "named": true
-        },
         {
           "type": "siard_schema",
           "named": true
@@ -542,8 +641,12 @@
     "fields": {},
     "children": {
       "multiple": true,
-      "required": false,
+      "required": true,
       "types": [
+        {
+          "type": "connection",
+          "named": true
+        },
         {
           "type": "execute",
           "named": true
@@ -623,6 +726,10 @@
     "named": false
   },
   {
+    "type": "Connection",
+    "named": false
+  },
+  {
     "type": "Execute",
     "named": false
   },
@@ -643,14 +750,6 @@
     "named": false
   },
   {
-    "type": "Properties",
-    "named": false
-  },
-  {
-    "type": "SIARD",
-    "named": false
-  },
-  {
     "type": "Schema",
     "named": false
   },
@@ -663,7 +762,19 @@
     "named": false
   },
   {
-    "type": "connection",
+    "type": "archiver",
+    "named": false
+  },
+  {
+    "type": "archiverContact",
+    "named": false
+  },
+  {
+    "type": "dataOriginTimespan",
+    "named": false
+  },
+  {
+    "type": "dataOwner",
     "named": false
   },
   {
@@ -679,6 +790,14 @@
     "named": true
   },
   {
+    "type": "lobFolder",
+    "named": false
+  },
+  {
+    "type": "of",
+    "named": false
+  },
+  {
     "type": "result",
     "named": false
   },
@@ -688,10 +807,6 @@
   },
   {
     "type": "to",
-    "named": false
-  },
-  {
-    "type": "using",
     "named": false
   },
   {
