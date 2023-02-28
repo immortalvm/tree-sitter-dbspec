@@ -278,28 +278,6 @@
           }
         ]
       },
-      "folder": {
-        "multiple": true,
-        "required": false,
-        "types": [
-          {
-            "type": "=",
-            "named": false
-          },
-          {
-            "type": "raw",
-            "named": true
-          },
-          {
-            "type": "string",
-            "named": true
-          },
-          {
-            "type": "variable_instance",
-            "named": true
-          }
-        ]
-      },
       "name": {
         "multiple": false,
         "required": true,
@@ -327,28 +305,6 @@
     "named": true,
     "fields": {
       "description": {
-        "multiple": true,
-        "required": false,
-        "types": [
-          {
-            "type": "=",
-            "named": false
-          },
-          {
-            "type": "raw",
-            "named": true
-          },
-          {
-            "type": "string",
-            "named": true
-          },
-          {
-            "type": "variable_instance",
-            "named": true
-          }
-        ]
-      },
-      "folder": {
         "multiple": true,
         "required": false,
         "types": [
@@ -452,28 +408,6 @@
           }
         ]
       },
-      "folder": {
-        "multiple": true,
-        "required": true,
-        "types": [
-          {
-            "type": "=",
-            "named": false
-          },
-          {
-            "type": "raw",
-            "named": true
-          },
-          {
-            "type": "string",
-            "named": true
-          },
-          {
-            "type": "variable_instance",
-            "named": true
-          }
-        ]
-      },
       "name": {
         "multiple": false,
         "required": true,
@@ -507,28 +441,6 @@
       "description": {
         "multiple": true,
         "required": false,
-        "types": [
-          {
-            "type": "=",
-            "named": false
-          },
-          {
-            "type": "raw",
-            "named": true
-          },
-          {
-            "type": "string",
-            "named": true
-          },
-          {
-            "type": "variable_instance",
-            "named": true
-          }
-        ]
-      },
-      "folder": {
-        "multiple": true,
-        "required": true,
         "types": [
           {
             "type": "=",
@@ -737,10 +649,6 @@
   {
     "type": "escape_sequence",
     "named": true
-  },
-  {
-    "type": "folder",
-    "named": false
   },
   {
     "type": "identifier",

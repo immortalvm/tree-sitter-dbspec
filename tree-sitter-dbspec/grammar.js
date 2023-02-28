@@ -84,11 +84,10 @@ module.exports = grammar({
       $._ded),
 
     // Generic SIARD properties
-    ...property_rules('siard', ['folder', 'description']),
+    ...property_rules('siard', ['description']),
 
     siard_schema: $ => seq(
       'Schema', field('name', $.identifier), ':', $._ni,
-      $._siard_folder,
       optional($._siard_description),
       repeat(choice(
         $.siard_type,
@@ -107,21 +106,18 @@ module.exports = grammar({
 
     siard_table: $ => seq(
       'Table', field('name', $.identifier), ':', $._ni,
-      $._siard_folder,
       optional($._siard_description),
       repeat1($.siard_column),
       $._ded),
 
     siard_column: $ => seq(
       'Column', field('name', $.identifier), ':', $._ni,
-      optional($._siard_folder),
       optional($._siard_description),
       repeat($.siard_field),
       $._ded),
 
     siard_field: $ => seq(
       'Field', field('name', $.identifier), ':', $._ni,
-      optional($._siard_folder),
       optional($._siard_description),
       repeat($.siard_field), // NB: Recursion!
       $._ded),

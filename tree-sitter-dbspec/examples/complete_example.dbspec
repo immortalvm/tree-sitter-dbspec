@@ -31,10 +31,7 @@ Output SIARD "my_test.siard":
 			This is a very interesting database.
 		archiver = "ivar.rummelhoff@nr.no"
 
-
 	Schema dbo:
-		# TODO: Should we make the folders optional like SiardCMD?
-		folder = "dbo_folder"
 		description:
 			The most important schema!
 			The description continues.
@@ -46,17 +43,11 @@ Output SIARD "my_test.siard":
 			# The other "type level metadata" should be extracted from the database.
 
 		Table customer:
-			folder:
-				really/long/folder/name/with/${variable}
 			description = "The main customer table"
-			Column picture:
-				# NB: Corresponds to lobFolder in SIARD
-				folder = "customer_pictures"
+#			Column picture:
 			Column stuff:
 				description = "The 'stuff' column."
 				Field big_stuff:
-					# lobFolder in SIARD
-					folder = "big stuff"
 					description = "A big field"
 
 
