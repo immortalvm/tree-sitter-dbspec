@@ -52,6 +52,11 @@ Output my_test_db to "my_test.siard":
 				Field big_stuff:
 					description = "A big field"
 
+			# Should we output all the keys or only the keys mentioned here?
+			# If all the keys are included by default, should there be a way to override this?
+			Key pk_customer - Description needed?
+
+			Check chk_customer - Ensure that every customer has a valid identity number.
 
 
 ### Local variables:
@@ -59,4 +64,5 @@ Output my_test_db to "my_test.siard":
 ### tab-width: 4
 ### comment-start: "#"
 ### comment-style: "plain"
+### whitespace-line-column: 100
 ### End:

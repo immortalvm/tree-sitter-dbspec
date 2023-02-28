@@ -214,6 +214,48 @@
     "fields": {}
   },
   {
+    "type": "siard_check",
+    "named": true,
+    "fields": {
+      "description": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "=",
+            "named": false
+          },
+          {
+            "type": "raw",
+            "named": true
+          },
+          {
+            "type": "short_description",
+            "named": true
+          },
+          {
+            "type": "string",
+            "named": true
+          },
+          {
+            "type": "variable_instance",
+            "named": true
+          }
+        ]
+      },
+      "name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
     "type": "siard_column",
     "named": true,
     "fields": {
@@ -282,6 +324,10 @@
             "named": true
           },
           {
+            "type": "short_description",
+            "named": true
+          },
+          {
             "type": "string",
             "named": true
           },
@@ -311,6 +357,48 @@
           "named": true
         }
       ]
+    }
+  },
+  {
+    "type": "siard_key",
+    "named": true,
+    "fields": {
+      "description": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "=",
+            "named": false
+          },
+          {
+            "type": "raw",
+            "named": true
+          },
+          {
+            "type": "short_description",
+            "named": true
+          },
+          {
+            "type": "string",
+            "named": true
+          },
+          {
+            "type": "variable_instance",
+            "named": true
+          }
+        ]
+      },
+      "name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      }
     }
   },
   {
@@ -587,7 +675,15 @@
       "required": false,
       "types": [
         {
+          "type": "siard_check",
+          "named": true
+        },
+        {
           "type": "siard_column",
+          "named": true
+        },
+        {
+          "type": "siard_key",
           "named": true
         }
       ]
@@ -722,6 +818,10 @@
     "named": false
   },
   {
+    "type": "Check",
+    "named": false
+  },
+  {
     "type": "Column",
     "named": false
   },
@@ -735,6 +835,10 @@
   },
   {
     "type": "Field",
+    "named": false
+  },
+  {
+    "type": "Key",
     "named": false
   },
   {

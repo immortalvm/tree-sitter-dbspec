@@ -115,14 +115,17 @@ module.exports = grammar({
         $._ded))),
 
     siard_type: $ => seq('Type', field('name', $.identifier), choice(
-      $._nl, $._short_descr,
-      seq(':', $._ni, $._siard_description, $._ded))),
+      $._nl, $._short_descr, seq(':', $._ni, $._siard_description, $._ded))),
 
     siard_table: $ => seq('Table', field('name', $.identifier), choice(
       $._nl, $._short_descr, seq(
         ':', $._ni,
         optional($._siard_description),
-        repeat1($.siard_column),
+        repeat(choice(
+          $.siard_column,
+          $.siard_key,
+          $.siard_check,
+        )),
         $._ded))),
 
     siard_column: $ => seq('Column', field('name', $.identifier), choice(
@@ -132,11 +135,21 @@ module.exports = grammar({
         repeat($.siard_field),
         $._ded))),
 
-    siard_field: $ => seq(
-      'Field', field('name', $.identifier), ':', $._ni,
-      optional($._siard_description),
-      repeat($.siard_field), // NB: Recursion!
-      $._ded),
+    siard_field: $ => seq('Field', field('name', $.identifier), choice(
+      $._nl, $._short_descr, seq(
+        ':', $._ni,
+        optional($._siard_description),
+        repeat($.siard_field), // NB: Recursion!
+        $._ded))),
+
+    // Used for both candidate, primary and foreign keys.
+    siard_key: $ => seq('Key', field('name', $.identifier), choice(
+      $._nl, $._short_descr, seq(':', $._ni, $._siard_description, $._ded))),
+
+    siard_check: $ => seq('Check', field('name', $.identifier), choice(
+      $._nl, $._short_descr, seq(':', $._ni, $._siard_description, $._ded))),
+
+    // We ignore triggers (for now at least)
 
 
     // ---- Basic expressions ----
