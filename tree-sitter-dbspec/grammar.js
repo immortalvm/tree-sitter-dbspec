@@ -25,7 +25,6 @@ module.exports = grammar({
 
   inline: $ => [
     $._name,
-    $._value,
   ],
 
   rules: {
@@ -214,15 +213,13 @@ module.exports = grammar({
 
     // NB. Each key must an identifier (i.e. no whitespace, etc.).
     key_value_pairs: $ => seq(':', $._ni, repeat1($.key_value_pair), $._ded),
-    key_value_pair: $ => seq(field('key', $.identifier), field('value', $._value)),
+    key_value_pair: $ => seq(field('key', $.identifier), value_field('value', $)),
 
     raw: $ => seq(
       ':', $._newline, $._indent,
       repeat1(choice($.raw_content, $.interpolation)),
       $._ded),
     raw_content: $ => prec.right(repeat1($._raw)),
-
-    _value: $ => choice($.raw, seq('=', $._basic_expression, $._nl)),
   },
 
 });
@@ -233,12 +230,16 @@ function property_rules(prefix, shortnames) {
   for (var shortname of shortnames) {
     // For some reason, we must force JavaScript to make a deep copy of the string...
     let x = (' ' + shortname).slice(1);
-    res['_' + prefix + '_' + x] = $ => seq(x, field(x, $._value));
+    res['_' + prefix + '_' + x] = $ => seq(x, value_field(x, $));
   }
   return res;
 }
 
-
+function value_field(field_name, $) {
+  // We must "distribute" the field declarations thanks to this limitation:
+  // https://github.com/tree-sitter/tree-sitter/issues/755
+  return choice(field(field_name, $.raw), seq('=', field(field_name, $._basic_expression), $._nl));
+}
 
 
 // Local Variables:

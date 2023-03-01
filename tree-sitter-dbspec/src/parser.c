@@ -729,17 +729,17 @@ static const TSFieldMapSlice ts_field_map_slices[PRODUCTION_ID_COUNT] = {
   [22] = {.index = 28, .length = 1},
   [23] = {.index = 29, .length = 12},
   [24] = {.index = 41, .length = 2},
-  [25] = {.index = 43, .length = 4},
-  [26] = {.index = 47, .length = 2},
-  [27] = {.index = 49, .length = 1},
-  [28] = {.index = 50, .length = 8},
-  [29] = {.index = 58, .length = 3},
-  [30] = {.index = 61, .length = 3},
-  [31] = {.index = 64, .length = 3},
-  [32] = {.index = 67, .length = 3},
-  [33] = {.index = 70, .length = 3},
-  [34] = {.index = 73, .length = 3},
-  [35] = {.index = 76, .length = 2},
+  [25] = {.index = 43, .length = 2},
+  [26] = {.index = 45, .length = 2},
+  [27] = {.index = 47, .length = 1},
+  [28] = {.index = 48, .length = 8},
+  [29] = {.index = 56, .length = 1},
+  [30] = {.index = 57, .length = 1},
+  [31] = {.index = 58, .length = 1},
+  [32] = {.index = 59, .length = 1},
+  [33] = {.index = 60, .length = 1},
+  [34] = {.index = 61, .length = 1},
+  [35] = {.index = 62, .length = 2},
 };
 
 static const TSFieldMapEntry ts_field_map_entries[] = {
@@ -812,15 +812,13 @@ static const TSFieldMapEntry ts_field_map_entries[] = {
     {field_name, 1},
   [43] =
     {field_key, 0},
-    {field_value, 1},
     {field_value, 2},
-    {field_value, 3},
-  [47] =
+  [45] =
     {field_description, 2, .inherited = true},
     {field_name, 1},
-  [49] =
+  [47] =
     {field_name, 1},
-  [50] =
+  [48] =
     {field_archiver, 6, .inherited = true},
     {field_archiverContact, 6, .inherited = true},
     {field_dataOriginTimespan, 6, .inherited = true},
@@ -829,31 +827,19 @@ static const TSFieldMapEntry ts_field_map_entries[] = {
     {field_file, 3},
     {field_lobFolder, 6, .inherited = true},
     {field_name, 1},
-  [58] =
-    {field_description, 1},
+  [56] =
     {field_description, 2},
-    {field_description, 3},
-  [61] =
-    {field_archiver, 1},
+  [57] =
     {field_archiver, 2},
-    {field_archiver, 3},
-  [64] =
-    {field_archiverContact, 1},
+  [58] =
     {field_archiverContact, 2},
-    {field_archiverContact, 3},
-  [67] =
-    {field_dataOwner, 1},
+  [59] =
     {field_dataOwner, 2},
-    {field_dataOwner, 3},
-  [70] =
-    {field_dataOriginTimespan, 1},
+  [60] =
     {field_dataOriginTimespan, 2},
-    {field_dataOriginTimespan, 3},
-  [73] =
-    {field_lobFolder, 1},
+  [61] =
     {field_lobFolder, 2},
-    {field_lobFolder, 3},
-  [76] =
+  [62] =
     {field_description, 4, .inherited = true},
     {field_name, 1},
 };
