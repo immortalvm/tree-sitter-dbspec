@@ -61,8 +61,7 @@ module.exports = grammar({
       choice(
         $._nl,
         seq(
-          optional($._newline), 'with', ':',
-          $._ni, field('properties', repeat1($.key_value_pair)), $._ded))),
+          optional($._newline), 'with', field('properties', $.key_value_pairs)))),
 
     execute: $ => seq('Execute', field('sql', $.raw)),
     query: $ => seq('result', 'of', field('sql', $.raw)),
@@ -207,6 +206,7 @@ module.exports = grammar({
     interpolation: $ => seq($._inter_start, $._basic_expression, $._inter_end),
 
     // NB. Each key must an identifier (i.e. no whitespace, etc.).
+    key_value_pairs: $ => seq(':', $._ni, repeat1($.key_value_pair), $._ded),
     key_value_pair: $ => seq(field('key', $.identifier), field('value', $._value), $._nl),
 
     raw: $ => seq(
