@@ -64,5 +64,6 @@ Output my_test_db to "my_test.siard":
 ### tab-width: 4
 ### comment-start: "#"
 ### comment-style: "plain"
-### whitespace-line-column: 100
+### whitespace-style: (face tabs)
+### eval: (whitespace-mode 1)
 ### End:
