@@ -207,7 +207,7 @@ module.exports = grammar({
 
     // NB. Each key must an identifier (i.e. no whitespace, etc.).
     key_value_pairs: $ => seq(':', $._ni, repeat1($.key_value_pair), $._ded),
-    key_value_pair: $ => seq(field('key', $.identifier), field('value', $._value), $._nl),
+    key_value_pair: $ => seq(field('key', $.identifier), field('value', $._value)),
 
     raw: $ => seq(
       ':', $._newline, $._indent,

@@ -1174,10 +1174,6 @@
             "type": "SYMBOL",
             "name": "_value"
           }
-        },
-        {
-          "type": "SYMBOL",
-          "name": "_nl"
         }
       ]
     },
