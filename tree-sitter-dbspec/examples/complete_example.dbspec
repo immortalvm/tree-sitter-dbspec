@@ -12,6 +12,8 @@ Parameters:
 Connection to "jdbc:mysql://localhost:${port}/" with:
 	user = "nr\\${user}"
 	password = password
+	foo:
+		bar
 
 Execute:
 	CREATE TABLE Temp (
