@@ -62,12 +62,8 @@
       "type": "SEQ",
       "members": [
         {
-          "type": "FIELD",
-          "name": "name",
-          "content": {
-            "type": "SYMBOL",
-            "name": "identifier"
-          }
+          "type": "SYMBOL",
+          "name": "_name"
         },
         {
           "type": "CHOICE",
@@ -109,12 +105,8 @@
           "value": "Let"
         },
         {
-          "type": "FIELD",
-          "name": "name",
-          "content": {
-            "type": "SYMBOL",
-            "name": "identifier"
-          }
+          "type": "SYMBOL",
+          "name": "_name"
         },
         {
           "type": "STRING",
@@ -248,12 +240,8 @@
           "value": "Output"
         },
         {
-          "type": "FIELD",
-          "name": "name",
-          "content": {
-            "type": "SYMBOL",
-            "name": "identifier"
-          }
+          "type": "SYMBOL",
+          "name": "_name"
         },
         {
           "type": "STRING",
@@ -430,12 +418,8 @@
           "value": "Schema"
         },
         {
-          "type": "FIELD",
-          "name": "name",
-          "content": {
-            "type": "SYMBOL",
-            "name": "identifier"
-          }
+          "type": "SYMBOL",
+          "name": "_name"
         },
         {
           "type": "CHOICE",
@@ -509,12 +493,8 @@
           "value": "Type"
         },
         {
-          "type": "FIELD",
-          "name": "name",
-          "content": {
-            "type": "SYMBOL",
-            "name": "identifier"
-          }
+          "type": "SYMBOL",
+          "name": "_name"
         },
         {
           "type": "CHOICE",
@@ -560,12 +540,8 @@
           "value": "Table"
         },
         {
-          "type": "FIELD",
-          "name": "name",
-          "content": {
-            "type": "SYMBOL",
-            "name": "identifier"
-          }
+          "type": "SYMBOL",
+          "name": "_name"
         },
         {
           "type": "CHOICE",
@@ -639,12 +615,8 @@
           "value": "Column"
         },
         {
-          "type": "FIELD",
-          "name": "name",
-          "content": {
-            "type": "SYMBOL",
-            "name": "identifier"
-          }
+          "type": "SYMBOL",
+          "name": "_name"
         },
         {
           "type": "CHOICE",
@@ -705,12 +677,8 @@
           "value": "Field"
         },
         {
-          "type": "FIELD",
-          "name": "name",
-          "content": {
-            "type": "SYMBOL",
-            "name": "identifier"
-          }
+          "type": "SYMBOL",
+          "name": "_name"
         },
         {
           "type": "CHOICE",
@@ -771,12 +739,8 @@
           "value": "Key"
         },
         {
-          "type": "FIELD",
-          "name": "name",
-          "content": {
-            "type": "SYMBOL",
-            "name": "identifier"
-          }
+          "type": "SYMBOL",
+          "name": "_name"
         },
         {
           "type": "CHOICE",
@@ -822,12 +786,8 @@
           "value": "Check"
         },
         {
-          "type": "FIELD",
-          "name": "name",
-          "content": {
-            "type": "SYMBOL",
-            "name": "identifier"
-          }
+          "type": "SYMBOL",
+          "name": "_name"
         },
         {
           "type": "CHOICE",
@@ -873,12 +833,8 @@
           "value": "View"
         },
         {
-          "type": "FIELD",
-          "name": "name",
-          "content": {
-            "type": "SYMBOL",
-            "name": "identifier"
-          }
+          "type": "SYMBOL",
+          "name": "_name"
         },
         {
           "type": "CHOICE",
@@ -1050,6 +1006,14 @@
     "identifier": {
       "type": "PATTERN",
       "value": "[_\\p{XID_Start}][_\\p{XID_Continue}]*"
+    },
+    "_name": {
+      "type": "FIELD",
+      "name": "name",
+      "content": {
+        "type": "SYMBOL",
+        "name": "identifier"
+      }
     },
     "short_description": {
       "type": "PATTERN",
@@ -1314,7 +1278,9 @@
       "name": "_skip"
     }
   ],
-  "inline": [],
+  "inline": [
+    "_name"
+  ],
   "supertypes": []
 }
 

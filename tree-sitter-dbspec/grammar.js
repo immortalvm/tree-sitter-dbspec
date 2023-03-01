@@ -23,6 +23,8 @@ module.exports = grammar({
 
   word: $ => $.identifier,
 
+  inline: $ => [$._name],
+
   rules: {
     source_file: $ => seq(
       optional($.parameters),
@@ -34,7 +36,7 @@ module.exports = grammar({
     // ---- Parameters ----
 
     parameters: $ => seq("Parameters", ':', $._ni, repeat1($.parameter), $._ded),
-    parameter: $ => seq(field('name', $.identifier), choice($._nl, $._short_descr)),
+    parameter: $ => seq($._name, choice($._nl, $._short_descr)),
 
 
     // ---- Statements ----
@@ -45,7 +47,7 @@ module.exports = grammar({
       $.siard_output,
     ),
 
-    let: $ => seq('Let', field('name', $.identifier), '=', field('value', $._expression)),
+    let: $ => seq('Let', $._name, '=', field('value', $._expression)),
 
     _expression: $ => choice(
       $._basic_expression,
@@ -70,7 +72,7 @@ module.exports = grammar({
     // ---- SIARD ----
 
     siard_output: $ => seq(
-      'Output', field('name', $.identifier), 'to', field('file', $._basic_expression), ':',
+      'Output', $._name, 'to', field('file', $._basic_expression), ':',
       $._ni,
       repeat(choice(
         $._siard_description,
@@ -100,7 +102,7 @@ module.exports = grammar({
       // 'databaseUser',
     ]),
 
-    siard_schema: $ => seq('Schema', field('name', $.identifier), choice(
+    siard_schema: $ => seq('Schema', $._name, choice(
       $._nl, $._short_descr, seq(
         ':', $._ni,
         optional($._siard_description),
@@ -112,10 +114,10 @@ module.exports = grammar({
         )),
         $._ded))),
 
-    siard_type: $ => seq('Type', field('name', $.identifier), choice(
+    siard_type: $ => seq('Type', $._name, choice(
       $._nl, $._short_descr, seq(':', $._ni, $._siard_description, $._ded))),
 
-    siard_table: $ => seq('Table', field('name', $.identifier), choice(
+    siard_table: $ => seq('Table', $._name, choice(
       $._nl, $._short_descr, seq(
         ':', $._ni,
         optional($._siard_description),
@@ -127,14 +129,14 @@ module.exports = grammar({
         )),
         $._ded))),
 
-    siard_column: $ => seq('Column', field('name', $.identifier), choice(
+    siard_column: $ => seq('Column', $._name, choice(
       $._nl, $._short_descr, seq(
         ':', $._ni,
         optional($._siard_description),
         repeat($.siard_field),
         $._ded))),
 
-    siard_field: $ => seq('Field', field('name', $.identifier), choice(
+    siard_field: $ => seq('Field', $._name, choice(
       $._nl, $._short_descr, seq(
         ':', $._ni,
         optional($._siard_description),
@@ -142,13 +144,13 @@ module.exports = grammar({
         $._ded))),
 
     // Used for both candidate, primary and foreign keys.
-    siard_key: $ => seq('Key', field('name', $.identifier), choice(
+    siard_key: $ => seq('Key', $._name, choice(
       $._nl, $._short_descr, seq(':', $._ni, $._siard_description, $._ded))),
 
-    siard_check: $ => seq('Check', field('name', $.identifier), choice(
+    siard_check: $ => seq('Check', $._name, choice(
       $._nl, $._short_descr, seq(':', $._ni, $._siard_description, $._ded))),
 
-    siard_view: $ => seq('View', field('name', $.identifier), choice(
+    siard_view: $ => seq('View', $._name, choice(
       $._nl, $._short_descr, seq(
         ':', $._ni,
         optional($._siard_description),
@@ -194,6 +196,8 @@ module.exports = grammar({
 
     // As in tree-sitter-python
     identifier: $ => /[_\p{XID_Start}][_\p{XID_Continue}]*/,
+
+    _name:  $ => field('name', $.identifier),
 
     // This matches the rest of the line
     short_description: $ => /.*/,
