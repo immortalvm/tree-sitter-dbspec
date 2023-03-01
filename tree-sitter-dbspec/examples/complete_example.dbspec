@@ -58,12 +58,20 @@ Output my_test_db to "my_test.siard":
 
 			Check chk_customer - Ensure that every customer has a valid identity number.
 
+		View current_delivery_issues:
+			description = "An aggregate view of current delivery issues"
+			Column customer_name - The full name of the customer
+			Column order_date
+			Column issue_details:
+				description = "Descr"
+				Field attachments - Blob containing attachments, if any
+
 
 ### Local variables:
 ### indent-tabs-mode: t
 ### tab-width: 4
 ### comment-start: "#"
 ### comment-style: "plain"
-### whitespace-style: (face tabs)
+### whitespace-style: (face tabs tab-mark)
 ### eval: (whitespace-mode 1)
 ### End:

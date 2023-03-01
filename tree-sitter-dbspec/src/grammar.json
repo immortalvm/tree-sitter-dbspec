@@ -498,6 +498,10 @@
                       {
                         "type": "SYMBOL",
                         "name": "siard_table"
+                      },
+                      {
+                        "type": "SYMBOL",
+                        "name": "siard_view"
                       }
                     ]
                   }
@@ -865,6 +869,72 @@
                 {
                   "type": "SYMBOL",
                   "name": "_siard_description"
+                },
+                {
+                  "type": "SYMBOL",
+                  "name": "_ded"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "siard_view": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "View"
+        },
+        {
+          "type": "FIELD",
+          "name": "name",
+          "content": {
+            "type": "SYMBOL",
+            "name": "identifier"
+          }
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "_nl"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "_short_descr"
+            },
+            {
+              "type": "SEQ",
+              "members": [
+                {
+                  "type": "STRING",
+                  "value": ":"
+                },
+                {
+                  "type": "SYMBOL",
+                  "name": "_ni"
+                },
+                {
+                  "type": "CHOICE",
+                  "members": [
+                    {
+                      "type": "SYMBOL",
+                      "name": "_siard_description"
+                    },
+                    {
+                      "type": "BLANK"
+                    }
+                  ]
+                },
+                {
+                  "type": "REPEAT",
+                  "content": {
+                    "type": "SYMBOL",
+                    "name": "siard_column"
+                  }
                 },
                 {
                   "type": "SYMBOL",

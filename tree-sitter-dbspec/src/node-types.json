@@ -625,6 +625,10 @@
         {
           "type": "siard_type",
           "named": true
+        },
+        {
+          "type": "siard_view",
+          "named": true
         }
       ]
     }
@@ -729,6 +733,58 @@
           }
         ]
       }
+    }
+  },
+  {
+    "type": "siard_view",
+    "named": true,
+    "fields": {
+      "description": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "=",
+            "named": false
+          },
+          {
+            "type": "raw",
+            "named": true
+          },
+          {
+            "type": "short_description",
+            "named": true
+          },
+          {
+            "type": "string",
+            "named": true
+          },
+          {
+            "type": "variable_instance",
+            "named": true
+          }
+        ]
+      },
+      "name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "siard_column",
+          "named": true
+        }
+      ]
     }
   },
   {
@@ -863,6 +919,10 @@
   },
   {
     "type": "Type",
+    "named": false
+  },
+  {
+    "type": "View",
     "named": false
   },
   {

@@ -108,9 +108,8 @@ module.exports = grammar({
         repeat(choice(
           $.siard_type,
           $.siard_table,
-          // TODO
-          // $.siard_view,
-          // $.siard_routine,
+          $.siard_view,
+          // We ignore routines (stored procedures) for now
         )),
         $._ded))),
 
@@ -125,6 +124,7 @@ module.exports = grammar({
           $.siard_column,
           $.siard_key,
           $.siard_check,
+          // We ignore triggers for now
         )),
         $._ded))),
 
@@ -149,7 +149,14 @@ module.exports = grammar({
     siard_check: $ => seq('Check', field('name', $.identifier), choice(
       $._nl, $._short_descr, seq(':', $._ni, $._siard_description, $._ded))),
 
-    // We ignore triggers (for now at least)
+    siard_view: $ => seq('View', field('name', $.identifier), choice(
+      $._nl, $._short_descr, seq(
+        ':', $._ni,
+        optional($._siard_description),
+        repeat($.siard_column),
+        // The other properties (e.g. query and queryOriginal) will be extracted from the db.
+        $._ded))),
+
 
 
     // ---- Basic expressions ----
