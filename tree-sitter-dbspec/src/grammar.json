@@ -151,7 +151,7 @@
           "name": "url",
           "content": {
             "type": "SYMBOL",
-            "name": "string"
+            "name": "_basic_expression"
           }
         },
         {
@@ -1279,7 +1279,8 @@
     }
   ],
   "inline": [
-    "_name"
+    "_name",
+    "_value"
   ],
   "supertypes": []
 }

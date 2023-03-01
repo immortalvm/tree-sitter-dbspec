@@ -23,7 +23,10 @@ module.exports = grammar({
 
   word: $ => $.identifier,
 
-  inline: $ => [$._name],
+  inline: $ => [
+    $._name,
+    $._value,
+  ],
 
   rules: {
     source_file: $ => seq(
@@ -59,7 +62,7 @@ module.exports = grammar({
 
     // cf. https://docs.oracle.com/javase/tutorial/jdbc/basics/connecting.html
     connection: $ => seq(
-      'Connection', 'to', field('url', $.string),
+      'Connection', 'to', field('url', $._basic_expression),
       choice(
         $._nl,
         seq(
