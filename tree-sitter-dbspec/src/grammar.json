@@ -89,7 +89,7 @@
         },
         {
           "type": "SYMBOL",
-          "name": "execute"
+          "name": "execute_sql"
         },
         {
           "type": "SYMBOL",
@@ -194,12 +194,16 @@
         }
       ]
     },
-    "execute": {
+    "execute_sql": {
       "type": "SEQ",
       "members": [
         {
           "type": "STRING",
           "value": "Execute"
+        },
+        {
+          "type": "STRING",
+          "value": "SQL"
         },
         {
           "type": "FIELD",

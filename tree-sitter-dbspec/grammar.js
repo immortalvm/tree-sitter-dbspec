@@ -45,7 +45,7 @@ module.exports = grammar({
 
     _statement: $ => choice(
       $.let,
-      $.execute,
+      $.execute_sql,
       $.siard_output,
     ),
 
@@ -67,7 +67,7 @@ module.exports = grammar({
         seq(
           optional($._newline), 'with', field('properties', $.key_value_pairs)))),
 
-    execute: $ => seq('Execute', field('sql', $.raw)),
+    execute_sql: $ => seq('Execute', 'SQL', field('sql', $.raw)),
     query: $ => seq('result', 'of', field('sql', $.raw)),
 
 
@@ -146,6 +146,7 @@ module.exports = grammar({
         $._ded))),
 
     // Used for both candidate, primary and foreign keys.
+    // Candidate keys are usually expressed through uniqueness constraints.
     siard_key: $ => seq('Key', $._name, choice(
       $._nl, $._short_descr, seq(':', $._ni, $._siard_description, $._ded))),
 

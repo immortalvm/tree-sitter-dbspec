@@ -15,7 +15,7 @@ Connection to "jdbc:mysql://localhost:${port}/" with:
 	foo:
 		bar
 
-Execute:
+Execute SQL:
 	CREATE TABLE Temp (
 		id VARCHAR(${id_size}) NOT NULL,
 		counter INT NULL,
