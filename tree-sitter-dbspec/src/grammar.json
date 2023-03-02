@@ -18,6 +18,13 @@
           ]
         },
         {
+          "type": "REPEAT",
+          "content": {
+            "type": "SYMBOL",
+            "name": "execute_using_shell"
+          }
+        },
+        {
           "type": "SYMBOL",
           "name": "connection"
         },
@@ -85,6 +92,10 @@
       "members": [
         {
           "type": "SYMBOL",
+          "name": "execute_using_shell"
+        },
+        {
+          "type": "SYMBOL",
           "name": "let"
         },
         {
@@ -132,6 +143,52 @@
         {
           "type": "SYMBOL",
           "name": "query"
+        }
+      ]
+    },
+    "execute_using_shell": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "Execute"
+        },
+        {
+          "type": "STRING",
+          "value": "using"
+        },
+        {
+          "type": "FIELD",
+          "name": "shell_name",
+          "content": {
+            "type": "SYMBOL",
+            "name": "shell_name"
+          }
+        },
+        {
+          "type": "FIELD",
+          "name": "script",
+          "content": {
+            "type": "SYMBOL",
+            "name": "raw"
+          }
+        }
+      ]
+    },
+    "shell_name": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "cmd"
+        },
+        {
+          "type": "STRING",
+          "value": "sh"
+        },
+        {
+          "type": "STRING",
+          "value": "bash"
         }
       ]
     },

@@ -46,6 +46,32 @@
     }
   },
   {
+    "type": "execute_using_shell",
+    "named": true,
+    "fields": {
+      "script": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "raw",
+            "named": true
+          }
+        ]
+      },
+      "shell_name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "shell_name",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
     "type": "interpolation",
     "named": true,
     "fields": {},
@@ -225,6 +251,11 @@
   },
   {
     "type": "raw_content",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "shell_name",
     "named": true,
     "fields": {}
   },
@@ -763,6 +794,10 @@
           "named": true
         },
         {
+          "type": "execute_using_shell",
+          "named": true
+        },
+        {
           "type": "let",
           "named": true
         },
@@ -897,6 +932,14 @@
     "named": false
   },
   {
+    "type": "bash",
+    "named": false
+  },
+  {
+    "type": "cmd",
+    "named": false
+  },
+  {
     "type": "dataOriginTimespan",
     "named": false
   },
@@ -929,11 +972,19 @@
     "named": false
   },
   {
+    "type": "sh",
+    "named": false
+  },
+  {
     "type": "short_description",
     "named": true
   },
   {
     "type": "to",
+    "named": false
+  },
+  {
+    "type": "using",
     "named": false
   },
   {

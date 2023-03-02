@@ -30,6 +30,7 @@ module.exports = grammar({
   rules: {
     source_file: $ => seq(
       optional($.parameters),
+      repeat($.execute_using_shell),
       $.connection,
       repeat($._statement),
     ),
@@ -44,6 +45,7 @@ module.exports = grammar({
     // ---- Statements ----
 
     _statement: $ => choice(
+      $.execute_using_shell,
       $.let,
       $.execute_sql,
       $.siard_output,
@@ -55,6 +57,17 @@ module.exports = grammar({
       $._basic_expression,
       $.query,
     ),
+
+
+    // ---- Shell ----
+
+    execute_using_shell: $ => seq(
+      'Execute', 'using',
+      field('shell_name', $.shell_name),
+      field('script', $.raw),
+    ),
+
+    shell_name: $ => choice('cmd', 'sh', 'bash'),
 
 
     // ---- SQL ----
