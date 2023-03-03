@@ -186,6 +186,7 @@ module.exports = grammar({
       field('body', $.for_body),
       $._ded),
 
+    // Cf. https://www.baeldung.com/jdbc-resultset
     for_variables: $ => seq('(', commaSep1($.identifier), ')'),
     for_body: $ => repeat1($._statement),
 
