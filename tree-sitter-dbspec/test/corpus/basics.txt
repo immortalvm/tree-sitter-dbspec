@@ -2,11 +2,8 @@
 ========================================
 Minimal spec
 ========================================
-Connection to ""
 ----------------------------------------
- (source_file
-      (connection
-        (string)))
+ (source_file)
 
 ========================================
 Comments and newlines
@@ -16,14 +13,8 @@ Comments and newlines
 # Bbb
 # Ccc 123
 
-Connection to ""
-
-# Ddd
-
 ----------------------------------------
- (source_file
-      (connection
-        (string)))
+ (source_file)
 
 ========================================
 Parameter list, possibly with newlines
@@ -34,7 +25,6 @@ Parameters:
 	user - The db user name
 	password
 
-Connection to ""
 ----------------------------------------
 (source_file
 	(parameters
@@ -44,6 +34,4 @@ Connection to ""
 			name: (identifier)
 			description: (short_description))
 		(parameter
-			name: (identifier)))
-      (connection
-        url: (string)))
+			name: (identifier))))

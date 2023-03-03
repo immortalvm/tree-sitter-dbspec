@@ -25,7 +25,7 @@ module.exports = grammar({
 
   inline: $ => [
     $._name,
-    $._using_c,
+    $._via_c,
   ],
 
   rules: {
@@ -80,15 +80,15 @@ module.exports = grammar({
         seq(
           optional($._newline), 'with', field('properties', $.key_value_pairs)))),
 
-    execute_sql: $ => seq('Execute', $._using_c, field('sql', $.raw)),
-    query: $ => seq('result', $._using_c, field('sql', $.raw)),
-    _using_c: $ => seq('using', field('connection', $.identifier)),
+    execute_sql: $ => seq('Execute', $._via_c, field('sql', $.raw)),
+    query: $ => seq('result', $._via_c, field('sql', $.raw)),
+    _via_c: $ => seq('via', field('connection', $.identifier)),
 
 
     // ---- SIARD ----
 
     siard_output: $ => seq(
-      'Output', $._name, 'to', field('file', $._basic_expression), $._using_c, ':',
+      'Output', $._name, 'to', field('file', $._basic_expression), $._via_c, ':',
       $._ni,
       repeat(choice(
         $._siard_description,

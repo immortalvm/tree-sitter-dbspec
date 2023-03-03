@@ -19,18 +19,18 @@ Let dbc = connection to "jdbc:mysql://localhost:${port}/" with:
 	foo:
 		bar
 
-Execute using dbc:
+Execute via dbc:
 	CREATE TABLE Temp (
 		id VARCHAR(${id_size}) NOT NULL,
 		counter INT NULL,
 		PRIMARY KEY (id)
 	);
 
-Let t = result using dbc:
+Let t = result via dbc:
 	SELECT id, name
 	FROM employees;
 
-Output my_test_db to "my_test.siard" using dbc:
+Output my_test_db to "my_test.siard" via dbc:
 	description:
 		This is a very interesting database.
 	archiver = "ivar.rummelhoff@nr.no"

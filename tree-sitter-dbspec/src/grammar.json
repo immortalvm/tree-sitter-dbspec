@@ -253,7 +253,7 @@
         },
         {
           "type": "SYMBOL",
-          "name": "_using_c"
+          "name": "_via_c"
         },
         {
           "type": "FIELD",
@@ -274,7 +274,7 @@
         },
         {
           "type": "SYMBOL",
-          "name": "_using_c"
+          "name": "_via_c"
         },
         {
           "type": "FIELD",
@@ -286,12 +286,12 @@
         }
       ]
     },
-    "_using_c": {
+    "_via_c": {
       "type": "SEQ",
       "members": [
         {
           "type": "STRING",
-          "value": "using"
+          "value": "via"
         },
         {
           "type": "FIELD",
@@ -328,7 +328,7 @@
         },
         {
           "type": "SYMBOL",
-          "name": "_using_c"
+          "name": "_via_c"
         },
         {
           "type": "STRING",
@@ -1511,7 +1511,7 @@
   ],
   "inline": [
     "_name",
-    "_using_c"
+    "_via_c"
   ],
   "supertypes": []
 }
