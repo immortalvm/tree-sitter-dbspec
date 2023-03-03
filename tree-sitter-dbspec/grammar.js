@@ -44,11 +44,15 @@ module.exports = grammar({
     // ---- Statements ----
 
     _statement: $ => choice(
-      $.execute_using,
+      $.nop,
       $.set,
+      $.execute_using,
       $.execute_sql,
       $.siard_output,
+      $.for_loop,
     ),
+
+    nop: $ => seq('...', $._nl),
 
     set: $ => seq('Set', $._name, '=', field('value', $._expression)),
 
@@ -174,6 +178,16 @@ module.exports = grammar({
         $._ded))),
 
 
+    // ---- Loops ----
+
+    for_loop: $ => seq(
+      'For', field('variables', $.for_variables),
+      'in', field('result_set', $.identifier), ':', $._ni,
+      field('body', $.for_body),
+      $._ded),
+
+    for_variables: $ => seq('(', commaSep1($.identifier), ')'),
+    for_body: $ => repeat1($._statement),
 
     // ---- Basic expressions ----
 
@@ -252,6 +266,14 @@ function value_field(field_name, $) {
   // We must "distribute" the field declarations thanks to this limitation:
   // https://github.com/tree-sitter/tree-sitter/issues/755
   return choice(field(field_name, $.raw), seq('=', field(field_name, $._basic_expression), $._nl));
+}
+
+// Copied from other tree-sitter grammars.
+function commaSep1(rule) {
+  return sep1(rule, ',');
+}
+function sep1(rule, separator) {
+  return seq(rule, repeat(seq(separator, rule)));
 }
 
 

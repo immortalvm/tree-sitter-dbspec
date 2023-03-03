@@ -81,11 +81,15 @@
       "members": [
         {
           "type": "SYMBOL",
-          "name": "execute_using"
+          "name": "nop"
         },
         {
           "type": "SYMBOL",
           "name": "set"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "execute_using"
         },
         {
           "type": "SYMBOL",
@@ -94,6 +98,23 @@
         {
           "type": "SYMBOL",
           "name": "siard_output"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "for_loop"
+        }
+      ]
+    },
+    "nop": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "..."
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_nl"
         }
       ]
     },
@@ -1100,6 +1121,100 @@
           ]
         }
       ]
+    },
+    "for_loop": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "For"
+        },
+        {
+          "type": "FIELD",
+          "name": "variables",
+          "content": {
+            "type": "SYMBOL",
+            "name": "for_variables"
+          }
+        },
+        {
+          "type": "STRING",
+          "value": "in"
+        },
+        {
+          "type": "FIELD",
+          "name": "result_set",
+          "content": {
+            "type": "SYMBOL",
+            "name": "identifier"
+          }
+        },
+        {
+          "type": "STRING",
+          "value": ":"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_ni"
+        },
+        {
+          "type": "FIELD",
+          "name": "body",
+          "content": {
+            "type": "SYMBOL",
+            "name": "for_body"
+          }
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_ded"
+        }
+      ]
+    },
+    "for_variables": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "("
+        },
+        {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "identifier"
+            },
+            {
+              "type": "REPEAT",
+              "content": {
+                "type": "SEQ",
+                "members": [
+                  {
+                    "type": "STRING",
+                    "value": ","
+                  },
+                  {
+                    "type": "SYMBOL",
+                    "name": "identifier"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "type": "STRING",
+          "value": ")"
+        }
+      ]
+    },
+    "for_body": {
+      "type": "REPEAT1",
+      "content": {
+        "type": "SYMBOL",
+        "name": "_statement"
+      }
     },
     "_basic_expression": {
       "type": "CHOICE",

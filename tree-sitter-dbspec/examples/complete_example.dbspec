@@ -1,12 +1,15 @@
-# Some optional comments and newlines
+# Some optional comments
+# and newlines
 
-# More
 Parameters:
 	port - The port of the DBMS
 	user
 	password
 	# Comment!
 	id_size - The number of characters in generated IDs
+
+# No-op
+...
 
 # See e.g. https://www.baeldung.com/run-shell-command-in-java#ProcessBuilder
 Execute using "/bin/bash":
@@ -29,6 +32,11 @@ Execute via dbc:
 Set t = result via dbc:
 	SELECT id, name
 	FROM employees;
+
+Set names = ""
+
+For (id, name) in t:
+	Set names = "${tot}, name"
 
 Output my_test_db to "my_test.siard" via dbc:
 	description:
