@@ -44,7 +44,7 @@ module.exports = grammar({
     // ---- Statements ----
 
     _statement: $ => choice(
-      $.execute_using_shell,
+      $.execute_using,
       $.let,
       $.execute_sql,
       $.siard_output,
@@ -59,15 +59,13 @@ module.exports = grammar({
     ),
 
 
-    // ---- Shell ----
+    // ---- Embedded scripts (other than SQL) ----
 
-    execute_using_shell: $ => seq(
+    execute_using: $ => seq(
       'Execute', 'using',
-      field('shell_name', $.shell_name),
+      field('interpreter', $._basic_expression),
       field('script', $.raw),
     ),
-
-    shell_name: $ => choice('cmd', 'sh', 'bash'),
 
 
     // ---- SQL ----

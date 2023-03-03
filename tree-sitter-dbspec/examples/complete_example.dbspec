@@ -9,7 +9,7 @@ Parameters:
 	id_size - The number of characters in generated IDs
 
 # See e.g. https://www.baeldung.com/run-shell-command-in-java#ProcessBuilder
-Execute using bash:
+Execute using "/bin/bash":
 	some_shell_command_to_obtain_and_restore_a_backup ${port}
 
 # Cf. https://docs.oracle.com/javase/tutorial/jdbc/basics/connecting.html

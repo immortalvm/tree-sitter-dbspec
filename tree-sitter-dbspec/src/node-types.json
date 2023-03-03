@@ -56,25 +56,29 @@
     }
   },
   {
-    "type": "execute_using_shell",
+    "type": "execute_using",
     "named": true,
     "fields": {
+      "interpreter": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "string",
+            "named": true
+          },
+          {
+            "type": "variable_instance",
+            "named": true
+          }
+        ]
+      },
       "script": {
         "multiple": false,
         "required": true,
         "types": [
           {
             "type": "raw",
-            "named": true
-          }
-        ]
-      },
-      "shell_name": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "shell_name",
             "named": true
           }
         ]
@@ -275,11 +279,6 @@
   },
   {
     "type": "raw_content",
-    "named": true,
-    "fields": {}
-  },
-  {
-    "type": "shell_name",
     "named": true,
     "fields": {}
   },
@@ -824,7 +823,7 @@
           "named": true
         },
         {
-          "type": "execute_using_shell",
+          "type": "execute_using",
           "named": true
         },
         {
@@ -954,14 +953,6 @@
     "named": false
   },
   {
-    "type": "bash",
-    "named": false
-  },
-  {
-    "type": "cmd",
-    "named": false
-  },
-  {
     "type": "connection",
     "named": false
   },
@@ -991,10 +982,6 @@
   },
   {
     "type": "result",
-    "named": false
-  },
-  {
-    "type": "sh",
     "named": false
   },
   {

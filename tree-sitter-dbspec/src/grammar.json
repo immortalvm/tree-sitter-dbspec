@@ -81,7 +81,7 @@
       "members": [
         {
           "type": "SYMBOL",
-          "name": "execute_using_shell"
+          "name": "execute_using"
         },
         {
           "type": "SYMBOL",
@@ -139,7 +139,7 @@
         }
       ]
     },
-    "execute_using_shell": {
+    "execute_using": {
       "type": "SEQ",
       "members": [
         {
@@ -152,10 +152,10 @@
         },
         {
           "type": "FIELD",
-          "name": "shell_name",
+          "name": "interpreter",
           "content": {
             "type": "SYMBOL",
-            "name": "shell_name"
+            "name": "_basic_expression"
           }
         },
         {
@@ -165,23 +165,6 @@
             "type": "SYMBOL",
             "name": "raw"
           }
-        }
-      ]
-    },
-    "shell_name": {
-      "type": "CHOICE",
-      "members": [
-        {
-          "type": "STRING",
-          "value": "cmd"
-        },
-        {
-          "type": "STRING",
-          "value": "sh"
-        },
-        {
-          "type": "STRING",
-          "value": "bash"
         }
       ]
     },
