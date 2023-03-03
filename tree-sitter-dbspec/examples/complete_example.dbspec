@@ -13,24 +13,24 @@ Execute using bash:
 	some_shell_command_to_obtain_and_restore_a_backup ${port}
 
 # Cf. https://docs.oracle.com/javase/tutorial/jdbc/basics/connecting.html
-Connection to "jdbc:mysql://localhost:${port}/" with:
+Let dbc = connection to "jdbc:mysql://localhost:${port}/" with:
 	user = "nr\\${user}"
 	password = password
 	foo:
 		bar
 
-Execute SQL:
+Execute using dbc:
 	CREATE TABLE Temp (
 		id VARCHAR(${id_size}) NOT NULL,
 		counter INT NULL,
 		PRIMARY KEY (id)
 	);
 
-Let t = result of:
+Let t = result using dbc:
 	SELECT id, name
 	FROM employees;
 
-Output my_test_db to "my_test.siard":
+Output my_test_db to "my_test.siard" using dbc:
 	description:
 		This is a very interesting database.
 	archiver = "ivar.rummelhoff@nr.no"

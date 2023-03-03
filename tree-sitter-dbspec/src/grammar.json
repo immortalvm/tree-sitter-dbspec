@@ -21,17 +21,6 @@
           "type": "REPEAT",
           "content": {
             "type": "SYMBOL",
-            "name": "execute_using_shell"
-          }
-        },
-        {
-          "type": "SYMBOL",
-          "name": "connection"
-        },
-        {
-          "type": "REPEAT",
-          "content": {
-            "type": "SYMBOL",
             "name": "_statement"
           }
         }
@@ -142,6 +131,10 @@
         },
         {
           "type": "SYMBOL",
+          "name": "connection"
+        },
+        {
+          "type": "SYMBOL",
           "name": "query"
         }
       ]
@@ -197,7 +190,7 @@
       "members": [
         {
           "type": "STRING",
-          "value": "Connection"
+          "value": "connection"
         },
         {
           "type": "STRING",
@@ -259,8 +252,8 @@
           "value": "Execute"
         },
         {
-          "type": "STRING",
-          "value": "SQL"
+          "type": "SYMBOL",
+          "name": "_using_c"
         },
         {
           "type": "FIELD",
@@ -280,8 +273,8 @@
           "value": "result"
         },
         {
-          "type": "STRING",
-          "value": "of"
+          "type": "SYMBOL",
+          "name": "_using_c"
         },
         {
           "type": "FIELD",
@@ -289,6 +282,23 @@
           "content": {
             "type": "SYMBOL",
             "name": "raw"
+          }
+        }
+      ]
+    },
+    "_using_c": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "using"
+        },
+        {
+          "type": "FIELD",
+          "name": "connection",
+          "content": {
+            "type": "SYMBOL",
+            "name": "identifier"
           }
         }
       ]
@@ -315,6 +325,10 @@
             "type": "SYMBOL",
             "name": "_basic_expression"
           }
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_using_c"
         },
         {
           "type": "STRING",
@@ -1496,7 +1510,8 @@
     }
   ],
   "inline": [
-    "_name"
+    "_name",
+    "_using_c"
   ],
   "supertypes": []
 }

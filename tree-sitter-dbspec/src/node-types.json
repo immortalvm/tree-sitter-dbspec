@@ -33,6 +33,16 @@
     "type": "execute_sql",
     "named": true,
     "fields": {
+      "connection": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      },
       "sql": {
         "multiple": false,
         "required": true,
@@ -158,6 +168,10 @@
         "required": true,
         "types": [
           {
+            "type": "connection",
+            "named": true
+          },
+          {
             "type": "query",
             "named": true
           },
@@ -218,6 +232,16 @@
     "type": "query",
     "named": true,
     "fields": {
+      "connection": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      },
       "sql": {
         "multiple": false,
         "required": true,
@@ -467,6 +491,16 @@
           },
           {
             "type": "variable_instance",
+            "named": true
+          }
+        ]
+      },
+      "connection": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "identifier",
             "named": true
           }
         ]
@@ -783,12 +817,8 @@
     "fields": {},
     "children": {
       "multiple": true,
-      "required": true,
+      "required": false,
       "types": [
-        {
-          "type": "connection",
-          "named": true
-        },
         {
           "type": "execute_sql",
           "named": true
@@ -876,10 +906,6 @@
     "named": false
   },
   {
-    "type": "Connection",
-    "named": false
-  },
-  {
     "type": "Execute",
     "named": false
   },
@@ -901,10 +927,6 @@
   },
   {
     "type": "Parameters",
-    "named": false
-  },
-  {
-    "type": "SQL",
     "named": false
   },
   {
@@ -940,6 +962,10 @@
     "named": false
   },
   {
+    "type": "connection",
+    "named": false
+  },
+  {
     "type": "dataOriginTimespan",
     "named": false
   },
@@ -961,10 +987,6 @@
   },
   {
     "type": "lobFolder",
-    "named": false
-  },
-  {
-    "type": "of",
     "named": false
   },
   {

@@ -25,13 +25,12 @@ module.exports = grammar({
 
   inline: $ => [
     $._name,
+    $._using_c,
   ],
 
   rules: {
     source_file: $ => seq(
       optional($.parameters),
-      repeat($.execute_using_shell),
-      $.connection,
       repeat($._statement),
     ),
 
@@ -55,6 +54,7 @@ module.exports = grammar({
 
     _expression: $ => choice(
       $._basic_expression,
+      $.connection,
       $.query,
     ),
 
@@ -74,20 +74,21 @@ module.exports = grammar({
 
     // cf. https://docs.oracle.com/javase/tutorial/jdbc/basics/connecting.html
     connection: $ => seq(
-      'Connection', 'to', field('url', $._basic_expression),
+      'connection', 'to', field('url', $._basic_expression),
       choice(
         $._nl,
         seq(
           optional($._newline), 'with', field('properties', $.key_value_pairs)))),
 
-    execute_sql: $ => seq('Execute', 'SQL', field('sql', $.raw)),
-    query: $ => seq('result', 'of', field('sql', $.raw)),
+    execute_sql: $ => seq('Execute', $._using_c, field('sql', $.raw)),
+    query: $ => seq('result', $._using_c, field('sql', $.raw)),
+    _using_c: $ => seq('using', field('connection', $.identifier)),
 
 
     // ---- SIARD ----
 
     siard_output: $ => seq(
-      'Output', $._name, 'to', field('file', $._basic_expression), ':',
+      'Output', $._name, 'to', field('file', $._basic_expression), $._using_c, ':',
       $._ni,
       repeat(choice(
         $._siard_description,
