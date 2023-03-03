@@ -38,7 +38,7 @@ Set names = ""
 For (id, name) in t:
 	Set names = "${tot}, name"
 
-Output my_test_db to "my_test.siard" via dbc:
+Metadata for dbc.my_test_db:
 	description:
 		This is a very interesting database.
 	archiver = "ivar.rummelhoff@nr.no"
@@ -79,6 +79,10 @@ Output my_test_db to "my_test.siard" via dbc:
 			Column issue_details:
 				description = "Descr"
 				Field attachments - Blob containing attachments, if any
+
+
+Output dvc.my_test_db to "my_test.siard"
+
 
 
 ### Local variables:

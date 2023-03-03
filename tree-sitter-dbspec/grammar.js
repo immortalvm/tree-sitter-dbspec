@@ -48,6 +48,7 @@ module.exports = grammar({
       $.set,
       $.execute_using,
       $.execute_sql,
+      $.siard_metadata,
       $.siard_output,
       $.for_loop,
     ),
@@ -90,21 +91,25 @@ module.exports = grammar({
     // ---- SIARD ----
 
     siard_output: $ => seq(
-      'Output', $._name, 'to', field('file', $._basic_expression), $._via_c, ':',
-      $._ni,
+      'Output', field('connection', $.identifier), '.', $._name,
+      'to', field('file', $._basic_expression), $._nl),
+
+    siard_metadata: $ => seq(
+      'Metadata', 'for', field('connection', $.identifier), '.', $._name, ':', $._ni,
       repeat(choice(
+        $._siard_dbname,
         $._siard_description,
         $._siard_archiver,
         $._siard_archiverContact,
         $._siard_dataOwner,
         $._siard_dataOriginTimespan,
         $._siard_lobFolder,
+        $.siard_schema,
       )),
-      repeat1($.siard_schema),
       $._ded),
 
     ...property_rules('siard', [
-      // 'dbname',
+      'dbname', // Meaning: Override current name
       'description', // Reused below
       'archiver',
       'archiverContact',

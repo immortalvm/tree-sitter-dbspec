@@ -114,6 +114,10 @@
           "named": true
         },
         {
+          "type": "siard_metadata",
+          "named": true
+        },
+        {
           "type": "siard_output",
           "named": true
         }
@@ -546,7 +550,7 @@
     }
   },
   {
-    "type": "siard_output",
+    "type": "siard_metadata",
     "named": true,
     "fields": {
       "archiver": {
@@ -631,7 +635,7 @@
           }
         ]
       },
-      "description": {
+      "dbname": {
         "multiple": true,
         "required": false,
         "types": [
@@ -649,10 +653,14 @@
           }
         ]
       },
-      "file": {
-        "multiple": false,
-        "required": true,
+      "description": {
+        "multiple": true,
+        "required": false,
         "types": [
+          {
+            "type": "raw",
+            "named": true
+          },
           {
             "type": "string",
             "named": true
@@ -694,13 +702,53 @@
     },
     "children": {
       "multiple": true,
-      "required": true,
+      "required": false,
       "types": [
         {
           "type": "siard_schema",
           "named": true
         }
       ]
+    }
+  },
+  {
+    "type": "siard_output",
+    "named": true,
+    "fields": {
+      "connection": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      },
+      "file": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "string",
+            "named": true
+          },
+          {
+            "type": "variable_instance",
+            "named": true
+          }
+        ]
+      },
+      "name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      }
     }
   },
   {
@@ -934,6 +982,10 @@
           "named": true
         },
         {
+          "type": "siard_metadata",
+          "named": true
+        },
+        {
           "type": "siard_output",
           "named": true
         }
@@ -1000,6 +1052,10 @@
     "named": false
   },
   {
+    "type": ".",
+    "named": false
+  },
+  {
     "type": "...",
     "named": false
   },
@@ -1033,6 +1089,10 @@
   },
   {
     "type": "Key",
+    "named": false
+  },
+  {
+    "type": "Metadata",
     "named": false
   },
   {
@@ -1084,12 +1144,20 @@
     "named": false
   },
   {
+    "type": "dbname",
+    "named": false
+  },
+  {
     "type": "description",
     "named": false
   },
   {
     "type": "escape_sequence",
     "named": true
+  },
+  {
+    "type": "for",
+    "named": false
   },
   {
     "type": "identifier",
