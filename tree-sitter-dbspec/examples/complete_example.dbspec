@@ -82,7 +82,7 @@ Metadata for dbc.my_test_db:
 				Field attachments - Blob containing attachments, if any
 
 
-Output dvc.my_test_db to "my_test.siard"
+Output dbc.my_test_db to "my_test.siard"
 
 
 
