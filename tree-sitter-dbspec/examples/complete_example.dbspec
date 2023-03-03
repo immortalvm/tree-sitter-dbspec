@@ -54,6 +54,7 @@ Metadata for dbc.my_test_db:
 			description = "The components of a customer address, thanks to ${user}."
 			# The other "type level metadata" should be extracted from the database.
 
+		# This has no effect if we include every table in the SIARD file by default.
 		Table product
 
 		Table employee - Main employee table
