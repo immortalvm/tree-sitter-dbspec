@@ -154,44 +154,6 @@
     }
   },
   {
-    "type": "let",
-    "named": true,
-    "fields": {
-      "name": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "identifier",
-            "named": true
-          }
-        ]
-      },
-      "value": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "connection",
-            "named": true
-          },
-          {
-            "type": "query",
-            "named": true
-          },
-          {
-            "type": "string",
-            "named": true
-          },
-          {
-            "type": "variable_instance",
-            "named": true
-          }
-        ]
-      }
-    }
-  },
-  {
     "type": "parameter",
     "named": true,
     "fields": {
@@ -281,6 +243,44 @@
     "type": "raw_content",
     "named": true,
     "fields": {}
+  },
+  {
+    "type": "set",
+    "named": true,
+    "fields": {
+      "name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      },
+      "value": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "connection",
+            "named": true
+          },
+          {
+            "type": "query",
+            "named": true
+          },
+          {
+            "type": "string",
+            "named": true
+          },
+          {
+            "type": "variable_instance",
+            "named": true
+          }
+        ]
+      }
+    }
   },
   {
     "type": "siard_check",
@@ -827,11 +827,11 @@
           "named": true
         },
         {
-          "type": "let",
+          "type": "parameters",
           "named": true
         },
         {
-          "type": "parameters",
+          "type": "set",
           "named": true
         },
         {
@@ -917,10 +917,6 @@
     "named": false
   },
   {
-    "type": "Let",
-    "named": false
-  },
-  {
     "type": "Output",
     "named": false
   },
@@ -930,6 +926,10 @@
   },
   {
     "type": "Schema",
+    "named": false
+  },
+  {
+    "type": "Set",
     "named": false
   },
   {

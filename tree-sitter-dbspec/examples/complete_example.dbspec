@@ -13,7 +13,7 @@ Execute using "/bin/bash":
 	some_shell_command_to_obtain_and_restore_a_backup ${port}
 
 # Cf. https://docs.oracle.com/javase/tutorial/jdbc/basics/connecting.html
-Let dbc = connection to "jdbc:mysql://localhost:${port}/" with:
+Set dbc = connection to "jdbc:mysql://localhost:${port}/" with:
 	user = "nr\\${user}"
 	password = password
 	foo:
@@ -26,7 +26,7 @@ Execute via dbc:
 		PRIMARY KEY (id)
 	);
 
-Let t = result via dbc:
+Set t = result via dbc:
 	SELECT id, name
 	FROM employees;
 

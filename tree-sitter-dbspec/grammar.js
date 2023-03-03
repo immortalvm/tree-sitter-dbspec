@@ -45,12 +45,12 @@ module.exports = grammar({
 
     _statement: $ => choice(
       $.execute_using,
-      $.let,
+      $.set,
       $.execute_sql,
       $.siard_output,
     ),
 
-    let: $ => seq('Let', $._name, '=', field('value', $._expression)),
+    set: $ => seq('Set', $._name, '=', field('value', $._expression)),
 
     _expression: $ => choice(
       $._basic_expression,

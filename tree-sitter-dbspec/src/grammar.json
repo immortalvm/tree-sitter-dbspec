@@ -85,7 +85,7 @@
         },
         {
           "type": "SYMBOL",
-          "name": "let"
+          "name": "set"
         },
         {
           "type": "SYMBOL",
@@ -97,12 +97,12 @@
         }
       ]
     },
-    "let": {
+    "set": {
       "type": "SEQ",
       "members": [
         {
           "type": "STRING",
-          "value": "Let"
+          "value": "Set"
         },
         {
           "type": "SYMBOL",
