@@ -39,7 +39,7 @@ For (id, name) in t:
 	# The resulting string will have trailing ", ".
 	# We might consider adding more primitives to solve such issues,
 	# and maybe assertions regarding the (expected) sizes of result sets.
-	Set names = "${names}name, "
+	Set names = "${names}${name}, "
 
 Metadata for dbc.my_test_db:
 	description:
