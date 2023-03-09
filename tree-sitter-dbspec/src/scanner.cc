@@ -56,6 +56,7 @@ namespace {
 
     // The current implementation is somewhat inefficient since it
     // returns one token for every string character, etc.
+    // https://github.com/tree-sitter/tree-sitter/issues/706#issuecomment-675769219
     bool scan(TSLexer *lexer, const bool *valid_symbols) {
 
       // From https://tree-sitter.github.io/tree-sitter/creating-parsers :
@@ -119,6 +120,9 @@ namespace {
           if (indent_counter) {
             // Do not allow space or tab at the beginning of lines except in RAW.
             return false;
+          }
+          if (valid_symbols[RAW] || valid_symbols[STRING_CONTENT]) {
+            break;
           }
           skip(lexer);
           skipping = true;

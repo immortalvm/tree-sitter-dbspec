@@ -35,3 +35,21 @@ Parameters:
 			description: (short_description))
 		(parameter
 			name: (identifier))))
+
+========================================
+Database connection
+========================================
+Set dbc = connection to "jdbc:mysql://localhost:${port}/"
+
+----------------------------------------
+
+(source_file [0, 0] - [8, 0]
+  (set [0, 0] - [1, 0]
+    name: (identifier [0, 4] - [0, 7])
+    value: (connection [0, 10] - [1, 0]
+      url: (string [0, 24] - [0, 57]
+        (string_content [0, 25] - [0, 48])
+        (interpolation [0, 48] - [0, 55]
+          (variable_instance [0, 50] - [0, 54]
+            (identifier [0, 50] - [0, 54])))
+        (string_content [0, 55] - [0, 56])))))

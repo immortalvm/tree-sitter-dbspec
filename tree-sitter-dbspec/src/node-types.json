@@ -30,6 +30,11 @@
     }
   },
   {
+    "type": "escape_sequence",
+    "named": true,
+    "fields": {}
+  },
+  {
     "type": "execute_sql",
     "named": true,
     "fields": {
@@ -1124,6 +1129,10 @@
     "named": false
   },
   {
+    "type": "\\",
+    "named": false
+  },
+  {
     "type": "archiver",
     "named": false
   },
@@ -1150,10 +1159,6 @@
   {
     "type": "description",
     "named": false
-  },
-  {
-    "type": "escape_sequence",
-    "named": true
   },
   {
     "type": "for",

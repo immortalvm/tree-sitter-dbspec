@@ -214,7 +214,7 @@ module.exports = grammar({
       alias($._string_end, '"')
     ),
     string_content: $ => prec.right(repeat1($._string_content)),
-    escape_sequence: $ => token(prec(1, seq(
+    escape_sequence: $ => prec(1, seq(
       '\\',
       choice(
           /u[a-fA-F\d]{4}/,
@@ -224,7 +224,7 @@ module.exports = grammar({
           /\r?\n/,
           /['"abfrntv\\]/,
       )
-    ))),
+    )),
 
 
     // ---- Generic ----
