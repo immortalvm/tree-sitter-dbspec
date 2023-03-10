@@ -17,6 +17,7 @@ Execute using "/bin/bash":
 
 # Cf. https://docs.oracle.com/javase/tutorial/jdbc/basics/connecting.html
 Set dbc = connection to "jdbc:mysql://localhost:${port}/" with:
+	database = "mytestdb"
 	user = "nr\\${user}"
 	password = password
 	foo:
@@ -40,6 +41,7 @@ For (id, name) in t:
 	# We might consider adding more primitives to solve such issues,
 	# and maybe assertions regarding the (expected) sizes of result sets.
 	Set names = "${names}${name}, "
+
 
 Metadata for dbc.my_test_db:
 	description:
@@ -83,6 +85,17 @@ Metadata for dbc.my_test_db:
 			Column issue_details:
 				description = "Descr"
 				Field attachments - Blob containing attachments, if any
+
+# 	Command:
+# 		title = "Hent karakterutskrift for tidligere elev"
+# 		Parameters:
+# 			fnr - Fødselsnummer
+# 			knr - Kommune
+# 		Body:
+# 			SELECT g.subject AS fag, g.grade AS karakter
+# 			FROM public.grades g
+# 			WHERE g.fødselsnummer = ${fnr}
+# 			AND g.place = ${knr};
 
 
 Output dbc.my_test_db to "my_test.siard"
