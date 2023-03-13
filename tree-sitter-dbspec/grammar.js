@@ -204,11 +204,13 @@ module.exports = grammar({
     for_variables: $ => seq('(', commaSep1($.identifier), ')'),
     for_body: $ => repeat1($._statement),
 
+
     // ---- Basic expressions ----
 
     _basic_expression: $ => choice(
       $.string,
       $.variable_instance,
+      $.integer,
       // To be continued
     ),
     variable_instance: $ => $.identifier,
@@ -234,6 +236,8 @@ module.exports = grammar({
           /['"abfrntv\\]/,
       )
     )),
+
+    integer: $ => /[0-9]+/,
 
 
     // ---- Generic ----

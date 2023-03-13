@@ -18,6 +18,10 @@
         "required": true,
         "types": [
           {
+            "type": "integer",
+            "named": true
+          },
+          {
             "type": "string",
             "named": true
           },
@@ -68,6 +72,10 @@
         "multiple": false,
         "required": true,
         "types": [
+          {
+            "type": "integer",
+            "named": true
+          },
           {
             "type": "string",
             "named": true
@@ -197,6 +205,10 @@
       "required": true,
       "types": [
         {
+          "type": "integer",
+          "named": true
+        },
+        {
           "type": "string",
           "named": true
         },
@@ -215,6 +227,10 @@
       "multiple": false,
       "required": true,
       "types": [
+        {
+          "type": "integer",
+          "named": true
+        },
         {
           "type": "string",
           "named": true
@@ -244,6 +260,10 @@
         "multiple": false,
         "required": true,
         "types": [
+          {
+            "type": "integer",
+            "named": true
+          },
           {
             "type": "raw",
             "named": true
@@ -283,6 +303,10 @@
       "multiple": false,
       "required": true,
       "types": [
+        {
+          "type": "integer",
+          "named": true
+        },
         {
           "type": "string",
           "named": true
@@ -417,6 +441,10 @@
             "named": true
           },
           {
+            "type": "integer",
+            "named": true
+          },
+          {
             "type": "query",
             "named": true
           },
@@ -445,6 +473,10 @@
         "multiple": true,
         "required": false,
         "types": [
+          {
+            "type": "integer",
+            "named": true
+          },
           {
             "type": "raw",
             "named": true
@@ -483,6 +515,10 @@
         "multiple": true,
         "required": false,
         "types": [
+          {
+            "type": "integer",
+            "named": true
+          },
           {
             "type": "raw",
             "named": true
@@ -532,6 +568,10 @@
         "required": false,
         "types": [
           {
+            "type": "integer",
+            "named": true
+          },
+          {
             "type": "raw",
             "named": true
           },
@@ -580,6 +620,10 @@
         "required": false,
         "types": [
           {
+            "type": "integer",
+            "named": true
+          },
+          {
             "type": "raw",
             "named": true
           },
@@ -618,6 +662,10 @@
         "required": false,
         "types": [
           {
+            "type": "integer",
+            "named": true
+          },
+          {
             "type": "raw",
             "named": true
           },
@@ -635,6 +683,10 @@
         "multiple": true,
         "required": false,
         "types": [
+          {
+            "type": "integer",
+            "named": true
+          },
           {
             "type": "raw",
             "named": true
@@ -664,6 +716,10 @@
         "required": false,
         "types": [
           {
+            "type": "integer",
+            "named": true
+          },
+          {
             "type": "raw",
             "named": true
           },
@@ -681,6 +737,10 @@
         "multiple": true,
         "required": false,
         "types": [
+          {
+            "type": "integer",
+            "named": true
+          },
           {
             "type": "raw",
             "named": true
@@ -700,6 +760,10 @@
         "required": false,
         "types": [
           {
+            "type": "integer",
+            "named": true
+          },
+          {
             "type": "raw",
             "named": true
           },
@@ -718,6 +782,10 @@
         "required": false,
         "types": [
           {
+            "type": "integer",
+            "named": true
+          },
+          {
             "type": "raw",
             "named": true
           },
@@ -735,6 +803,10 @@
         "multiple": true,
         "required": false,
         "types": [
+          {
+            "type": "integer",
+            "named": true
+          },
           {
             "type": "raw",
             "named": true
@@ -790,6 +862,10 @@
         "required": true,
         "types": [
           {
+            "type": "integer",
+            "named": true
+          },
+          {
             "type": "string",
             "named": true
           },
@@ -819,6 +895,10 @@
         "multiple": true,
         "required": false,
         "types": [
+          {
+            "type": "integer",
+            "named": true
+          },
           {
             "type": "raw",
             "named": true
@@ -876,6 +956,10 @@
         "required": false,
         "types": [
           {
+            "type": "integer",
+            "named": true
+          },
+          {
             "type": "raw",
             "named": true
           },
@@ -932,6 +1016,10 @@
         "required": false,
         "types": [
           {
+            "type": "integer",
+            "named": true
+          },
+          {
             "type": "raw",
             "named": true
           },
@@ -969,6 +1057,10 @@
         "multiple": true,
         "required": false,
         "types": [
+          {
+            "type": "integer",
+            "named": true
+          },
           {
             "type": "raw",
             "named": true
@@ -1246,6 +1338,10 @@
   {
     "type": "in",
     "named": false
+  },
+  {
+    "type": "integer",
+    "named": true
   },
   {
     "type": "lobFolder",
