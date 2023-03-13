@@ -86,16 +86,16 @@ Metadata for dbc.my_test_db:
 				description = "Descr"
 				Field attachments - Blob containing attachments, if any
 
-# 	Command:
-# 		title = "Hent karakterutskrift for tidligere elev"
-# 		Parameters:
-# 			fnr - Fødselsnummer
-# 			knr - Kommune
-# 		Body:
-# 			SELECT g.subject AS fag, g.grade AS karakter
-# 			FROM public.grades g
-# 			WHERE g.fødselsnummer = ${fnr}
-# 			AND g.place = ${knr};
+	Command:
+		title = "Hent karakterutskrift for tidligere elev"
+		Parameters:
+			fnr - Fødselsnummer
+			knr - Kommune
+		Body:
+			SELECT g.subject AS fag, g.grade AS karakter
+			FROM public.grades g
+			WHERE g.fødselsnummer = ${fnr}
+			AND g.place = ${knr};
 
 
 Output dbc.my_test_db to "my_test.siard"

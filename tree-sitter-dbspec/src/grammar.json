@@ -477,6 +477,10 @@
               {
                 "type": "SYMBOL",
                 "name": "siard_schema"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "command_declaration"
               }
             ]
           }
@@ -1262,6 +1266,106 @@
               ]
             }
           ]
+        }
+      ]
+    },
+    "command_declaration": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "Command"
+        },
+        {
+          "type": "STRING",
+          "value": ":"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_ni"
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SEQ",
+              "members": [
+                {
+                  "type": "STRING",
+                  "value": "title"
+                },
+                {
+                  "type": "CHOICE",
+                  "members": [
+                    {
+                      "type": "FIELD",
+                      "name": "title",
+                      "content": {
+                        "type": "SYMBOL",
+                        "name": "raw"
+                      }
+                    },
+                    {
+                      "type": "SEQ",
+                      "members": [
+                        {
+                          "type": "STRING",
+                          "value": "="
+                        },
+                        {
+                          "type": "FIELD",
+                          "name": "title",
+                          "content": {
+                            "type": "SYMBOL",
+                            "name": "_basic_expression"
+                          }
+                        },
+                        {
+                          "type": "SYMBOL",
+                          "name": "_nl"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "FIELD",
+              "name": "parameters",
+              "content": {
+                "type": "SYMBOL",
+                "name": "parameters"
+              }
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        },
+        {
+          "type": "STRING",
+          "value": "Body"
+        },
+        {
+          "type": "FIELD",
+          "name": "body",
+          "content": {
+            "type": "SYMBOL",
+            "name": "raw"
+          }
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_ded"
         }
       ]
     },

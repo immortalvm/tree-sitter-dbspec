@@ -1,5 +1,53 @@
 [
   {
+    "type": "command_declaration",
+    "named": true,
+    "fields": {
+      "body": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "raw",
+            "named": true
+          }
+        ]
+      },
+      "parameters": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "parameters",
+            "named": true
+          }
+        ]
+      },
+      "title": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "integer",
+            "named": true
+          },
+          {
+            "type": "raw",
+            "named": true
+          },
+          {
+            "type": "string",
+            "named": true
+          },
+          {
+            "type": "variable_instance",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
     "type": "connection",
     "named": true,
     "fields": {
@@ -837,6 +885,10 @@
       "required": false,
       "types": [
         {
+          "type": "command_declaration",
+          "named": true
+        },
+        {
           "type": "siard_schema",
           "named": true
         }
@@ -1232,11 +1284,19 @@
     "named": false
   },
   {
+    "type": "Body",
+    "named": false
+  },
+  {
     "type": "Check",
     "named": false
   },
   {
     "type": "Column",
+    "named": false
+  },
+  {
+    "type": "Command",
     "named": false
   },
   {
@@ -1357,6 +1417,10 @@
   },
   {
     "type": "symbol",
+    "named": false
+  },
+  {
+    "type": "title",
     "named": false
   },
   {

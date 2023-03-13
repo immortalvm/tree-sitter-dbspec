@@ -114,6 +114,8 @@ module.exports = grammar({
         $._siard_dataOriginTimespan,
         $._siard_lobFolder,
         $.siard_schema,
+
+        $.command_declaration,
       )),
       $._ded),
 
@@ -190,6 +192,14 @@ module.exports = grammar({
         repeat($.siard_column),
         // The other properties (e.g. query and queryOriginal) will be extracted from the db.
         $._ded))),
+
+
+    command_declaration: $ => seq(
+      'Command', ':', $._ni,
+      optional(seq('title', value_field('title', $))),
+      optional(field('parameters', $.parameters)),
+      'Body', field('body', $.raw),
+      $._ded),
 
 
     // ---- Loops ----
