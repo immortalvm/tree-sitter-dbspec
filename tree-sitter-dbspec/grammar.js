@@ -54,9 +54,12 @@ module.exports = grammar({
       $.siard_output,
       $.for_loop,
       $.set_inter,
+      $.log,
     ),
 
     nop: $ => seq('...', $._nl),
+
+    log: $ => seq('Log', $._basic_expression),
 
     set_inter: $ => seq(
       'Interpolation', 'symbol', '=', "'", $._set_inter, "'", $._nl),

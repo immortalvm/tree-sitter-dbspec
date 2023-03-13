@@ -108,6 +108,9 @@ Execute via dbc:
 	DELETE FROM Temp
 	WHERE id = 🦄🦄{weird_id};
 
+Interpolation symbol = '$'
+Log "Weird ID: ${weird_id}"
+
 
 ### Local variables:
 ### indent-tabs-mode: t

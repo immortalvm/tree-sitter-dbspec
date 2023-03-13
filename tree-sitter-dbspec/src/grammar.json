@@ -110,6 +110,10 @@
         {
           "type": "SYMBOL",
           "name": "set_inter"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "log"
         }
       ]
     },
@@ -123,6 +127,19 @@
         {
           "type": "SYMBOL",
           "name": "_nl"
+        }
+      ]
+    },
+    "log": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "Log"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_basic_expression"
         }
       ]
     },
