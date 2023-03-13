@@ -18,6 +18,7 @@ namespace {
     INDENT,
     DEDENT,
     INTER_START,
+    INTER_START2,
     INTER_END,
     RAW,
     STRING_START,
@@ -223,6 +224,15 @@ namespace {
           advance(lexer);
           lexer->result_symbol = INTER_START;
           return true;
+        }
+        if (lexer->lookahead ==  inter_char) {
+          advance(lexer);
+          if (valid_symbols[INTER_START2] && lexer->lookahead == '{') {
+            advance(lexer);
+            lexer->result_symbol = INTER_START2;
+            return true;
+          }
+          // At this point we will have advanced over two characters.
         }
         if (valid_symbols[STRING_CONTENT]) {
           lexer->result_symbol = STRING_CONTENT;

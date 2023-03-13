@@ -6,6 +6,7 @@ module.exports = grammar({
     $._indent,
     $._dedent,
     $._inter_start,
+    $._inter_start2,
     $._inter_end,
     $._raw,
     $._string_start,
@@ -248,6 +249,7 @@ module.exports = grammar({
     _ded: $ => choice($._dedent, $._end_of_file),
 
     interpolation: $ => seq($._inter_start, $._basic_expression, $._inter_end),
+    interpolation2: $ => seq($._inter_start2, $._basic_expression, $._inter_end),
 
     // NB. Each key must an identifier (i.e. no whitespace, etc.).
     key_value_pairs: $ => seq(':', $._ni, repeat1($.key_value_pair), $._ded),
@@ -255,7 +257,7 @@ module.exports = grammar({
 
     raw: $ => seq(
       ':', $._newline, $._indent,
-      repeat1(choice($.raw_content, $.interpolation)),
+      repeat1(choice($.raw_content, $.interpolation, $.interpolation2)),
       $._ded),
     raw_content: $ => prec.right(repeat1($._raw)),
   },

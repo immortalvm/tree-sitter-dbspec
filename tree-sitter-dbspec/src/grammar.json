@@ -1548,6 +1548,23 @@
         }
       ]
     },
+    "interpolation2": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "_inter_start2"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_basic_expression"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_inter_end"
+        }
+      ]
+    },
     "key_value_pairs": {
       "type": "SEQ",
       "members": [
@@ -1646,6 +1663,10 @@
               {
                 "type": "SYMBOL",
                 "name": "interpolation"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "interpolation2"
               }
             ]
           }
@@ -1696,6 +1717,10 @@
     {
       "type": "SYMBOL",
       "name": "_inter_start"
+    },
+    {
+      "type": "SYMBOL",
+      "name": "_inter_start2"
     },
     {
       "type": "SYMBOL",
