@@ -120,8 +120,13 @@ Set res = result using "/usr/bin/env python3":
 Set i = t.size
 Set j = " 123 ".stripped.as_integer
 
-# This should always fail
-Assert 0 == 1
+If 1 < 0:
+	# This should always fail
+	Assert 0 == 1
+
+# It's also ok to have a comment here.
+Else:
+	Log "Puh! That was close."
 
 
 ### Local variables:

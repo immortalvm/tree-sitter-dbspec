@@ -132,6 +132,42 @@
     "fields": {}
   },
   {
+    "type": "conditional",
+    "named": true,
+    "fields": {
+      "condition": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "comparison",
+            "named": true
+          }
+        ]
+      },
+      "else": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "for_body",
+            "named": true
+          }
+        ]
+      },
+      "then": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "for_body",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
     "type": "connection",
     "named": true,
     "fields": {
@@ -291,6 +327,10 @@
       "types": [
         {
           "type": "assert",
+          "named": true
+        },
+        {
+          "type": "conditional",
           "named": true
         },
         {
@@ -1431,6 +1471,10 @@
           "named": true
         },
         {
+          "type": "conditional",
+          "named": true
+        },
+        {
           "type": "execute_sql",
           "named": true
         },
@@ -1597,6 +1641,10 @@
     "named": false
   },
   {
+    "type": "Else",
+    "named": false
+  },
+  {
     "type": "Execute",
     "named": false
   },
@@ -1606,6 +1654,10 @@
   },
   {
     "type": "For",
+    "named": false
+  },
+  {
+    "type": "If",
     "named": false
   },
   {

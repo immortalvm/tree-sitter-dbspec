@@ -56,6 +56,7 @@ module.exports = grammar({
       $.set_inter,
       $.log,
       $.assert,
+      $.conditional,
     ),
 
     nop: $ => seq('...', $._nl),
@@ -214,7 +215,21 @@ module.exports = grammar({
 
     // Cf. https://www.baeldung.com/jdbc-resultset
     for_variables: $ => seq('(', commaSep1($.identifier), ')'),
+
+    // TODO: Maken name more generic since it is also used below
     for_body: $ => repeat1($._statement),
+
+
+    // ---- Conditional statements ----
+
+    conditional: $ => seq(
+      'If', field('condition', $._boolean_expression), ':', $._ni,
+      field('then', $.for_body),
+      $._ded,
+      optional(seq(
+        'Else', ':', $._ni,
+        field('else', $.for_body),
+        $._ded))),
 
 
     // ---- Boolean expressions ----
