@@ -73,16 +73,15 @@ module.exports = grammar({
       $._basic_expression,
       $.connection,
       $.query,
+      $.script_result,
     ),
 
 
     // ---- Embedded scripts (other than SQL) ----
 
-    execute_using: $ => seq(
-      'Execute', 'using',
-      field('interpreter', $._basic_expression),
-      field('script', $.raw),
-    ),
+    execute_using: $ => seq('Execute', $._using_i, field('script', $.raw)),
+    script_result: $ => seq('result', $._using_i, field('script', $.raw)),
+    _using_i: $ => seq('using', field('interpreter', $._basic_expression)),
 
 
     // ---- SQL ----

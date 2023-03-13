@@ -232,6 +232,10 @@
         {
           "type": "SYMBOL",
           "name": "query"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "script_result"
         }
       ]
     },
@@ -243,6 +247,44 @@
           "value": "Execute"
         },
         {
+          "type": "SYMBOL",
+          "name": "_using_i"
+        },
+        {
+          "type": "FIELD",
+          "name": "script",
+          "content": {
+            "type": "SYMBOL",
+            "name": "raw"
+          }
+        }
+      ]
+    },
+    "script_result": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "result"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_using_i"
+        },
+        {
+          "type": "FIELD",
+          "name": "script",
+          "content": {
+            "type": "SYMBOL",
+            "name": "raw"
+          }
+        }
+      ]
+    },
+    "_using_i": {
+      "type": "SEQ",
+      "members": [
+        {
           "type": "STRING",
           "value": "using"
         },
@@ -252,14 +294,6 @@
           "content": {
             "type": "SYMBOL",
             "name": "_basic_expression"
-          }
-        },
-        {
-          "type": "FIELD",
-          "name": "script",
-          "content": {
-            "type": "SYMBOL",
-            "name": "raw"
           }
         }
       ]

@@ -543,6 +543,40 @@
     "fields": {}
   },
   {
+    "type": "script_result",
+    "named": true,
+    "fields": {
+      "interpreter": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "integer",
+            "named": true
+          },
+          {
+            "type": "string",
+            "named": true
+          },
+          {
+            "type": "variable_instance",
+            "named": true
+          }
+        ]
+      },
+      "script": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "raw",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
     "type": "set",
     "named": true,
     "fields": {
@@ -570,6 +604,10 @@
           },
           {
             "type": "query",
+            "named": true
+          },
+          {
+            "type": "script_result",
             "named": true
           },
           {

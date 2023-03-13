@@ -112,6 +112,11 @@ Interpolation symbol = '$'
 Log "Weird ID: ${weird_id}"
 Log "Integer: ${0123456789}"
 
+# Equivalent to:
+# Set res = "A newline will follow this string\n"
+Set res = result using "/usr/bin/env python3":
+	print("A newline will follow this string")
+
 # This should always fail
 Assert 0 == 1
 
