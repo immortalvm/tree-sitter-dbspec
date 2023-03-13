@@ -89,7 +89,6 @@ namespace {
 
       if (valid_symbols[SET_INTER]) {
         inter_char = lexer->lookahead;
-        std::cout << "Inter: " << inter_char << std::endl;
         advance(lexer);
         lexer->result_symbol = SET_INTER;
         return inter_char != 0;
