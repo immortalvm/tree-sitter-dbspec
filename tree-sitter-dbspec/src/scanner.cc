@@ -26,6 +26,7 @@ namespace {
     COMMENT,
     END_OF_FILE,
     SKIP,
+    SET_INTER,
   };
 
   struct Scanner {
@@ -37,13 +38,28 @@ namespace {
       buffer[0] = pending_dedents;
       buffer[1] = reference_indent;
       buffer[2] = indent_counter;
-      return 3;
+      // https://stackoverflow.com/a/18877977
+      char *ptr = (char*)&inter_char;
+      buffer[4] = *(ptr++);
+      buffer[5] = *(ptr++);
+      buffer[6] = *(ptr++);
+      buffer[7] = *(ptr++);
+      return 8;
     }
 
     void deserialize(const char *buffer, unsigned length) {
       pending_dedents = (length > 0) ? buffer[0] : 0;
       reference_indent = (length > 1) ? buffer[1] : 1;
       indent_counter = (length > 2) ? buffer[2] : 1;
+      if (length > 7) {
+        char* ptr = (char*)&inter_char;
+        *(ptr++) = buffer[4];
+        *(ptr++) = buffer[5];
+        *(ptr++) = buffer[6];
+        *(ptr++) = buffer[7];
+      } else {
+        inter_char = '$';
+      }
     }
 
     void advance(TSLexer *lexer) {
@@ -69,6 +85,14 @@ namespace {
         // We choose to fail rather than recover (for now).
         // std::cout << "Recovery" << std::endl;
         return false;
+      }
+
+      if (valid_symbols[SET_INTER]) {
+        inter_char = lexer->lookahead;
+        std::cout << "Inter: " << inter_char << std::endl;
+        advance(lexer);
+        lexer->result_symbol = SET_INTER;
+        return inter_char != 0;
       }
 
       bool skipping = false;
@@ -165,7 +189,7 @@ namespace {
         }
         break;
 
-      case '#': // TODO
+      case '#':
         if (valid_symbols[COMMENT]) {
           skip(lexer);
           while (lexer->lookahead
@@ -177,23 +201,6 @@ namespace {
           return true;
         }
         break;
-
-      case '$':
-        advance(lexer);
-        if (valid_symbols[INTER_START] && lexer->lookahead == '{') {
-          advance(lexer);
-          lexer->result_symbol = INTER_START;
-          return true;
-        }
-        if (valid_symbols[STRING_CONTENT]) {
-          lexer->result_symbol = STRING_CONTENT;
-          return true;
-        }
-        if (valid_symbols[RAW]) {
-          lexer->result_symbol = RAW;
-          return true;
-        }
-        return false;
 
       case '}':
         if (valid_symbols[INTER_END]) {
@@ -209,6 +216,24 @@ namespace {
           return false;
         }
         break;
+      }
+
+      if (lexer->lookahead ==  inter_char) {
+        advance(lexer);
+        if (valid_symbols[INTER_START] && lexer->lookahead == '{') {
+          advance(lexer);
+          lexer->result_symbol = INTER_START;
+          return true;
+        }
+        if (valid_symbols[STRING_CONTENT]) {
+          lexer->result_symbol = STRING_CONTENT;
+          return true;
+        }
+        if (valid_symbols[RAW]) {
+          lexer->result_symbol = RAW;
+          return true;
+        }
+        return false;
       }
 
       if (lexer->eof(lexer)) {
@@ -233,6 +258,8 @@ namespace {
     //  Off by one, so that 0 can mean "not beginning of line".
     char reference_indent; // 1-255
     char indent_counter; // 0-255
+
+    int32_t inter_char;
   };
 
 }

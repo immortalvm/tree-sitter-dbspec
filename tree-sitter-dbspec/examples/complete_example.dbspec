@@ -100,6 +100,9 @@ Metadata for dbc.my_test_db:
 
 Output dbc.my_test_db to "my_test.siard"
 
+Interpolation symbol = '🦄'
+Set weird = "The port was 🦄{port}."
+
 
 
 ### Local variables:

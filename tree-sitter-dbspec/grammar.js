@@ -14,6 +14,7 @@ module.exports = grammar({
     $._comment,
     $._end_of_file,
     $._skip,
+    $._set_inter,
   ],
 
   extras: $ => [
@@ -51,9 +52,13 @@ module.exports = grammar({
       $.siard_metadata,
       $.siard_output,
       $.for_loop,
+      $.set_inter,
     ),
 
     nop: $ => seq('...', $._nl),
+
+    set_inter: $ => seq(
+      'Interpolation', 'symbol', '=', "'", $._set_inter, "'", $._nl),
 
     set: $ => seq('Set', $._name, '=', field('value', $._expression)),
 

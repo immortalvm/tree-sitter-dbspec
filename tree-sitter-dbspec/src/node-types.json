@@ -119,6 +119,10 @@
           "named": true
         },
         {
+          "type": "set_inter",
+          "named": true
+        },
+        {
           "type": "siard_metadata",
           "named": true
         },
@@ -381,6 +385,11 @@
         ]
       }
     }
+  },
+  {
+    "type": "set_inter",
+    "named": true,
+    "fields": {}
   },
   {
     "type": "siard_check",
@@ -987,6 +996,10 @@
           "named": true
         },
         {
+          "type": "set_inter",
+          "named": true
+        },
+        {
           "type": "siard_metadata",
           "named": true
         },
@@ -1045,6 +1058,10 @@
     "named": false
   },
   {
+    "type": "'",
+    "named": false
+  },
+  {
     "type": "(",
     "named": false
   },
@@ -1090,6 +1107,10 @@
   },
   {
     "type": "For",
+    "named": false
+  },
+  {
+    "type": "Interpolation",
     "named": false
   },
   {
@@ -1183,6 +1204,10 @@
   {
     "type": "short_description",
     "named": true
+  },
+  {
+    "type": "symbol",
+    "named": false
   },
   {
     "type": "to",
