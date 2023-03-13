@@ -55,11 +55,14 @@ module.exports = grammar({
       $.for_loop,
       $.set_inter,
       $.log,
+      $.assert,
     ),
 
     nop: $ => seq('...', $._nl),
 
     log: $ => seq('Log', $._basic_expression),
+
+    assert: $ => seq('Assert', $._boolean_expression),
 
     set_inter: $ => seq(
       'Interpolation', 'symbol', '=', "'", $._set_inter, "'", $._nl),
@@ -213,6 +216,22 @@ module.exports = grammar({
     // Cf. https://www.baeldung.com/jdbc-resultset
     for_variables: $ => seq('(', commaSep1($.identifier), ')'),
     for_body: $ => repeat1($._statement),
+
+
+    // ---- Boolean expressions ----
+
+    _boolean_expression: $ => choice(
+      $.comparison,
+      // To be continued
+    ),
+
+    comparison: $ => seq(
+      field('left', $._basic_expression),
+      field('operator', $.comparison_operator),
+      field('right', $._basic_expression),
+    ),
+
+    comparison_operator: $ => choice('==', '!=', '<', '>', '<=', '>='),
 
 
     // ---- Basic expressions ----

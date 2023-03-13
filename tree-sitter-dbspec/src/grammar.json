@@ -114,6 +114,10 @@
         {
           "type": "SYMBOL",
           "name": "log"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "assert"
         }
       ]
     },
@@ -140,6 +144,19 @@
         {
           "type": "SYMBOL",
           "name": "_basic_expression"
+        }
+      ]
+    },
+    "assert": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "Assert"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_boolean_expression"
         }
       ]
     },
@@ -1462,6 +1479,73 @@
         "type": "SYMBOL",
         "name": "_statement"
       }
+    },
+    "_boolean_expression": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "comparison"
+        }
+      ]
+    },
+    "comparison": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "FIELD",
+          "name": "left",
+          "content": {
+            "type": "SYMBOL",
+            "name": "_basic_expression"
+          }
+        },
+        {
+          "type": "FIELD",
+          "name": "operator",
+          "content": {
+            "type": "SYMBOL",
+            "name": "comparison_operator"
+          }
+        },
+        {
+          "type": "FIELD",
+          "name": "right",
+          "content": {
+            "type": "SYMBOL",
+            "name": "_basic_expression"
+          }
+        }
+      ]
+    },
+    "comparison_operator": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "=="
+        },
+        {
+          "type": "STRING",
+          "value": "!="
+        },
+        {
+          "type": "STRING",
+          "value": "<"
+        },
+        {
+          "type": "STRING",
+          "value": ">"
+        },
+        {
+          "type": "STRING",
+          "value": "<="
+        },
+        {
+          "type": "STRING",
+          "value": ">="
+        }
+      ]
     },
     "_basic_expression": {
       "type": "CHOICE",

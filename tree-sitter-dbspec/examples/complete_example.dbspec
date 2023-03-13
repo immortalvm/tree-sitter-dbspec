@@ -112,6 +112,9 @@ Interpolation symbol = '$'
 Log "Weird ID: ${weird_id}"
 Log "Integer: ${0123456789}"
 
+# This should always fail
+Assert 0 == 1
+
 
 ### Local variables:
 ### indent-tabs-mode: t
