@@ -117,6 +117,9 @@ Log "Integer: ${0123456789}"
 Set res = result using "/usr/bin/env python3":
 	print("A newline will follow this string")
 
+Set i = t.size
+Set j = " 123 ".stripped.as_integer
+
 # This should always fail
 Assert 0 == 1
 

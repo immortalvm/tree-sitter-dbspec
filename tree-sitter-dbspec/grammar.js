@@ -239,9 +239,14 @@ module.exports = grammar({
       $.string,
       $.variable_instance,
       $.integer,
+      $.dot_expression,
       // To be continued
     ),
     variable_instance: $ => $.identifier,
+
+    dot_expression: $ => seq(
+      field('left', $._basic_expression), '.', field('right', $.dot_operator)),
+    dot_operator: $ => choice('stripped', 'size', 'as_integer'),
 
     // Inspired by tree-sitter-python
     string: $ => seq(

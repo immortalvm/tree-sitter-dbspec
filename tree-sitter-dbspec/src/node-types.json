@@ -43,6 +43,10 @@
         "required": false,
         "types": [
           {
+            "type": "dot_expression",
+            "named": true
+          },
+          {
             "type": "integer",
             "named": true
           },
@@ -71,6 +75,10 @@
         "required": true,
         "types": [
           {
+            "type": "dot_expression",
+            "named": true
+          },
+          {
             "type": "integer",
             "named": true
           },
@@ -98,6 +106,10 @@
         "multiple": false,
         "required": true,
         "types": [
+          {
+            "type": "dot_expression",
+            "named": true
+          },
           {
             "type": "integer",
             "named": true
@@ -138,6 +150,10 @@
         "required": true,
         "types": [
           {
+            "type": "dot_expression",
+            "named": true
+          },
+          {
             "type": "integer",
             "named": true
           },
@@ -152,6 +168,49 @@
         ]
       }
     }
+  },
+  {
+    "type": "dot_expression",
+    "named": true,
+    "fields": {
+      "left": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "dot_expression",
+            "named": true
+          },
+          {
+            "type": "integer",
+            "named": true
+          },
+          {
+            "type": "string",
+            "named": true
+          },
+          {
+            "type": "variable_instance",
+            "named": true
+          }
+        ]
+      },
+      "right": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "dot_operator",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "dot_operator",
+    "named": true,
+    "fields": {}
   },
   {
     "type": "escape_sequence",
@@ -192,6 +251,10 @@
         "multiple": false,
         "required": true,
         "types": [
+          {
+            "type": "dot_expression",
+            "named": true
+          },
           {
             "type": "integer",
             "named": true
@@ -329,6 +392,10 @@
       "required": true,
       "types": [
         {
+          "type": "dot_expression",
+          "named": true
+        },
+        {
           "type": "integer",
           "named": true
         },
@@ -351,6 +418,10 @@
       "multiple": false,
       "required": true,
       "types": [
+        {
+          "type": "dot_expression",
+          "named": true
+        },
         {
           "type": "integer",
           "named": true
@@ -384,6 +455,10 @@
         "multiple": false,
         "required": true,
         "types": [
+          {
+            "type": "dot_expression",
+            "named": true
+          },
           {
             "type": "integer",
             "named": true
@@ -427,6 +502,10 @@
       "multiple": false,
       "required": true,
       "types": [
+        {
+          "type": "dot_expression",
+          "named": true
+        },
         {
           "type": "integer",
           "named": true
@@ -551,6 +630,10 @@
         "required": true,
         "types": [
           {
+            "type": "dot_expression",
+            "named": true
+          },
+          {
             "type": "integer",
             "named": true
           },
@@ -599,6 +682,10 @@
             "named": true
           },
           {
+            "type": "dot_expression",
+            "named": true
+          },
+          {
             "type": "integer",
             "named": true
           },
@@ -635,6 +722,10 @@
         "multiple": true,
         "required": false,
         "types": [
+          {
+            "type": "dot_expression",
+            "named": true
+          },
           {
             "type": "integer",
             "named": true
@@ -677,6 +768,10 @@
         "multiple": true,
         "required": false,
         "types": [
+          {
+            "type": "dot_expression",
+            "named": true
+          },
           {
             "type": "integer",
             "named": true
@@ -730,6 +825,10 @@
         "required": false,
         "types": [
           {
+            "type": "dot_expression",
+            "named": true
+          },
+          {
             "type": "integer",
             "named": true
           },
@@ -782,6 +881,10 @@
         "required": false,
         "types": [
           {
+            "type": "dot_expression",
+            "named": true
+          },
+          {
             "type": "integer",
             "named": true
           },
@@ -824,6 +927,10 @@
         "required": false,
         "types": [
           {
+            "type": "dot_expression",
+            "named": true
+          },
+          {
             "type": "integer",
             "named": true
           },
@@ -845,6 +952,10 @@
         "multiple": true,
         "required": false,
         "types": [
+          {
+            "type": "dot_expression",
+            "named": true
+          },
           {
             "type": "integer",
             "named": true
@@ -878,6 +989,10 @@
         "required": false,
         "types": [
           {
+            "type": "dot_expression",
+            "named": true
+          },
+          {
             "type": "integer",
             "named": true
           },
@@ -899,6 +1014,10 @@
         "multiple": true,
         "required": false,
         "types": [
+          {
+            "type": "dot_expression",
+            "named": true
+          },
           {
             "type": "integer",
             "named": true
@@ -922,6 +1041,10 @@
         "required": false,
         "types": [
           {
+            "type": "dot_expression",
+            "named": true
+          },
+          {
             "type": "integer",
             "named": true
           },
@@ -944,6 +1067,10 @@
         "required": false,
         "types": [
           {
+            "type": "dot_expression",
+            "named": true
+          },
+          {
             "type": "integer",
             "named": true
           },
@@ -965,6 +1092,10 @@
         "multiple": true,
         "required": false,
         "types": [
+          {
+            "type": "dot_expression",
+            "named": true
+          },
           {
             "type": "integer",
             "named": true
@@ -1028,6 +1159,10 @@
         "required": true,
         "types": [
           {
+            "type": "dot_expression",
+            "named": true
+          },
+          {
             "type": "integer",
             "named": true
           },
@@ -1061,6 +1196,10 @@
         "multiple": true,
         "required": false,
         "types": [
+          {
+            "type": "dot_expression",
+            "named": true
+          },
           {
             "type": "integer",
             "named": true
@@ -1122,6 +1261,10 @@
         "required": false,
         "types": [
           {
+            "type": "dot_expression",
+            "named": true
+          },
+          {
             "type": "integer",
             "named": true
           },
@@ -1182,6 +1325,10 @@
         "required": false,
         "types": [
           {
+            "type": "dot_expression",
+            "named": true
+          },
+          {
             "type": "integer",
             "named": true
           },
@@ -1223,6 +1370,10 @@
         "multiple": true,
         "required": false,
         "types": [
+          {
+            "type": "dot_expression",
+            "named": true
+          },
           {
             "type": "integer",
             "named": true
@@ -1514,6 +1665,10 @@
     "named": false
   },
   {
+    "type": "as_integer",
+    "named": false
+  },
+  {
     "type": "connection",
     "named": false
   },
@@ -1560,6 +1715,14 @@
   {
     "type": "short_description",
     "named": true
+  },
+  {
+    "type": "size",
+    "named": false
+  },
+  {
+    "type": "stripped",
+    "named": false
   },
   {
     "type": "symbol",
