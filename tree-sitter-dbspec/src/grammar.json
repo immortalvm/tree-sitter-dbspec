@@ -1464,7 +1464,7 @@
           "name": "body",
           "content": {
             "type": "SYMBOL",
-            "name": "for_body"
+            "name": "statement_block"
           }
         },
         {
@@ -1511,13 +1511,6 @@
         }
       ]
     },
-    "for_body": {
-      "type": "REPEAT1",
-      "content": {
-        "type": "SYMBOL",
-        "name": "_statement"
-      }
-    },
     "conditional": {
       "type": "SEQ",
       "members": [
@@ -1546,7 +1539,7 @@
           "name": "then",
           "content": {
             "type": "SYMBOL",
-            "name": "for_body"
+            "name": "statement_block"
           }
         },
         {
@@ -1576,7 +1569,7 @@
                   "name": "else",
                   "content": {
                     "type": "SYMBOL",
-                    "name": "for_body"
+                    "name": "statement_block"
                   }
                 },
                 {
@@ -1591,6 +1584,13 @@
           ]
         }
       ]
+    },
+    "statement_block": {
+      "type": "REPEAT1",
+      "content": {
+        "type": "SYMBOL",
+        "name": "_statement"
+      }
     },
     "_boolean_expression": {
       "type": "CHOICE",

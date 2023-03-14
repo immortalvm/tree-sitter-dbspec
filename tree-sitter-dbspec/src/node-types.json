@@ -150,7 +150,7 @@
         "required": false,
         "types": [
           {
-            "type": "for_body",
+            "type": "statement_block",
             "named": true
           }
         ]
@@ -160,7 +160,7 @@
         "required": true,
         "types": [
           {
-            "type": "for_body",
+            "type": "statement_block",
             "named": true
           }
         ]
@@ -318,61 +318,6 @@
     }
   },
   {
-    "type": "for_body",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "assert",
-          "named": true
-        },
-        {
-          "type": "conditional",
-          "named": true
-        },
-        {
-          "type": "execute_sql",
-          "named": true
-        },
-        {
-          "type": "execute_using",
-          "named": true
-        },
-        {
-          "type": "for_loop",
-          "named": true
-        },
-        {
-          "type": "log",
-          "named": true
-        },
-        {
-          "type": "nop",
-          "named": true
-        },
-        {
-          "type": "set",
-          "named": true
-        },
-        {
-          "type": "set_inter",
-          "named": true
-        },
-        {
-          "type": "siard_metadata",
-          "named": true
-        },
-        {
-          "type": "siard_output",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
     "type": "for_loop",
     "named": true,
     "fields": {
@@ -381,7 +326,7 @@
         "required": true,
         "types": [
           {
-            "type": "for_body",
+            "type": "statement_block",
             "named": true
           }
         ]
@@ -1496,6 +1441,61 @@
         },
         {
           "type": "parameters",
+          "named": true
+        },
+        {
+          "type": "set",
+          "named": true
+        },
+        {
+          "type": "set_inter",
+          "named": true
+        },
+        {
+          "type": "siard_metadata",
+          "named": true
+        },
+        {
+          "type": "siard_output",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "statement_block",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "assert",
+          "named": true
+        },
+        {
+          "type": "conditional",
+          "named": true
+        },
+        {
+          "type": "execute_sql",
+          "named": true
+        },
+        {
+          "type": "execute_using",
+          "named": true
+        },
+        {
+          "type": "for_loop",
+          "named": true
+        },
+        {
+          "type": "log",
+          "named": true
+        },
+        {
+          "type": "nop",
           "named": true
         },
         {

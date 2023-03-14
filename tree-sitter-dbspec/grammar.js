@@ -205,31 +205,27 @@ module.exports = grammar({
       $._ded),
 
 
-    // ---- Loops ----
+    // ---- Loops and conditionals ----
 
     for_loop: $ => seq(
       'For', field('variables', $.for_variables),
       'in', field('result_set', $.identifier), ':', $._ni,
-      field('body', $.for_body),
+      field('body', $.statement_block),
       $._ded),
 
     // Cf. https://www.baeldung.com/jdbc-resultset
     for_variables: $ => seq('(', commaSep1($.identifier), ')'),
 
-    // TODO: Maken name more generic since it is also used below
-    for_body: $ => repeat1($._statement),
-
-
-    // ---- Conditional statements ----
-
     conditional: $ => seq(
       'If', field('condition', $._boolean_expression), ':', $._ni,
-      field('then', $.for_body),
+      field('then', $.statement_block),
       $._ded,
       optional(seq(
         'Else', ':', $._ni,
-        field('else', $.for_body),
+        field('else', $.statement_block),
         $._ded))),
+
+    statement_block: $ => repeat1($._statement),
 
 
     // ---- Boolean expressions ----
