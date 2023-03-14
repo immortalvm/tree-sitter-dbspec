@@ -247,8 +247,8 @@
       "type": "SEQ",
       "members": [
         {
-          "type": "STRING",
-          "value": "Execute"
+          "type": "PATTERN",
+          "value": "Execute +using"
         },
         {
           "type": "SYMBOL",
@@ -268,8 +268,8 @@
       "type": "SEQ",
       "members": [
         {
-          "type": "STRING",
-          "value": "result"
+          "type": "PATTERN",
+          "value": "result +using"
         },
         {
           "type": "SYMBOL",
@@ -286,32 +286,19 @@
       ]
     },
     "_using_i": {
-      "type": "SEQ",
-      "members": [
-        {
-          "type": "STRING",
-          "value": "using"
-        },
-        {
-          "type": "FIELD",
-          "name": "interpreter",
-          "content": {
-            "type": "SYMBOL",
-            "name": "_basic_expression"
-          }
-        }
-      ]
+      "type": "FIELD",
+      "name": "interpreter",
+      "content": {
+        "type": "SYMBOL",
+        "name": "_basic_expression"
+      }
     },
     "connection": {
       "type": "SEQ",
       "members": [
         {
-          "type": "STRING",
-          "value": "connection"
-        },
-        {
-          "type": "STRING",
-          "value": "to"
+          "type": "PATTERN",
+          "value": "connection +to"
         },
         {
           "type": "FIELD",
@@ -365,8 +352,8 @@
       "type": "SEQ",
       "members": [
         {
-          "type": "STRING",
-          "value": "Execute"
+          "type": "PATTERN",
+          "value": "Execute +via"
         },
         {
           "type": "SYMBOL",
@@ -386,8 +373,8 @@
       "type": "SEQ",
       "members": [
         {
-          "type": "STRING",
-          "value": "result"
+          "type": "PATTERN",
+          "value": "result +via"
         },
         {
           "type": "SYMBOL",
@@ -404,21 +391,12 @@
       ]
     },
     "_via_c": {
-      "type": "SEQ",
-      "members": [
-        {
-          "type": "STRING",
-          "value": "via"
-        },
-        {
-          "type": "FIELD",
-          "name": "connection",
-          "content": {
-            "type": "SYMBOL",
-            "name": "identifier"
-          }
-        }
-      ]
+      "type": "FIELD",
+      "name": "connection",
+      "content": {
+        "type": "SYMBOL",
+        "name": "identifier"
+      }
     },
     "siard_output": {
       "type": "SEQ",
@@ -2132,6 +2110,7 @@
   ],
   "inline": [
     "_name",
+    "_using_i",
     "_via_c"
   ],
   "supertypes": []

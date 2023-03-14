@@ -27,6 +27,7 @@ module.exports = grammar({
 
   inline: $ => [
     $._name,
+    $._using_i,
     $._via_c,
   ],
 
@@ -80,24 +81,24 @@ module.exports = grammar({
 
     // ---- Embedded scripts (other than SQL) ----
 
-    execute_using: $ => seq('Execute', $._using_i, field('script', $.raw)),
-    script_result: $ => seq('result', $._using_i, field('script', $.raw)),
-    _using_i: $ => seq('using', field('interpreter', $._basic_expression)),
+    execute_using: $ => seq(/Execute +using/, $._using_i, field('script', $.raw)),
+    script_result: $ => seq(/result +using/, $._using_i, field('script', $.raw)),
+    _using_i: $ => field('interpreter', $._basic_expression),
 
 
     // ---- SQL ----
 
     // cf. https://docs.oracle.com/javase/tutorial/jdbc/basics/connecting.html
     connection: $ => seq(
-      'connection', 'to', field('url', $._basic_expression),
+      /connection +to/, field('url', $._basic_expression),
       choice(
         $._nl,
         seq(
           optional($._newline), 'with', field('properties', $.key_value_pairs)))),
 
-    execute_sql: $ => seq('Execute', $._via_c, field('sql', $.raw)),
-    query: $ => seq('result', $._via_c, field('sql', $.raw)),
-    _via_c: $ => seq('via', field('connection', $.identifier)),
+    execute_sql: $ => seq(/Execute +via/, $._via_c, field('sql', $.raw)),
+    query: $ => seq(/result +via/, $._via_c, field('sql', $.raw)),
+    _via_c: $ => field('connection', $.identifier),
 
 
     // ---- SIARD ----

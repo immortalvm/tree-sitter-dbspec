@@ -1645,10 +1645,6 @@
     "named": false
   },
   {
-    "type": "Execute",
-    "named": false
-  },
-  {
     "type": "Field",
     "named": false
   },
@@ -1721,10 +1717,6 @@
     "named": false
   },
   {
-    "type": "connection",
-    "named": false
-  },
-  {
     "type": "dataOriginTimespan",
     "named": false
   },
@@ -1761,10 +1753,6 @@
     "named": false
   },
   {
-    "type": "result",
-    "named": false
-  },
-  {
     "type": "short_description",
     "named": true
   },
@@ -1786,14 +1774,6 @@
   },
   {
     "type": "to",
-    "named": false
-  },
-  {
-    "type": "using",
-    "named": false
-  },
-  {
-    "type": "via",
     "named": false
   },
   {
