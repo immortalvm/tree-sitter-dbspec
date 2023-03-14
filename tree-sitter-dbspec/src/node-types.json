@@ -602,11 +602,6 @@
     }
   },
   {
-    "type": "raw_content",
-    "named": true,
-    "fields": {}
-  },
-  {
     "type": "script_result",
     "named": true,
     "fields": {
@@ -1755,6 +1750,10 @@
   {
     "type": "lobFolder",
     "named": false
+  },
+  {
+    "type": "raw_content",
+    "named": true
   },
   {
     "type": "short_description",

@@ -8,7 +8,7 @@ module.exports = grammar({
     $._inter_start,
     $._inter_start2,
     $._inter_end,
-    $._raw,
+    $.raw_content,
     $._string_start,
     $._string_content,
     $._string_end,
@@ -316,7 +316,6 @@ module.exports = grammar({
       ':', $._newline, $._indent,
       repeat1(choice($.raw_content, $.interpolation, $.interpolation2)),
       $._ded),
-    raw_content: $ => prec.right(repeat1($._raw)),
   },
 
 });
