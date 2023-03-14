@@ -110,7 +110,7 @@ Execute via dbc:
 
 Interpolation symbol = '$'
 Log "Weird ID: ${weird_id}"
-Log "Integer: ${0123456789}"
+Log "Integer: ${-0123456789}"
 
 # Equivalent to:
 # Set res = "A newline will follow this string\n"

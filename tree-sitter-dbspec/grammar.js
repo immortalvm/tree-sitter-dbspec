@@ -281,7 +281,7 @@ module.exports = grammar({
       )
     )),
 
-    integer: $ => /[0-9]+/,
+    integer: $ => /-?[0-9]+/,
 
 
     // ---- Generic ----
