@@ -69,10 +69,15 @@ module.exports = grammar({
     set_inter: $ => seq(
       'Interpolation', 'symbol', '=', "'", $._set_inter, "'", $._nl),
 
-    set: $ => seq('Set', $._name, '=', field('value', $._expression)),
+    set: $ => seq(
+      'Set', $._name,
+      choice(
+        field('value', $.raw),
+        seq('=', field('value', $._expression)),
+      )),
 
     _expression: $ => choice(
-      $._basic_expression,
+      seq($._basic_expression, $._nl),
       $.connection,
       $.query,
       $.script_result,

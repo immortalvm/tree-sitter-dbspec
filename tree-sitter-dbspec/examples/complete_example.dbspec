@@ -128,6 +128,11 @@ If 1 < 0:
 Else:
 	Log "Puh! That was close."
 
+Set long_string:
+	Line 1
+	${port}
+	Line 3
+
 
 ### Local variables:
 ### indent-tabs-mode: t

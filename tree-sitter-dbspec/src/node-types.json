@@ -659,7 +659,7 @@
         ]
       },
       "value": {
-        "multiple": false,
+        "multiple": true,
         "required": true,
         "types": [
           {
@@ -676,6 +676,10 @@
           },
           {
             "type": "query",
+            "named": true
+          },
+          {
+            "type": "raw",
             "named": true
           },
           {
