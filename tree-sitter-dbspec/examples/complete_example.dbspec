@@ -102,7 +102,7 @@ Output dbc.my_test_db to "my_test.siard"
 
 
 Interpolation symbol = '🦄'
-Set weird_id = "${port} vs 🦄{port}"
+Set weird_id = "${port} \"vs\" 🦄{port}"
 
 Execute via dbc:
 	DELETE FROM Temp
