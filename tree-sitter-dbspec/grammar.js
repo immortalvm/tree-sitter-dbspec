@@ -266,7 +266,6 @@ module.exports = grammar({
     dot_operator: $ => choice('stripped', 'size', 'as_integer'),
 
     // Inspired by tree-sitter-python
-    // TODO: Can/should we eliminate _string_start and _string_end?
     string: $ => seq(
       alias($._string_start, '"'),
       repeat(choice(
