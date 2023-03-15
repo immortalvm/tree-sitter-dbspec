@@ -2048,6 +2048,41 @@
           "name": "_ded"
         }
       ]
+    },
+    "raw_content": {
+      "type": "PREC_RIGHT",
+      "value": 0,
+      "content": {
+        "type": "CHOICE",
+        "members": [
+          {
+            "type": "REPEAT1",
+            "content": {
+              "type": "SYMBOL",
+              "name": "_newline"
+            }
+          },
+          {
+            "type": "SEQ",
+            "members": [
+              {
+                "type": "REPEAT1",
+                "content": {
+                  "type": "SYMBOL",
+                  "name": "_raw"
+                }
+              },
+              {
+                "type": "REPEAT",
+                "content": {
+                  "type": "SYMBOL",
+                  "name": "_newline"
+                }
+              }
+            ]
+          }
+        ]
+      }
     }
   },
   "extras": [
@@ -2089,7 +2124,7 @@
     },
     {
       "type": "SYMBOL",
-      "name": "raw_content"
+      "name": "_raw"
     },
     {
       "type": "SYMBOL",

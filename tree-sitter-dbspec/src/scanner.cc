@@ -20,7 +20,7 @@ namespace {
     INTER_START,
     INTER_START2,
     INTER_END,
-    RAW, // raw_content in grammar.js
+    RAW,
     STRING_START,
     STRING_CONTENT,
     STRING_END,
@@ -125,12 +125,7 @@ namespace {
             lexer->result_symbol = NEWLINE;
             return true;
           }
-          if (valid_symbols[RAW]) {
-            advance(lexer);
-            lexer->result_symbol = RAW;
-            return true;
-          }
-          if (valid_symbols[STRING_CONTENT]) {
+          if (valid_symbols[RAW] || valid_symbols[STRING_CONTENT]) {
             return false;
           }
           skip(lexer);
