@@ -266,6 +266,7 @@ module.exports = grammar({
     dot_operator: $ => choice('stripped', 'size', 'as_integer'),
 
     // Inspired by tree-sitter-python
+    // TODO: Can/should we eliminate _string_start and _string_end?
     string: $ => seq(
       alias($._string_start, '"'),
       repeat(choice(
@@ -282,7 +283,6 @@ module.exports = grammar({
           /U[a-fA-F\d]{8}/,
           /x[a-fA-F\d]{2}/,
           /\d{3}/,
-          /\r?\n/,
           /['"abfrntv\\]/,
       )
     )),
