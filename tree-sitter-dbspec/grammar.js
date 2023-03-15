@@ -312,7 +312,9 @@ module.exports = grammar({
     key_value_pair: $ => seq(field('key', $.identifier), value_field('value', $)),
 
     raw: $ => seq(
-      ':', $._newline, $._indent,
+      ':', $._newline,
+      optional(alias(repeat1($._newline), $.raw_content)),
+      $._indent,
       repeat1(choice($.raw_content, $.interpolation, $.interpolation2)),
       $._ded),
 
