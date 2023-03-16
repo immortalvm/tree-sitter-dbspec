@@ -1804,19 +1804,7 @@
               },
               {
                 "type": "PATTERN",
-                "value": "U[a-fA-F\\d]{8}"
-              },
-              {
-                "type": "PATTERN",
-                "value": "x[a-fA-F\\d]{2}"
-              },
-              {
-                "type": "PATTERN",
-                "value": "\\d{3}"
-              },
-              {
-                "type": "PATTERN",
-                "value": "['\"abfrntv\\\\]"
+                "value": "['\"bfrnt\\\\]"
               }
             ]
           }

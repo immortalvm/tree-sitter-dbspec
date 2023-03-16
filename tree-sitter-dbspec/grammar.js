@@ -279,10 +279,7 @@ module.exports = grammar({
       '\\',
       choice(
           /u[a-fA-F\d]{4}/,
-          /U[a-fA-F\d]{8}/,
-          /x[a-fA-F\d]{2}/,
-          /\d{3}/,
-          /['"abfrntv\\]/,
+          /['"bfrnt\\]/,
       )
     )),
 
