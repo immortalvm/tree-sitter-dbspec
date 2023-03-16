@@ -278,8 +278,8 @@ module.exports = grammar({
     escape_sequence: $ => prec(1, seq(
       '\\',
       choice(
-          /u[a-fA-F\d]{4}/,
-          /['"bfrnt\\]/,
+        /u[a-fA-F\d]{4}/,
+        /['"bfrnt\\]/,
       )
     )),
 
