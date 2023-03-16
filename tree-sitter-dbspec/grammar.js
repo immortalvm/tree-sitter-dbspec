@@ -271,6 +271,7 @@ module.exports = grammar({
       repeat(choice(
         $.interpolation,
         $.escape_sequence,
+        $._quoted_dollar,
         $.string_content)),
       alias($._string_end, '"')
     ),
@@ -282,6 +283,9 @@ module.exports = grammar({
         /['"bfrnt\\]/,
       )
     )),
+    // This is handled separately so that the interpreter does not have
+    // to deal with the non-standard escape sequence \$.
+    _quoted_dollar: $ => seq('\\', alias('$', $.string_content)),
 
     integer: $ => /-?[0-9]+/,
 

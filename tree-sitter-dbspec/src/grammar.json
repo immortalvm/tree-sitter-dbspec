@@ -1758,6 +1758,10 @@
               },
               {
                 "type": "SYMBOL",
+                "name": "_quoted_dollar"
+              },
+              {
+                "type": "SYMBOL",
                 "name": "string_content"
               }
             ]
@@ -1810,6 +1814,24 @@
           }
         ]
       }
+    },
+    "_quoted_dollar": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "\\"
+        },
+        {
+          "type": "ALIAS",
+          "content": {
+            "type": "STRING",
+            "value": "$"
+          },
+          "named": true,
+          "value": "string_content"
+        }
+      ]
     },
     "integer": {
       "type": "PATTERN",
