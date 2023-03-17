@@ -47,7 +47,6 @@ module.exports = grammar({
     // ---- Statements ----
 
     _statement: $ => choice(
-      $.nop,
       $.set,
       $.execute_using,
       $.execute_sql,
@@ -59,8 +58,6 @@ module.exports = grammar({
       $.assert,
       $.conditional,
     ),
-
-    nop: $ => seq('...', $._nl),
 
     log: $ => seq('Log', $._basic_expression),
 

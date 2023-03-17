@@ -507,11 +507,6 @@
     }
   },
   {
-    "type": "nop",
-    "named": true,
-    "fields": {}
-  },
-  {
     "type": "parameter",
     "named": true,
     "fields": {
@@ -1440,10 +1435,6 @@
           "named": true
         },
         {
-          "type": "nop",
-          "named": true
-        },
-        {
           "type": "parameters",
           "named": true
         },
@@ -1496,10 +1487,6 @@
         },
         {
           "type": "log",
-          "named": true
-        },
-        {
-          "type": "nop",
           "named": true
         },
         {
@@ -1590,10 +1577,6 @@
   },
   {
     "type": ".",
-    "named": false
-  },
-  {
-    "type": "...",
     "named": false
   },
   {

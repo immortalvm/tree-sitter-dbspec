@@ -81,10 +81,6 @@
       "members": [
         {
           "type": "SYMBOL",
-          "name": "nop"
-        },
-        {
-          "type": "SYMBOL",
           "name": "set"
         },
         {
@@ -122,19 +118,6 @@
         {
           "type": "SYMBOL",
           "name": "conditional"
-        }
-      ]
-    },
-    "nop": {
-      "type": "SEQ",
-      "members": [
-        {
-          "type": "STRING",
-          "value": "..."
-        },
-        {
-          "type": "SYMBOL",
-          "name": "_nl"
         }
       ]
     },

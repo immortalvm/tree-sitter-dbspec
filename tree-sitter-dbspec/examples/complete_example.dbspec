@@ -8,9 +8,6 @@ Parameters:
 	# Comment!
 	id_size - The number of characters in generated IDs
 
-# No-op
-...
-
 # See e.g. https://www.baeldung.com/run-shell-command-in-java#ProcessBuilder
 Execute using "/bin/bash":
 	some_shell_command_to_obtain_and_restore_a_backup ${port}
