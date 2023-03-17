@@ -202,7 +202,7 @@ module.exports = grammar({
 
     command_declaration: $ => seq(
       'Command', ':', $._ni,
-      optional(seq('title', value_field('title', $))),
+      seq('title', value_field('title', $)),
       optional(field('parameters', $.parameters)),
       'Body', field('body', $.raw),
       $._ded),

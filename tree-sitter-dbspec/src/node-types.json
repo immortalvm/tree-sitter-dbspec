@@ -40,7 +40,7 @@
       },
       "title": {
         "multiple": false,
-        "required": false,
+        "required": true,
         "types": [
           {
             "type": "dot_expression",
