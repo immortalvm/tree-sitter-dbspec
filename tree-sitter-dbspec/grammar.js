@@ -215,23 +215,18 @@ module.exports = grammar({
 
     for_loop: $ => seq(
       'For', field('variables', $.for_variables),
-      'in', field('result_set', $.identifier), ':', $._ni,
-      field('body', $.statement_block),
-      $._ded),
+      'in', field('result_set', $.identifier),
+      field('body', $.statement_block)),
 
     // Cf. https://www.baeldung.com/jdbc-resultset
     for_variables: $ => seq('(', commaSep1($.identifier), ')'),
 
     conditional: $ => seq(
-      'If', field('condition', $._boolean_expression), ':', $._ni,
+      'If', field('condition', $._boolean_expression),
       field('then', $.statement_block),
-      $._ded,
-      optional(seq(
-        'Else', ':', $._ni,
-        field('else', $.statement_block),
-        $._ded))),
+      optional(seq('Else', field('else', $.statement_block)))),
 
-    statement_block: $ => repeat1($._statement),
+    statement_block: $ => seq(':', $._ni, repeat($._statement), $._ded),
 
 
     // ---- Boolean expressions ----
