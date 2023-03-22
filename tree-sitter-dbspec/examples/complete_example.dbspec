@@ -40,7 +40,8 @@ For (id, name) in t:
 	Set names = "${names}${name}, "
 
 
-Metadata for dbc.my_test_db:
+Metadata for dbc:
+	dbname = "mytestdb"
 	description:
 		This is a very interesting database.
 	archiver = "ivar.rummelhoff@nr.no"
@@ -95,7 +96,7 @@ Metadata for dbc.my_test_db:
 			AND g.place = ${knr};
 
 
-Output dbc.my_test_db to "my_test.siard"
+Output dbc to "my_test.siard"
 
 
 Interpolation symbol = '🦄'

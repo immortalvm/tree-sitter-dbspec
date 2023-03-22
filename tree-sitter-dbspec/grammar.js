@@ -106,11 +106,11 @@ module.exports = grammar({
     // ---- SIARD ----
 
     siard_output: $ => seq(
-      'Output', field('connection', $.identifier), '.', $._name,
+      'Output', field('connection', $.identifier),
       'to', field('file', $._basic_expression), $._nl),
 
     siard_metadata: $ => seq(
-      'Metadata', 'for', field('connection', $.identifier), '.', $._name, ':', $._ni,
+      'Metadata', 'for', field('connection', $.identifier), ':', $._ni,
       repeat(choice(
         $._siard_dbname,
         $._siard_description,

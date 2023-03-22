@@ -425,14 +425,6 @@
         },
         {
           "type": "STRING",
-          "value": "."
-        },
-        {
-          "type": "SYMBOL",
-          "name": "_name"
-        },
-        {
-          "type": "STRING",
           "value": "to"
         },
         {
@@ -467,14 +459,6 @@
             "type": "SYMBOL",
             "name": "identifier"
           }
-        },
-        {
-          "type": "STRING",
-          "value": "."
-        },
-        {
-          "type": "SYMBOL",
-          "name": "_name"
         },
         {
           "type": "STRING",
