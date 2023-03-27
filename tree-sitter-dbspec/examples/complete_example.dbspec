@@ -13,8 +13,8 @@ Execute using "/bin/bash":
 	some_shell_command_to_obtain_and_restore_a_backup ${port}
 
 # Cf. https://docs.oracle.com/javase/tutorial/jdbc/basics/connecting.html
-Set dbc = connection to "jdbc:mysql://localhost:${port}/" with:
-	database = "mytestdb"
+Set dbc = connection to "jdbc:sqlserver://localhost:${port}/" with:
+	databaseName = "mytestdb"
 	user = "nr\\${user}"
 	password = password
 	foo:
@@ -92,8 +92,8 @@ Metadata for dbc:
 		Body:
 			SELECT g.subject AS fag, g.grade AS karakter
 			FROM public.grades g
-			WHERE g.fødselsnummer = ${fnr}
-			AND g.place = ${knr};
+			WHERE g.nin = $${fnr}
+			AND g.place = $${knr};
 
 
 Output dbc to "my_test.siard"
