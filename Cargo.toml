@@ -1,10 +1,10 @@
 [package]
 name = "tree-sitter-dbspec"
 description = "DbSpec grammar for the tree-sitter parsing library"
-version = "0.0.1"
+version = "1.0.0"
 keywords = ["incremental", "parsing", "dbspec"]
 categories = ["parsing", "text-editors"]
-repository = "https://github.com/tree-sitter/tree-sitter-dbspec"
+repository = "https://github.com/immortalvm/tree-sitter-dbspec"
 edition = "2018"
 license = "MIT"
 
