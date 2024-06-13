@@ -235,14 +235,14 @@ bool tree_sitter_dbspec_external_scanner_scan(void *payload, TSLexer *lexer, con
       lexer->result_symbol = INTER_START;
       return true;
     }
-    if (lexer->lookahead ==  s->inter_char) {
+    if (valid_symbols[INTER_START2] && lexer->lookahead ==  s->inter_char) {
       advance(lexer);
-      if (valid_symbols[INTER_START2] && lexer->lookahead == '{') {
+      if (lexer->lookahead == '{') {
         advance(lexer);
         lexer->result_symbol = INTER_START2;
         return true;
       }
-      // At this point we will have advanced over two characters.
+      // NB. At this point we will have advanced over two characters.
     }
     if (valid_symbols[STRING_CONTENT]) {
       lexer->result_symbol = STRING_CONTENT;

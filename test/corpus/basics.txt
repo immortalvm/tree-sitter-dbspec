@@ -69,3 +69,33 @@ Set foo:
 		value: (raw
 			   (raw_content)
 			   (raw_content))))
+
+========================================
+Interpolation in string literal
+========================================
+Set x = "${7}"
+
+----------------------------------------
+
+(source_file
+  (set
+    name: (identifier)
+    value: (string
+      (interpolation
+        (integer)))))
+
+========================================
+No safe interpolations in string literals
+========================================
+Set x = "$${y}"
+
+----------------------------------------
+
+(source_file
+  (set
+    name: (identifier)
+    value: (string
+	  (string_content)
+      (interpolation
+        (variable_instance
+          (identifier))))))
