@@ -53,3 +53,19 @@ Set dbc = connection to "jdbc:mysql://localhost:${port}/"
 					(variable_instance
 						(identifier)))
 				(string_content)))))
+
+========================================
+Multiline string
+========================================
+Set foo:
+	bar
+	baz
+
+----------------------------------------
+
+(source_file
+	(set
+		name: (identifier)
+		value: (raw
+			   (raw_content)
+			   (raw_content))))

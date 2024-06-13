@@ -121,6 +121,12 @@ namespace {
           pending_dedents = 0;
           indent_counter = 1;
           if (valid_symbols[NEWLINE]) {
+            if (lexer->lookahead == '\r') {
+              advance(lexer);
+              if (lexer->lookahead != '\n') {
+                return false;
+              }
+            }
             advance(lexer);
             lexer->result_symbol = NEWLINE;
             return true;
