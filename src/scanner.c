@@ -1,7 +1,9 @@
-#include <tree_sitter/parser.h>
-#include <string.h>
+#include "tree_sitter/alloc.h"
+#include "tree_sitter/parser.h"
 #include <assert.h>
-#include <stdio.h>
+// #include <wctype.h>
+// #include <string.h>
+// #include <stdio.h>
 
 enum TokenType {
   NEWLINE,
@@ -20,15 +22,15 @@ enum TokenType {
   SET_INTER,
 };
 
-struct Scanner {
+typedef struct Scanner {
   char pending_dedents;
   char reference_indent;
   char indent_counter;
   int32_t inter_char;
-};
+} Scanner;
 
 void *tree_sitter_dbspec_external_scanner_create() {
-  struct Scanner* scanner = malloc(sizeof(struct Scanner));
+  Scanner* scanner = ts_malloc(sizeof(Scanner));
   scanner->pending_dedents = 0;
   scanner->reference_indent = 1;
   scanner->indent_counter = 1;
@@ -37,12 +39,12 @@ void *tree_sitter_dbspec_external_scanner_create() {
 }
 
 void tree_sitter_dbspec_external_scanner_destroy(void *payload) {
-  struct Scanner *scanner = (struct Scanner *)payload;
-  free(scanner);
+  Scanner *scanner = (Scanner *)payload;
+  ts_free(scanner);
 }
 
 unsigned tree_sitter_dbspec_external_scanner_serialize(void *payload, char *buffer) {
-  struct Scanner *scanner = (struct Scanner *)payload;
+  Scanner *scanner = (Scanner *)payload;
   buffer[0] = scanner->pending_dedents;
   buffer[1] = scanner->reference_indent;
   buffer[2] = scanner->indent_counter;
@@ -56,7 +58,7 @@ unsigned tree_sitter_dbspec_external_scanner_serialize(void *payload, char *buff
 }
 
 void tree_sitter_dbspec_external_scanner_deserialize(void *payload, const char *buffer, unsigned length) {
-  struct Scanner *scanner = (struct Scanner *)payload;
+  Scanner *scanner = (Scanner *)payload;
   scanner->pending_dedents = (length > 0) ? buffer[0] : 0;
   scanner->reference_indent = (length > 1) ? buffer[1] : 1;
   scanner->indent_counter = (length > 2) ? buffer[2] : 1;
@@ -80,7 +82,7 @@ static inline void skip(TSLexer *lexer) {
 }
 
 bool tree_sitter_dbspec_external_scanner_scan(void *payload, TSLexer *lexer, const bool *valid_symbols) {
-  struct Scanner *s = (struct Scanner *)payload;
+  Scanner *s = (Scanner *)payload;
 
   // From https://tree-sitter.github.io/tree-sitter/creating-parsers :
   // "If a syntax error is encountered during regular parsing,
@@ -90,7 +92,7 @@ bool tree_sitter_dbspec_external_scanner_scan(void *payload, TSLexer *lexer, con
   bool recovery_mode = valid_symbols[INDENT] && valid_symbols[RAW];
   if (recovery_mode) {
     // We choose to fail rather than recover (for now).
-    // std::cout << "Recovery" << std::endl;
+    // printf("Recovery\n"); fflush(stdout);
     return false;
   }
 
@@ -103,7 +105,7 @@ bool tree_sitter_dbspec_external_scanner_scan(void *payload, TSLexer *lexer, con
 
   bool skipping = false;
 
-  while (lexer->lookahead) {
+  while (!lexer->eof(lexer)) {
 
     if (s->indent_counter && lexer->lookahead == '\t') {
       if (s->indent_counter < s->reference_indent) {
@@ -150,7 +152,7 @@ bool tree_sitter_dbspec_external_scanner_scan(void *payload, TSLexer *lexer, con
         lexer->result_symbol = RAW;
         return true;
       }
-      // std::cout << (int) s->indent_counter << std::endl;
+      // printf("%d\n", s->indent_counter); fflush(stdout);
       if (s->indent_counter) {
         // Do not allow space or tab at the beginning of lines except in RAW.
         return false;
@@ -175,7 +177,7 @@ bool tree_sitter_dbspec_external_scanner_scan(void *payload, TSLexer *lexer, con
     return true;
   }
 
-  // std::cout << "HERE: " << lexer->lookahead << " " << char(lexer->lookahead) << std::endl;
+  // printf("HERE: %d %c\n", lexer->lookahead, lexer->lookahead); fflush(stdout);
 
   if (s->pending_dedents && valid_symbols[DEDENT]) {
     s->pending_dedents--;
@@ -202,7 +204,7 @@ bool tree_sitter_dbspec_external_scanner_scan(void *payload, TSLexer *lexer, con
   case '#':
     if (valid_symbols[COMMENT]) {
       skip(lexer);
-      while (lexer->lookahead
+      while (!lexer->eof(lexer)
              && lexer->lookahead != '\r'
              && lexer->lookahead != '\n') {
         advance(lexer);
