@@ -71,11 +71,11 @@ void tree_sitter_dbspec_external_scanner_deserialize(void *payload, const char *
   }
 }
 
-void advance(TSLexer *lexer) {
+static inline void advance(TSLexer *lexer) {
   lexer->advance(lexer, false);
 }
 
-void skip(TSLexer *lexer) {
+static inline void skip(TSLexer *lexer) {
   lexer->advance(lexer, true);
 }
 
